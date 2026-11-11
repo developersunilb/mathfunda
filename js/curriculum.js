@@ -310,12 +310,22 @@ export function chapterIndex(chapter) {
 
 export function nextChapter(chapter) {
   const index = chapterIndex(chapter);
-  return index >= 0 ? chapters[index + 1] || null : null;
+  if (index < 0) return null;
+  let next = index + 1;
+  while (next < chapters.length && chapters[next].slug === "diagnostic-answer-key") {
+    next += 1;
+  }
+  return next < chapters.length ? chapters[next] : null;
 }
 
 export function previousChapter(chapter) {
   const index = chapterIndex(chapter);
-  return index > 0 ? chapters[index - 1] : null;
+  if (index <= 0) return null;
+  let prev = index - 1;
+  while (prev > 0 && chapters[prev].slug === "diagnostic-answer-key") {
+    prev -= 1;
+  }
+  return prev >= 0 ? chapters[prev] : null;
 }
 
 export function lessonHref(slug, page) {

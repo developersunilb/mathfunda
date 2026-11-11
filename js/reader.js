@@ -165,6 +165,27 @@ function showParentGate() {
   input.focus();
 }
 
+function addLockButton() {
+  const actions = document.querySelector(".reader-actions");
+  if (!actions) return;
+
+  const lockBtn = document.createElement("button");
+  lockBtn.type = "button";
+  lockBtn.textContent = "Lock";
+  lockBtn.className = "quiet-button";
+  lockBtn.title = "Lock this page and require the password again";
+  lockBtn.addEventListener("click", () => {
+    try {
+      localStorage.removeItem(PARENT_PASSWORD_KEY);
+    } catch {
+      /* storage blocked */
+    }
+    parentUnlocked = false;
+    showParentGate();
+  });
+  actions.appendChild(lockBtn);
+}
+
 /* ------------------------------------------------------------- Page builder */
 
 class ReaderBuilder {
@@ -575,6 +596,7 @@ async function boot() {
 
   if (chapter.slug === "diagnostic-answer-key") {
     parentUnlocked = true;
+    addLockButton();
   }
 
   buildPages();
