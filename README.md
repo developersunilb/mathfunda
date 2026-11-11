@@ -22,6 +22,22 @@ vault. The content is written in Markdown with KaTeX formulas.
 | `studio.html` | Local Markdown editor, PDF print and EPUB export. |
 | `admin.html` | How publishing, permissions and pull-request approval work. |
 
+## Parent-only answer key
+
+The diagnostic assessment (`reader.html?ch=diagnostic-assessment`) shows the 20 questions only. The answers, marking guide and worked reasoning live on a separate parent-only page:
+
+- `reader.html?ch=diagnostic-answer-key` — Answer Key (password-gated)
+
+The parent unlocks it by entering the password. The password is hardcoded in `js/reader.js` at line 49:
+
+```js
+const PARENT_PASSWORD = "mathfunda-parent";
+```
+
+Change that string, then `npm run build` and redeploy, to set your own password. The unlock state is stored in `localStorage` under `mathfunda-parent-unlocked`, so the parent stays unlocked for that browser session until cleared.
+
+> ⚠️ This is a browser-side convenience gate, not real security. Anyone who can read the source can find the password. The real boundary is repository access — keep your GitHub repository private if you don't want others to see the answers.
+
 Progress, streaks and card schedules are stored in `localStorage` under
 `mathfunda-progress-v1`. They are per-browser and per-device; the same URL must
 be used for them to persist.
