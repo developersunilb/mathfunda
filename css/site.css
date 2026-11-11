@@ -2324,7 +2324,64 @@ kbd {
   }
 }
 
-/* ------------------------------------------------------------------- Print */
+/* ------------------------------------------------------------------- Behind the project & disclaimer */
+
+.behind-project {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1rem, 4vw, 2rem);
+  margin: clamp(2rem, 5vw, 3rem) 0;
+}
+
+.behind-project .section-head {
+  margin-bottom: 1.5rem;
+}
+
+.behind-project h2 {
+  font-size: clamp(1.75rem, 4vw, 2.4rem);
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
+}
+
+.behind-project p {
+  color: #35403a;
+  font-size: 1rem;
+  line-height: 1.75;
+  margin: 0 0 1rem;
+}
+
+.behind-project .story-signature {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.disclaimer {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  background: #fbfdfc;
+  font-size: 0.88rem;
+  color: #4a5a50;
+  line-height: 1.6;
+}
+
+.disclaimer p {
+  margin: 0 0 0.75rem;
+}
+
+.disclaimer p:last-child {
+  margin-bottom: 0;
+}
+
+.disclaimer strong {
+  color: #176b54;
+}
 
 @media print {
   body.site-body {
