@@ -2383,6 +2383,70 @@ kbd {
   color: #176b54;
 }
 
+/* ------------------------------------------------------------------- Parent gate */
+
+.parent-gate {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #f4f6f8;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.parent-gate-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 2rem 2.5rem;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+}
+
+.parent-gate-card h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.5rem;
+}
+
+.parent-gate-card p {
+  margin: 0 0 1rem;
+  color: #35403a;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.parent-gate-input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+}
+
+.parent-gate-input::placeholder {
+  color: var(--muted);
+}
+
+.parent-gate-error {
+  color: #b3402e;
+  font-size: 0.85rem;
+  margin: 0 0 0.75rem;
+}
+
+.parent-gate .primary-button {
+  padding: 0.7rem 1.5rem;
+  font-size: 0.95rem;
+}
+
+.parent-gate .quiet-button {
+  padding: 0.7rem 1.5rem;
+  font-size: 0.95rem;
+}
+
 @media print {
   body.site-body {
     background: #fff;

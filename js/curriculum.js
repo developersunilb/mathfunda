@@ -14,6 +14,7 @@ const CHAPTER_ORDER = {
   "learning-roadmap": 1,
   "study-plan-45-days": 2,
   "diagnostic-assessment": 3,
+  "diagnostic-answer-key": 35,
   "foundation-1-numbers-and-signs": 4,
   "foundation-2-fractions-decimals-percentages": 5,
   "foundation-3-ratio-and-proportion": 6,
@@ -35,6 +36,7 @@ const TITLE_OVERRIDES = {
   "learning-roadmap": "Master Learning Roadmap",
   "study-plan-45-days": "45-Day Study Plan",
   "diagnostic-assessment": "Diagnostic Assessment",
+  "diagnostic-answer-key": "Diagnostic Assessment — Answer Key (Parent)",
   "foundation-1-numbers-and-signs": "Foundation 1: Numbers and Signs",
   "foundation-2-fractions-decimals-percentages":
     "Foundation 2: Fractions, Decimals and Percentages",
@@ -114,6 +116,7 @@ const CHAPTER_PLACEMENT = {
   "learning-roadmap": { part: "getting-started" },
   "study-plan-45-days": { part: "getting-started" },
   "diagnostic-assessment": { part: "getting-started" },
+  "diagnostic-answer-key": { part: "getting-started" },
   "basic-equations": {
     part: "part1",
     topic: "Chapters 1–2: Coordinates and Linear Polynomials",
@@ -232,6 +235,8 @@ const LESSON_NOTES = {
     "A 90-minute daily routine across 45 days, with weekly confidence checks and a mistakes notebook.",
   "diagnostic-assessment":
     "Twenty questions that show exactly which foundations to repair first. Mark it honestly.",
+  "diagnostic-answer-key":
+    "Answers, marking guide and worked reasoning. Parent-only — keep away from the student until the test is complete.",
   "foundation-1-numbers-and-signs":
     "Integers, signs, absolute value and the small rules that cause most lost marks.",
   "foundation-2-fractions-decimals-percentages":
@@ -268,6 +273,7 @@ const LESSON_MINUTES = {
   "learning-roadmap": 12,
   "study-plan-45-days": 12,
   "diagnostic-assessment": 35,
+  "diagnostic-answer-key": 15,
   "foundation-1-numbers-and-signs": 25,
   "foundation-2-fractions-decimals-percentages": 30,
   "foundation-3-ratio-and-proportion": 22,

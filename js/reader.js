@@ -45,12 +45,15 @@ if (!chapter) {
 const BOOK_MIN_WIDTH = 1024;
 const BOOK_DEFAULT_WIDTH = 1100;
 const VIEW_KEY = "mathfunda-reader-view";
+const PARENT_PASSWORD_KEY = "mathfunda-parent-unlocked";
+const PARENT_PASSWORD = "mathfunda-parent";
 
 let pages = [];
 let current = 0;
 let turning = false;
 let bookMode = false;
 let saveTimer;
+let parentUnlocked = false;
 
 /* ------------------------------------------------------------ View mode */
 
@@ -78,6 +81,88 @@ function applyViewMode() {
       ? "Turn the spread with ← →, swipe or tap the sides"
       : "Swipe, tap the sides or use ← →";
   }
+}
+
+/* ------------------------------------------------------------ Parent gate */
+
+function isParentUnlocked() {
+  try {
+    return localStorage.getItem(PARENT_PASSWORD_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function setParentUnlocked() {
+  try {
+    localStorage.setItem(PARENT_PASSWORD_KEY, "1");
+  } catch {
+    /* storage blocked: proceed anyway for this visit */
+  }
+  parentUnlocked = true;
+}
+
+function showParentGate() {
+  shell.innerHTML = "";
+  measure.innerHTML = "";
+
+  const overlay = document.createElement("div");
+  overlay.className = "parent-gate";
+
+  const card = document.createElement("div");
+  card.className = "parent-gate-card";
+
+  const title = document.createElement("h2");
+  title.textContent = "Parent access";
+
+  const note = document.createElement("p");
+  note.textContent =
+    "This page contains answers and worked reasoning. Enter the parent password to continue.";
+
+  const input = document.createElement("input");
+  input.type = "password";
+  input.placeholder = "Password";
+  input.className = "parent-gate-input";
+
+  const error = document.createElement("p");
+  error.className = "parent-gate-error";
+  error.hidden = true;
+  error.textContent = "Incorrect password.";
+
+  const submit = document.createElement("button");
+  submit.type = "button";
+  submit.textContent = "Unlock";
+  submit.className = "primary-button";
+
+  const back = document.createElement("button");
+  back.type = "button";
+  back.textContent = "Back to study home";
+  back.className = "quiet-button";
+  back.style.marginLeft = "0.5rem";
+  back.addEventListener("click", () => {
+    location.href = "./index.html";
+  });
+
+  submit.addEventListener("click", () => {
+    if (input.value === PARENT_PASSWORD) {
+      setParentUnlocked();
+      parentUnlocked = true;
+      boot();
+    } else {
+      error.hidden = false;
+      input.value = "";
+      input.focus();
+    }
+  });
+
+  input.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") submit.click();
+  });
+
+  card.append(title, note, input, error, submit, back);
+  overlay.appendChild(card);
+  shell.appendChild(overlay);
+  input.focus();
 }
 
 /* ------------------------------------------------------------- Page builder */
@@ -479,6 +564,17 @@ async function boot() {
     } catch {
       /* ignore font loading errors */
     }
+  }
+
+  // Parent gate: answer key chapter is locked unless the parent unlocks it.
+  if (chapter.slug === "diagnostic-answer-key" && !parentUnlocked && !isParentUnlocked()) {
+    parentUnlocked = false;
+    showParentGate();
+    return;
+  }
+
+  if (chapter.slug === "diagnostic-answer-key") {
+    parentUnlocked = true;
   }
 
   buildPages();
