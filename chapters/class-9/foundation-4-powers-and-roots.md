@@ -86,6 +86,102 @@ $$
 324=(2\times2)\times(3\times3)\times(3\times3)
 $$
 
+### Numbers worth knowing by heart
+
+These values appear constantly in Class 9, in mental arithmetic and in competitive
+exams. Learn them once, then let flashcards keep them fresh.
+
+**Squares from 1 to 20.** Reading the table both ways gives the square root of every
+perfect square up to $400$: if $14^2=196$, then $\sqrt{196}=14$.
+
+| $n$ | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ | $8$ | $9$ | $10$ |
+|---|---|---|---|---|---|---|---|---|---|---|
+| $n^2$ | $1$ | $4$ | $9$ | $16$ | $25$ | $36$ | $49$ | $64$ | $81$ | $100$ |
+
+| $n$ | $11$ | $12$ | $13$ | $14$ | $15$ | $16$ | $17$ | $18$ | $19$ | $20$ |
+|---|---|---|---|---|---|---|---|---|---|---|
+| $n^2$ | $121$ | $144$ | $169$ | $196$ | $225$ | $256$ | $289$ | $324$ | $361$ | $400$ |
+
+**Cubes from 1 to 10.** These also give cube roots: $9^3=729$, so $\sqrt[3]{729}=9$.
+
+| $n$ | $1$ | $2$ | $3$ | $4$ | $5$ | $6$ | $7$ | $8$ | $9$ | $10$ |
+|---|---|---|---|---|---|---|---|---|---|---|
+| $n^3$ | $1$ | $8$ | $27$ | $64$ | $125$ | $216$ | $343$ | $512$ | $729$ | $1000$ |
+
+**Roots that never terminate.** These are irrational, so they are always rounded.
+Three decimal places is enough for school work.
+
+| Root | Decimal value | Also useful as |
+|---|---|---|
+| $\sqrt{2}$ | $1.414\ldots$ | — |
+| $\sqrt{3}$ | $1.732\ldots$ | — |
+| $\sqrt{5}$ | $2.236\ldots$ | — |
+| $\sqrt{6}$ | $2.449\ldots$ | — |
+| $\sqrt{7}$ | $2.646\ldots$ | — |
+| $\sqrt{8}$ | $2.828\ldots$ | $2\sqrt{2}$ |
+| $\sqrt{10}$ | $3.162\ldots$ | — |
+| $\sqrt{12}$ | $3.464\ldots$ | $2\sqrt{3}$ |
+| $\sqrt{15}$ | $3.873\ldots$ | — |
+| $\sqrt{20}$ | $4.472\ldots$ | $2\sqrt{5}$ |
+
+**The value of $\pi$.** Use the form the question gives; if it gives none, choose the
+one that makes the arithmetic easy.
+
+| Form | Value | When to use it |
+|---|---|---|
+| $\pi$ | $3.14159\ldots$ | Exact answers, or when a calculator is allowed |
+| $\pi\approx3.14$ | $3.14$ | General decimal questions |
+| $\pi\approx\frac{22}{7}$ | $3.1428\ldots$ | When the radius or diameter is a multiple of $7$ |
+| $\pi^2$ | $\approx9.87$ | Rare, but useful for checking |
+
+> **Memory hook for roots:** learn three anchors first — $\sqrt{2}\approx1.414$,
+> $\sqrt{3}\approx1.732$, $\sqrt{5}\approx2.236$. The others can be built from
+> them: $\sqrt{8}=2\sqrt{2}$, $\sqrt{12}=2\sqrt{3}$, $\sqrt{20}=2\sqrt{5}$.
+
+### Mental-maths shortcuts
+
+**1. Squaring a number that ends in 5.** Multiply the front part by one more than
+itself, then write $25$ after it.
+
+$$
+35^2:\quad 3\times4=12\;\Rightarrow\;1225
+$$
+
+$$
+85^2:\quad 8\times9=72\;\Rightarrow\;7225
+$$
+
+**2. Squaring near a round number.** Use $(a\pm b)^2$.
+
+$$
+98^2=(100-2)^2=10000-400+4=9604
+$$
+
+$$
+102^2=(100+2)^2=10000+400+4=10404
+$$
+
+**3. Multiplying numbers two apart.** Use the difference of two squares.
+
+$$
+19\times21=20^2-1^2=399
+$$
+
+$$
+48\times52=50^2-2^2=2496
+$$
+
+**4. Estimating a square root.** Trap the number between two perfect squares.
+
+$$
+7^2=49<50<64=8^2\quad\Rightarrow\quad 7<\sqrt{50}<8
+$$
+
+Because $50$ is much closer to $49$, $\sqrt{50}\approx7.07$.
+
+**5. Checking a perfect square.** A perfect square has only even prime exponents, and
+it cannot end in $2,3,7$ or $8$.
+
 ## 2. Formula Bank
 
 | Idea | Rule |
@@ -210,6 +306,10 @@ It is very close to $7$, because $50$ is just above $49$.
 10. Find $\sqrt{1296}$ by prime factorisation.
 11. Between which two whole numbers does $\sqrt{30}$ lie?
 12. Is $180$ a perfect square? Explain using prime factorisation.
+13. Use the ending-in-5 shortcut to find $45^2$.
+14. Use an identity to find $98^2$.
+15. Between which two whole numbers does $\sqrt{50}$ lie, and which is it closer to?
+16. Using $\pi=\frac{22}{7}$, find the area of a circle of radius $7\text{ cm}$.
 
 **Answers**
 
@@ -225,12 +325,17 @@ It is very close to $7$, because $50$ is just above $49$.
 10. $1296=2^4\times3^4$, so $\sqrt{1296}=2^2\times3^2=36$.
 11. $5<\sqrt{30}<6$, since $25<30<36$.
 12. $180=2^2\times3^2\times5$. The exponent of $5$ is odd, so $180$ is not a perfect square.
+13. $4\times5=20$, so $45^2=2025$.
+14. $98^2=(100-2)^2=10000-400+4=9604$.
+15. $7<\sqrt{50}<8$, closer to $7$, so $\sqrt{50}\approx7.07$.
+16. $A=\frac{22}{7}\times7^2=22\times7=154\text{ cm}^2$.
 
 ### Mastery check
 
-She is ready to move on when she can:
+You are ready to move on when you can:
 
 - use the product, quotient and power laws without mixing them up;
 - explain why $a^0=1$ and $a^{-n}=\frac{1}{a^n}$ need $a\neq0$;
 - find a square root by prime factorisation;
-- estimate a square root between two whole numbers.
+- estimate a square root between two whole numbers;
+- recall the squares to $20^2$, the cubes to $10^3$, and the values of $\sqrt{2}$, $\sqrt{3}$, $\sqrt{5}$ and $\pi$.

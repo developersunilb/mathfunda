@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#176b54" />
+    <meta name="description" content="Browse one stage of the CBSE Class 9 maths pathway at a time." />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MathsFunda" />
+    <title>Learn · MathsFunda</title>
+  </head>
+  <body class="site-body learn-body">
+    <header class="site-header">
+      <a class="site-brand" href="./index.html" aria-label="MathsFunda home">
+        <span class="brand-mark">∑</span>
+        <span class="brand-copy"><strong>MathsFunda</strong><small>Class 9 · step by step</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./index.html#pathway">Pathway</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formula vault</a>
+        <a href="./methods.html">How to remember</a>
+      </nav>
+      <a id="nav-continue" class="nav-cta" href="./index.html">Home</a>
+    </header>
+
+    <main class="learn-main">
+      <nav id="stage-tabs" class="stage-tabs" aria-label="Stages"></nav>
+
+      <section class="stage-hero">
+        <div>
+          <p id="stage-kicker" class="eyebrow">STAGE</p>
+          <h1 id="stage-title">Loading…</h1>
+          <p id="stage-blurb" class="stage-blurb"></p>
+          <div class="stage-meta">
+            <span id="stage-count">0 lessons</span>
+            <span id="stage-minutes">0 min</span>
+            <span id="stage-done">0 complete</span>
+          </div>
+        </div>
+        <div class="stage-progress-card">
+          <div class="ring" id="stage-ring" style="--value: 0"><span id="stage-percent">0%</span></div>
+          <div>
+            <strong>Stage progress</strong>
+            <p id="stage-progress-copy">Start with the first lesson.</p>
+            <a id="stage-continue" class="primary-button" href="./index.html">Start stage</a>
+          </div>
+        </div>
+      </section>
+
+      <ol id="lesson-list" class="lesson-list"></ol>
+
+      <nav class="stage-pager" aria-label="Previous and next stage">
+        <a id="stage-prev" class="quiet-button" href="./index.html">← Previous stage</a>
+        <a id="stage-next" class="quiet-button" href="./index.html">Next stage →</a>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="brand-mark">∑</span>
+        <div><strong>MathsFunda</strong><p>CBSE Class 9 mathematics · Ganita Manjari aligned</p></div>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="./index.html">Home</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formulas</a>
+        <a href="./methods.html">Memory methods</a>
+        <a href="./admin.html">Admin &amp; publishing</a>
+      </nav>
+      <p class="footer-note">Progress is stored only in this browser.</p>
+    </footer>
+    <script type="module" src="/js/learn.js"></script>
+  </body>
+</html>

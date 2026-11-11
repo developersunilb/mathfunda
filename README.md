@@ -1,53 +1,30 @@
-# CBSE Maths Notes Studio
+# MathsFunda — CBSE Class 9
 
-A small, reusable maths-notes generator for CBSE classes. Write notes in Markdown,
-preview KaTeX formulas live, and print textbook-style A4 pages to PDF from Chrome
-or Edge.
+A guided CBSE Class 9 mathematics course: a calm landing page, staged lessons,
+a page-turning reader, spaced-repetition flashcards and a searchable formula
+vault. The content is written in Markdown with KaTeX formulas.
 
-## Folder structure
+- Live site: `https://developersunilb.github.io/mathfunda/`
+- Public site: read-only for visitors
+- Editing: local studio + git
+- Contribution: fork, pull request, owner approval
 
-```
-CBSE-Maths-Notes/
-├── .github/workflows/deploy-pages.yml   automatic GitHub Pages deploy
-├── .gitignore
-├── package.json
-├── vite.config.js       production build + PWA manifest/service worker
-├── node_modules/
-├── index.html
-├── public/
-│   └── icons/           home-screen and maskable app icons
-├── css/
-│   └── style.css
-├── js/
-│   ├── main.js          editor, chapters, print and paste handling
-│   ├── epub.js          fixed-layout EPUB 3 exporter for Apple Books
-│   ├── markdown.js      Markdown + KaTeX renderer
-│   └── paste.js         rich clipboard → Markdown converter
-├── chapters/
-│   ├── class-9/
-│   │   ├── learning-roadmap.md
-│   │   ├── study-plan-45-days.md
-│   │   ├── diagnostic-assessment.md
-│   │   ├── foundation-1-numbers-and-signs.md
-│   │   ├── foundation-2-fractions-decimals-percentages.md
-│   │   ├── foundation-3-ratio-and-proportion.md
-│   │   ├── foundation-4-powers-and-roots.md
-│   │   ├── foundation-5-basic-algebra.md
-│   │   ├── foundation-6-algebraic-operations.md
-│   │   ├── foundation-7-geometry-vocabulary.md
-│   │   ├── foundation-8-measurement-and-units.md
-│   │   ├── geometry-basics.md
-│   │   ├── basic-equations.md
-│   │   ├── number-systems.md
-│   │   ├── polynomials.md
-│   │   ├── linear-equations.md
-│   │   ├── linear-inequalities.md
-│   │   └── beyond-class-9.md
-│   └── class-10/
-└── output/
-    ├── PDFs/            save your exported PDFs here
-    └── EPUB/            exported fixed-layout books for Apple Books
-```
+## Pages
+
+| Page | Purpose |
+|---|---|
+| `index.html` | Landing page: the five stages, next lesson, today's panel. |
+| `learn.html?stage=foundations` | One stage at a time: Start, Foundations, Part 1, Part 2, Enrichment. |
+| `reader.html?ch=<slug>` | Flip-book lesson reader: facing-page layout on wide screens, swipe, tap zones, keys, contents. |
+| `flashcards.html` | 14 curated decks with retrieval practice and per-device spaced repetition. |
+| `formulas.html` | Formula vault scraped from the lesson tables, with search and print. |
+| `methods.html` | Evidence-based memorisation guide and a 15-minute routine. |
+| `studio.html` | Local Markdown editor, PDF print and EPUB export. |
+| `admin.html` | How publishing, permissions and pull-request approval work. |
+
+Progress, streaks and card schedules are stored in `localStorage` under
+`mathfunda-progress-v1`. They are per-browser and per-device; the same URL must
+be used for them to persist.
 
 ## Run it
 
@@ -57,170 +34,151 @@ npm install
 npm run dev
 ```
 
-Open the printed local address (normally `http://127.0.0.1:5173`) in Chrome or Edge.
-
-Use `npm run build` to make a static production build in `dist/`. The build
-includes a service worker, so the hosted app keeps working offline after the
-first visit.
-
-## Publish on GitHub Pages
-
-This is the recommended route. The build uses relative paths, so it works at
-`https://<user>.github.io/<repo>/` without changing the repository name.
-
-### 1. Create the repository
-
-On GitHub, click **New repository**, give it a name such as `cbse-maths-notes`,
-and leave **Add a README**, **.gitignore** and **licence** set to *None* (the
-project already has them). A **public** repository is simplest: GitHub Pages on
-a private repository needs a paid plan.
-
-### 2. Put the project in git
-
-From `E:\CBSE-Maths-Notes`:
+Open the printed local address (normally `http://127.0.0.1:5173`).
 
 ```powershell
-git init
-git add .
-git commit -m "CBSE maths notes studio"
-git branch -M main
-git remote add origin https://github.com/<your-user>/cbse-maths-notes.git
-git push -u origin main
+npm run build     # static build in dist/
+npm run preview   # serve the production build at http://127.0.0.1:4173
 ```
 
-Replace `<your-user>` and the repository name with your own. `node_modules`,
-`dist` and the large exported PDF/EPUB files are ignored by `.gitignore`.
+The build includes a service worker. After the first visit the landing page,
+lessons (including `?ch=…` URLs), flashcards and the formula vault work offline.
+The service worker deliberately has **no navigation fallback**: this is a
+multi-page site, and falling back to `index.html` would make `reader.html` open
+as the home page.
 
-### 3. Turn on GitHub Pages
+## Content model
 
-In the repository: **Settings → Pages → Build and deployment**.
-
-- **Source:** *GitHub Actions*
-
-That is the only setting. The included workflow
-(`.github/workflows/deploy-pages.yml`) builds the site and publishes it every
-time you push to `main` (or `master`).
-
-### 4. Watch the first deploy
-
-Open the **Actions** tab. The workflow **Deploy to GitHub Pages** runs
-`npm ci`, `npm run build` and then deploys `dist/`. Wait for both jobs to turn
-green. The Pages URL appears in the deploy step and under **Settings → Pages**:
-
-```
-https://<your-user>.github.io/<repo>/
-```
-
-### 5. Install it on the iPad
-
-1. Open that URL in **Safari** (not Chrome).
-2. Tap **Share → Add to Home Screen → Add**.
-
-It now has its own icon, opens fullscreen, and works offline after the first
-visit. Each later `git push` redeploys automatically; reopen the app to receive
-the update.
-
-### Notes
-
-- Use the same URL every time. Drafts live in that origin's `localStorage`.
-- iOS can clear website data after long periods of disuse. Use **Download .md**
-  for anything you would be sorry to lose.
-- The two-pane editor is desktop-shaped. For reading on the iPad, use the
-  exported EPUB in Apple Books instead.
-- GitHub Pages serves over HTTPS, which the service worker requires. A plain LAN
-  address such as `http://192.168.x.x:4173` will load the app but not install it.
-
-### Alternative hosts
-
-`npm run build` produces a self-contained `dist/` folder. Dragging it onto
-[Netlify Drop](https://app.netlify.com/drop) or uploading it to Cloudflare Pages
-works the same way. GitHub Pages is preferred here because the deploy is
-versioned with the source.
-
-## Writing notes
-
-- `## Heading` creates a section heading.
-- `$x^2$` creates inline maths.
-- `$$ ... $$` creates a centred display formula.
-- `| Rule | Formula |` creates a table.
-- `<div class="formula-box"> ... </div>` creates an important-formula box.
-- `<div class="page-break"></div>` starts a new printed page.
-
-The toolbar inserts each of these for you. Drafts are saved automatically in the
-browser; **Download .md** writes the current note back out as a Markdown file.
-
-> **New edition note:** the chapter set and storage key were updated. Drafts saved
-> by the earlier edition are not loaded, so the new diagnostic and foundation
-> chapters appear with their original content. Use **Reset chapter** if a draft ever
-> hides updated lesson material.
-
-## Pasting from Google Docs, Word or a website
-
-Copy the formatted text and paste normally into the editor:
-
-- headings, bold, italics, underline and strikethrough are preserved;
-- text colours, highlights, superscript and subscript are preserved;
-- bullet/numbered lists, links, images and tables are converted;
-- tables whose first row has no `<th>` are promoted to a Markdown table header.
-
-Use **Ctrl + Shift + V** for a plain-text paste. Formatting is converted to
-Markdown/HTML that stays editable in the editor.
-
-## Export a PDF
-
-1. Click **Print / Save as PDF**.
-2. Choose what to print:
-   - **Complete workbook** — every chapter in study order, with a contents page.
-   - **Foundations only** — Foundation 1–8 as a separate foundation workbook.
-   - **Class 9 chapters only** — everything except the foundation modules.
-   - **Part 1 · Chapters 1–8** — coordinates, algebra, number systems, geometry, probability and sequences.
-   - **Part 2 · Chapters 9–14** — reasoning, data, algorithms, quadrilaterals, linear equations and solids.
-   - **This lesson only** — the chapter currently open, with no contents page.
-   - **Choose chapters** — tick any combination of lessons.
-3. Choose **A4**, **Portrait**, margins **Default**.
-4. Select **Save as PDF** and save the file in `output/PDFs/`.
-
-The workbook uses the saved draft of each chapter. A scratch note prints by itself.
-
-## Export an EPUB for iPad
-
-Click **Export EPUB** and choose the same scopes as printing. The app renders
-each finished A4 page, then packs the pages into a **fixed-layout EPUB 3** book.
-
-- No reflow: formulas, callout boxes and tables stay exactly as designed.
-- Page size: 794 × 1123 CSS pixels (A4), rendered at 1.6× for Retina screens.
-- Works in Apple Books on iPad 8 and later, and in other EPUB 3 readers.
-- Includes a cover, a linked contents page (except single lessons) and a
-  proper EPUB navigation document.
-- A single lesson skips the contents page; multi-chapter books include one.
-
-Open the `.epub` in Apple Books, or send it to the iPad with AirDrop or Files.
-The export runs in the browser, so keep the tab open until it finishes. A full
-18-chapter book takes several minutes and is roughly 10 MB.
-
-The exporter lives in `js/epub.js`. Pages are captured with `html-to-image`
-and the book is zipped with `jszip`.
-
-## Chapter groups
-
-The **Open chapter** menu and the print chooser use these subheaders:
-
-| Group | Chapters |
+| What | Where |
 |---|---|
-| Getting Started | Roadmap, 45-day plan, diagnostic assessment |
-| Foundation Repair | Any file whose name starts with `foundation-` |
-| Part 1 · Chapters 1–2 | Coordinates and Linear Polynomials |
-| Part 1 · Chapters 3–4 | Numbers and Identities |
-| Part 1 · Chapters 5–6 | Geometry and Mensuration |
-| Part 1 · Chapters 7–8 | Probability and Sequences |
-| Part 2 · Chapters 9–11 | Reasoning, Data and Algorithms |
-| Part 2 · Chapters 12–14 | Quadrilaterals, Equations and Solids |
-| Enrichment | Inequalities and beyond-Class-9 material |
+| Lesson text | `chapters/class-9/*.md` |
+| Order, titles, stage placement, lesson blurbs | `js/curriculum.js` |
+| Flashcard decks | `js/flashcard-data.js` |
+| Reader pagination | `js/paginate.js` |
+| EPUB export and spreads | `js/epub.js` |
+| Progress and SM-2 scheduling | `js/progress.js` |
+| Public-site styles | `css/site.css` |
+| Studio styles | `css/style.css` |
 
-The slug-to-part/topic mapping lives in `CHAPTER_PLACEMENT` in `js/main.js`.
-Add each new chapter's slug there when the remaining textbook chapters are written.
+`js/curriculum.js` imports every Markdown file, so adding a lesson only needs a
+new file and, if it should appear in a known position, an entry in
+`CHAPTER_ORDER` / `TITLE_OVERRIDES` / `LESSON_NOTES`.
 
-## Adding a chapter
+### Add a lesson
 
-Create a new file such as `chapters/class-10/real-numbers.md`. It appears in the
-**Open chapter** menu automatically; the file name becomes the chapter title.
+1. Create `chapters/class-9/my-lesson.md`.
+2. Start with a `##` heading. Use `$x^2$`, `$$ … $$`, tables and
+   `<div class="formula-box">` as in the existing lessons.
+3. Add the slug to `CHAPTER_ORDER`, `TITLE_OVERRIDES` and `LESSON_NOTES` in
+   `js/curriculum.js` if it needs a specific stage, title or description.
+4. Run `npm run dev` and check the landing page, stage list, reader and formula
+   vault.
+
+### Add flashcards
+
+Append cards to the end of a deck in `js/flashcard-data.js`. Card ids are based on
+deck position (`deckId-n`), so appending keeps existing review schedules stable.
+Do not reorder existing cards without accepting that per-device schedules will
+point at different cards.
+
+## Publishing
+
+The public site is built by GitHub Actions and deployed to GitHub Pages on every
+push to `main`. Visitors cannot edit it: there is no write endpoint and no
+password box, because a browser-side password is not real security. The real
+boundary is repository access.
+
+### Owner workflow
+
+```powershell
+git status
+git add .
+git commit -m "Describe the lesson change"
+git push origin main
+```
+
+Watch the **Actions** tab until **Deploy to GitHub Pages** is green, then reload
+the live URL. A failed run leaves the previous deployment live.
+
+### Contributor workflow
+
+`main` is protected:
+
+- collaborators cannot push directly; they must open a pull request;
+- one approving review is required;
+- stale approvals are dismissed when new commits arrive;
+- force-pushes and branch deletion are disabled;
+- conversation resolution is required before merge;
+- administrators are not enforced, so the owner can still push directly.
+
+A pull request merged by the owner is the approval gate. For a small correction,
+an issue with the exact page and suggested wording is enough.
+
+> If branch protection ever needs to be recreated, use the GitHub UI under
+> **Settings → Branches**, or the API with
+> `required_approving_review_count: 1`, `enforce_admins: false`,
+> `allow_force_pushes: false` and `allow_deletions: false`.
+
+### Install on iPad
+
+1. Open the live URL in **Safari**.
+2. Tap **Share → Add to Home Screen**.
+3. Launch from the home screen and let the first visit cache the pages.
+4. Lessons then open offline. Progress stays on that device.
+
+GitHub Pages serves over HTTPS, which the service worker requires. A plain LAN
+address such as `http://192.168.x.x:4173` can load the site but cannot install
+the offline app.
+
+## Studio, PDF and EPUB
+
+`studio.html` is a local editing surface: Markdown on the left, rendered preview
+on the right. Edits are saved in that browser only. Use **Download .md** to save a
+chapter, or copy the text into the matching file under `chapters/class-9/`.
+
+### Print a PDF
+
+Click **Print / Save as PDF**, choose a scope (complete workbook, foundations,
+Class 9 chapters, a part, one lesson or selected chapters), then choose A4,
+portrait and default margins. Save the PDF in `output/PDFs/`.
+
+### Export an EPUB for iPad
+
+Click **Export EPUB** and choose the same scopes. Each finished A4 page is
+rendered and packed into a fixed-layout EPUB 3 book with:
+
+- `rendition:layout=pre-paginated`;
+- `rendition:orientation=landscape` and `rendition:spread=landscape`;
+- `rendition:flow=paginated`;
+- Apple display options `fixed-layout`, `open-to-spread` and
+  `orientation-lock=landscape`.
+
+On a wide screen Apple Books shows two facing pages; on a narrow phone it shows
+one page at a time, which is expected. Export runs in the browser, so keep the
+tab open. A full book takes several minutes and is roughly 8 MB. The latest
+export is `output/EPUB/class-9-complete-study-material.epub` (83 pages), which is
+gitignored.
+
+The exporter lives in `js/epub.js`; pages are captured with `html-to-image` and
+zipped with `jszip`.
+
+## Writing syntax
+
+- `## Heading` — section heading.
+- `$x^2$` — inline maths.
+- `$$ … $$` — centred display formula.
+- `| Rule | Formula |` — table (also feeds the formula vault).
+- `<div class="formula-box"> … </div>` — important-formula box.
+- `<div class="page-break"></div>` — forced printed page break.
+
+## Deploying from scratch
+
+The included workflow is `.github/workflows/deploy-pages.yml`. On GitHub:
+
+1. Create a public repository.
+2. Push the project to `main`.
+3. **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+4. Watch **Actions** for the first green deploy.
+5. Add the branch protection described above.
+
+`node_modules`, `dist` and exported PDF/EPUB files are gitignored.

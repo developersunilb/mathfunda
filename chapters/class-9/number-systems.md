@@ -153,9 +153,22 @@ $$
 
 <div class="formula-box">
 
-**Indeterminate forms:** $\infty-\infty$, $0\times\infty$, and $\frac{\infty}{\infty}$ are not automatically $0$ or $\infty$. Their values depend on the limit being evaluated.
+**Indeterminate forms:** $\infty-\infty$, $0\times\infty$, $\frac{\infty}{\infty}$ and
+$\frac{0}{0}$ are not automatically $0$ or $\infty$. Their values depend on the limit
+being evaluated. In ordinary arithmetic they are simply **not defined**.
 
 </div>
+
+### What this means in plain language
+
+- $\infty$ is a **direction**, not a place on the number line. There is no largest
+  real number, so you can never "reach" infinity.
+- $\infty+\infty=\infty$ says that growing without bound twice is still growing
+  without bound.
+- $\frac{0}{0}$ has no value: any number times $0$ gives $0$, so the answer could be
+  anything. That is why it is called *indeterminate* rather than *zero*.
+- Do not treat $\infty$ as a number in an ordinary equation. Write a limit, or say
+  "undefined", depending on what the question asks.
 
 ---
 
@@ -164,3 +177,15 @@ $$
 1. Classify $\sqrt{25}$ and $\sqrt{7}$ as rational or irrational.
 2. Rationalise the denominator of $\dfrac{3}{2+\sqrt{3}}$.
 3. Simplify $\left(5^{1/2}\right)^4$.
+4. Explain why $\frac{0}{0}$ is indeterminate but $\frac{0}{5}=0$.
+5. Is $\infty$ a real number? Give one reason.
+
+**Answers**
+
+1. $\sqrt{25}=5$ is rational; $\sqrt{7}$ is irrational.
+2. $\dfrac{3}{2+\sqrt{3}}=\dfrac{3(2-\sqrt{3})}{4-3}=6-3\sqrt{3}$
+3. $\left(5^{1/2}\right)^4=5^2=25$
+4. $\frac{0}{5}=0$ because $0=5\times0$. For $\frac{0}{0}$ we would need $0=0\times q$,
+   which is true for *every* $q$, so no single value can be chosen.
+5. No. Infinity describes unbounded growth; it does not sit at a position on the
+   number line.

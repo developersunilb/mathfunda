@@ -37,6 +37,50 @@ button {
   min-height: 100vh;
 }
 
+/* ----------------------------------------------------------- Studio notice */
+
+.studio-notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 18px;
+  padding: 9px 28px;
+  background: #e8f2ed;
+  border-bottom: 1px solid #cfe3d9;
+  color: #3c554b;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.studio-notice a {
+  color: var(--green-dark);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.studio-notice a:hover {
+  text-decoration: underline;
+}
+
+.studio-notice span {
+  min-width: 0;
+}
+
+.studio-notice code {
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: rgba(23, 107, 84, 0.1);
+  font: 500 0.92em "SFMono-Regular", Consolas, monospace;
+  word-break: break-word;
+}
+
+@media (max-width: 640px) {
+  .studio-notice {
+    padding: 9px 16px;
+  }
+}
+
 /* ---------------------------------------------------------------- Top bar */
 
 .topbar {

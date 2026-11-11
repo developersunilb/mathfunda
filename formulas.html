@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#176b54" />
+    <meta name="description" content="Searchable formula vault for the CBSE Class 9 maths foundations and chapters." />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MathsFunda" />
+    <title>Formula vault · MathsFunda</title>
+  </head>
+  <body class="site-body vault-body">
+    <header class="site-header">
+      <a class="site-brand" href="./index.html" aria-label="MathsFunda home">
+        <span class="brand-mark">∑</span>
+        <span class="brand-copy"><strong>MathsFunda</strong><small>Class 9 · step by step</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./index.html#pathway">Pathway</a>
+        <a href="./learn.html?stage=foundations">Foundations</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./methods.html">How to remember</a>
+      </nav>
+      <a class="nav-cta" href="./index.html">Home</a>
+    </header>
+
+    <main class="vault-main">
+      <section class="vault-hero">
+        <div>
+          <p class="eyebrow">THE FORMULA VAULT</p>
+          <h1>Every rule,<br /><em>one search away.</em></h1>
+          <p class="hero-lede">
+            These are the formula banks from the lessons themselves, not a separate
+            list. Search by topic, symbol or word, then open only the table you need.
+          </p>
+        </div>
+        <div class="vault-search">
+          <label for="vault-query">Search the vault</label>
+          <input id="vault-query" type="search" placeholder="e.g. fraction, area, index, Heron" autocomplete="off" />
+          <div class="vault-meta">
+            <span id="vault-count">0 rules</span>
+            <button id="vault-print" class="quiet-button" type="button">Print / Save as PDF</button>
+          </div>
+        </div>
+      </section>
+
+      <p id="vault-empty" class="vault-empty" hidden>No formulas match that search.</p>
+      <div id="vault-groups" class="vault-groups"></div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="brand-mark">∑</span>
+        <div><strong>MathsFunda</strong><p>CBSE Class 9 mathematics · Ganita Manjari aligned</p></div>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="./index.html">Home</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./methods.html">Memory methods</a>
+        <a href="./admin.html">Admin &amp; publishing</a>
+      </nav>
+      <p class="footer-note">Formulas are extracted from the lesson Markdown, so they stay in sync.</p>
+    </footer>
+
+    <script type="module" src="/js/vault.js"></script>
+  </body>
+</html>

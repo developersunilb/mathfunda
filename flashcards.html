@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#176b54" />
+    <meta name="description" content="Spaced-repetition flashcards for CBSE Class 9 maths foundations, formulas and methods." />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MathsFunda" />
+    <title>Flashcards · MathsFunda</title>
+  </head>
+  <body class="site-body cards-body">
+    <header class="site-header">
+      <a class="site-brand" href="./index.html" aria-label="MathsFunda home">
+        <span class="brand-mark">∑</span>
+        <span class="brand-copy"><strong>MathsFunda</strong><small>Class 9 · step by step</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./index.html#pathway">Pathway</a>
+        <a href="./learn.html?stage=foundations">Foundations</a>
+        <a href="./formulas.html">Formula vault</a>
+        <a href="./methods.html">How to remember</a>
+      </nav>
+      <a class="nav-cta" href="./index.html">Home</a>
+    </header>
+
+    <main class="cards-main">
+      <section id="deck-view">
+        <div class="cards-hero">
+          <div>
+            <p class="eyebrow">ACTIVE RECALL</p>
+            <h1>Remember it.<br /><em>Don’t just reread it.</em></h1>
+            <p class="hero-lede">
+              Each card asks one precise question. Answer out loud before you flip.
+              The schedule brings a card back just before you would forget it, so a
+              review session stays short.
+            </p>
+            <div class="cards-hero-actions">
+              <button id="review-all-button" class="primary-button" type="button">Review what’s due</button>
+              <a class="quiet-button" href="./methods.html">Why this works</a>
+            </div>
+          </div>
+          <div class="cards-stats">
+            <div><strong id="stat-due">0</strong><span>due now</span></div>
+            <div><strong id="stat-learned">0</strong><span>cards started</span></div>
+            <div><strong id="stat-mature">0</strong><span>well known</span></div>
+            <div><strong id="stat-streak">0</strong><span>day streak</span></div>
+          </div>
+        </div>
+
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">DECKS</p>
+            <h2>Choose a topic</h2>
+          </div>
+          <p class="section-note">
+            Start with the foundation deck that matches your lesson. Ten new cards is
+            a good session; more than that becomes shallow.
+          </p>
+        </div>
+        <div id="deck-grid" class="deck-grid"></div>
+      </section>
+
+      <section id="review-view" class="review-view" hidden>
+        <div class="review-top">
+          <button id="review-exit" class="icon-button" type="button" aria-label="End this review">←</button>
+          <div class="review-heading">
+            <p class="eyebrow" id="review-deck">DECK</p>
+            <strong id="review-count">Card 1 of 10</strong>
+          </div>
+          <span id="review-progress-text" class="review-progress-text"></span>
+        </div>
+        <div class="review-bar"><span id="review-bar-fill"></span></div>
+
+        <div class="review-stage">
+          <button id="flashcard" class="flashcard" type="button" aria-live="polite">
+            <span class="flashcard-side-label" id="card-side-label">QUESTION</span>
+            <span class="flashcard-content" id="card-front"></span>
+            <span class="flashcard-content flashcard-back" id="card-back" hidden></span>
+            <span class="flashcard-hint" id="card-hint"></span>
+            <span class="flashcard-prompt" id="card-prompt">Tap to reveal the answer</span>
+          </button>
+        </div>
+
+        <div id="rating-row" class="rating-row" hidden>
+          <button class="rating rating-again" type="button" data-rating="0">
+            <strong>Again</strong><small>10 min</small>
+          </button>
+          <button class="rating rating-hard" type="button" data-rating="1">
+            <strong>Hard</strong><small id="rating-hard-time">1 day</small>
+          </button>
+          <button class="rating rating-good" type="button" data-rating="2">
+            <strong>Good</strong><small id="rating-good-time">1 day</small>
+          </button>
+          <button class="rating rating-easy" type="button" data-rating="3">
+            <strong>Easy</strong><small id="rating-easy-time">3 days</small>
+          </button>
+        </div>
+
+        <p class="review-tip">Keyboard: <kbd>Space</kbd> to flip · <kbd>1</kbd>–<kbd>4</kbd> to rate</p>
+      </section>
+
+      <section id="review-done" class="review-done" hidden>
+        <div class="done-card">
+          <p class="eyebrow">SESSION COMPLETE</p>
+          <h2 id="done-title">Nice work.</h2>
+          <p id="done-copy"></p>
+          <div id="done-stats" class="done-stats"></div>
+          <div class="done-actions">
+            <button id="done-again" class="primary-button" type="button">Review again</button>
+            <a class="quiet-button" href="./index.html">Back to the course</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="brand-mark">∑</span>
+        <div><strong>MathsFunda</strong><p>CBSE Class 9 mathematics · Ganita Manjari aligned</p></div>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="./index.html">Home</a>
+        <a href="./formulas.html">Formulas</a>
+        <a href="./methods.html">Memory methods</a>
+        <a href="./admin.html">Admin &amp; publishing</a>
+      </nav>
+      <p class="footer-note">
+        Card scheduling happens on this device.
+        <button id="reset-cards" class="link-button" type="button">Reset card progress</button>
+      </p>
+    </footer>
+
+    <script type="module" src="/js/flashcards.js"></script>
+  </body>
+</html>

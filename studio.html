@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#176b54" />
+    <meta
+      name="description"
+      content="Local editing studio: write Markdown, preview KaTeX formulas, print A4 PDFs and export EPUB books for Apple Books."
+    />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Maths Notes" />
+    <title>Studio · MathsFunda</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <div class="studio-notice">
+        <a href="./index.html">← Back to the study site</a>
+        <span>
+          <strong>Local studio.</strong> Edits are saved in this browser only.
+          To publish, run <code>git add . &amp;&amp; git commit &amp;&amp; git push</code>
+          on the computer. <a href="./admin.html">How publishing works</a>
+        </span>
+      </div>
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">∑</div>
+          <div>
+            <div class="brand-name">Maths Notes Studio</div>
+            <div class="brand-subtitle">CBSE · Write, preview and print</div>
+          </div>
+        </div>
+        <div class="top-actions">
+          <span id="save-status" class="save-status" aria-live="polite">Saved in this browser</span>
+          <button id="download-button" class="quiet-button top-download" type="button">
+            Download .md
+          </button>
+          <button
+            id="epub-button"
+            class="quiet-button top-epub"
+            type="button"
+            title="Build a fixed-layout EPUB for Apple Books on iPad"
+          >
+            Export EPUB
+          </button>
+          <button
+            id="print-button"
+            class="primary-button"
+            type="button"
+            title="Choose chapters, foundations or the complete workbook to print"
+          >
+            Print / Save as PDF
+          </button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="editor-panel" aria-label="Notes editor">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">YOUR DOCUMENT</p>
+              <h1>Write your notes</h1>
+            </div>
+            <button id="reset-button" class="quiet-button" type="button" title="Restore this chapter's original notes">
+              Reset chapter
+            </button>
+          </div>
+
+          <div class="chapter-row">
+            <label class="chapter-picker-label" for="chapter-picker">
+              Open chapter
+              <select id="chapter-picker"></select>
+            </label>
+            <button id="new-note-button" class="quiet-button" type="button">New note</button>
+          </div>
+
+          <div class="metadata-grid">
+            <label>Class
+              <select id="class-field">
+                <option>Class 6</option>
+                <option>Class 7</option>
+                <option>Class 8</option>
+                <option selected>Class 9</option>
+                <option>Class 10</option>
+              </select>
+            </label>
+            <label>Chapter / topic
+              <input id="chapter-field" type="text" value="Number Systems" />
+            </label>
+          </div>
+
+          <div class="toolbar" aria-label="Formatting tools">
+            <button type="button" data-insert="heading" title="Insert a section heading">H2</button>
+            <button type="button" data-insert="bold" title="Bold text"><strong>B</strong></button>
+            <button type="button" data-insert="italic" title="Italic text"><em>I</em></button>
+            <button type="button" data-insert="underline" title="Underlined text"><u>U</u></button>
+            <button type="button" data-insert="inline" title="Insert inline formula">x²</button>
+            <button type="button" data-insert="display" title="Insert centred formula">∑</button>
+            <button type="button" data-insert="box" title="Insert an important-formula box">□ Box</button>
+            <button type="button" data-insert="list" title="Insert a bullet list">• List</button>
+            <button type="button" data-insert="table" title="Insert a table">▦ Table</button>
+            <button type="button" data-insert="pagebreak" title="Start a new printed page">Page break</button>
+          </div>
+
+          <label class="content-label" for="editor">NOTES CONTENT · MARKDOWN + LATEX</label>
+          <textarea id="editor" spellcheck="false" aria-label="Write notes in Markdown and LaTeX"></textarea>
+          <div class="editor-hint">
+            <span>Type normally. Use <code>$x^2$</code> inline or <code>$$...$$</code> for a centred formula.</span>
+            <span id="word-count">0 words</span>
+          </div>
+
+          <div class="paste-banner">
+            <span class="paste-banner-icon" aria-hidden="true">⇩</span>
+            <span>
+              <strong>Paste with formatting.</strong>
+              Copy from Google Docs, Word, a website or a PDF and paste here. Headings, bold, italics,
+              underline, colours, highlights, lists and tables are converted automatically.
+              Use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>V</kbd> when you want plain text.
+            </span>
+          </div>
+
+          <div class="syntax-help">
+            <strong>Quick formula guide</strong>
+            <span><code>\frac{a}{b}</code> fraction</span>
+            <span><code>x^{2}</code> power</span>
+            <span><code>\sqrt{x}</code> square root</span>
+            <span><code>\leq</code> ≤</span>
+          </div>
+        </section>
+
+        <section class="preview-panel" aria-label="Live document preview">
+          <div class="preview-heading">
+            <div>
+              <p class="eyebrow">LIVE PREVIEW</p>
+              <h2>Your printable notes</h2>
+            </div>
+            <span class="a4-badge">A4 · Portrait</span>
+          </div>
+          <div class="preview-stage">
+            <article id="paper" class="paper">
+              <div class="paper-header">
+                <div class="paper-kicker" id="preview-class">CLASS 9 · MATHEMATICS</div>
+                <div class="paper-rule"></div>
+                <h1 id="preview-title">Number Systems</h1>
+              </div>
+              <div id="preview-content" class="document-content"></div>
+              <footer class="paper-footer">
+                <span>CBSE MATHEMATICS NOTES</span>
+                <span>Learn · Understand · Practise</span>
+              </footer>
+            </article>
+          </div>
+          <div class="preview-note">
+            The preview is a guide. Use <strong>Print / Save as PDF</strong> to choose the complete
+            workbook, the foundations only, the Class 9 chapters, one lesson or selected chapters.
+            Use <strong>Export EPUB</strong> for a fixed-layout book that opens in Apple Books on
+            iPad. Then choose A4 paper, portrait, and “Save as PDF” when printing.
+          </div>
+        </section>
+      </main>
+
+      <div
+        id="print-dialog"
+        class="print-dialog"
+        aria-hidden="true"
+        aria-label="Print options"
+      >
+        <div class="print-dialog-backdrop" data-print-close></div>
+        <div class="print-dialog-card" role="dialog" aria-modal="true" aria-labelledby="print-dialog-title">
+          <div class="print-dialog-head">
+            <div>
+              <p class="eyebrow" id="print-dialog-kicker">PRINT / SAVE AS PDF</p>
+              <h2 id="print-dialog-title">Choose what to print</h2>
+            </div>
+            <button
+              id="print-dialog-close"
+              class="quiet-button print-dialog-close"
+              type="button"
+              aria-label="Close print options"
+            >
+              ✕
+            </button>
+          </div>
+
+          <fieldset class="print-scope">
+            <legend>Print scope</legend>
+            <label class="print-scope-option">
+              <input type="radio" name="print-scope" value="all" checked />
+              <span>
+                <strong>Complete workbook</strong>
+                <small>Every chapter in study order, with a contents page.</small>
+              </span>
+            </label>
+            <label class="print-scope-option">
+              <input type="radio" name="print-scope" value="foundation" />
+              <span>
+                <strong>Foundations only</strong>
+                <small>Foundation 1–8, printed as a separate foundation workbook.</small>
+              </span>
+            </label>
+            <label class="print-scope-option">
+              <input type="radio" name="print-scope" value="core" />
+              <span>
+                <strong>Class 9 chapters only</strong>
+                <small>Everything except the foundation modules.</small>
+              </span>
+            </label>
+            <label class="print-scope-option">
+              <input type="radio" name="print-scope" value="part1" />
+              <span>
+                <strong>Part 1 · Chapters 1–8</strong>
+                <small>Coordinates, algebra, number systems, geometry, probability and sequences.</small>
+              </span>
+            </label>
+            <label class="print-scope-option">
+              <input type="radio" name="print-scope" value="part2" />
+              <span>
+                <strong>Part 2 · Chapters 9–14</strong>
+                <small>Reasoning, data, algorithms, quadrilaterals, linear equations and solids.</small>
+              </span>
+            </label>
+            <label class="print-scope-option">
+              <input type="radio" name="print-scope" value="current" />
+              <span>
+                <strong>This lesson only</strong>
+                <small id="print-current-label">The chapter open in the editor.</small>
+              </span>
+            </label>
+            <label class="print-scope-option">
+              <input type="radio" name="print-scope" value="custom" />
+              <span>
+                <strong>Choose chapters</strong>
+                <small>Pick any combination of lessons.</small>
+              </span>
+            </label>
+          </fieldset>
+
+          <div id="print-chapter-choices" class="print-chapter-choices" hidden>
+            <div class="print-choice-actions">
+              <button type="button" id="print-select-all" class="quiet-button">Select all</button>
+              <button type="button" id="print-select-none" class="quiet-button">Clear all</button>
+            </div>
+            <div id="print-choice-groups"></div>
+          </div>
+
+          <p id="epub-note" class="epub-note" hidden>
+            Builds a fixed-layout EPUB 3 book for Apple Books on iPad. Pages are
+            rendered one by one, so a complete book can take a few minutes.
+            Leave this tab open while it works.
+          </p>
+
+          <div class="print-dialog-actions">
+            <button id="print-dialog-cancel" class="quiet-button" type="button">Cancel</button>
+            <button id="print-dialog-confirm" class="primary-button" type="button">
+              Print / Save as PDF
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </div>
+
+    <div id="print-document" class="print-document" aria-hidden="true">
+      <article class="paper print-paper">
+        <div class="paper-header">
+          <div class="paper-kicker" id="print-class">CLASS 9 · MATHEMATICS</div>
+          <div class="paper-rule"></div>
+          <h1 id="print-title">Complete Study Notes</h1>
+        </div>
+        <div id="print-content" class="document-content"></div>
+        <footer class="paper-footer">
+          <span>CBSE MATHEMATICS NOTES</span>
+          <span>Learn · Understand · Practise</span>
+        </footer>
+      </article>
+    </div>
+
+    <script type="module" src="/js/main.js"></script>
+  </body>
+</html>

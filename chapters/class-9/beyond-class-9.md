@@ -47,6 +47,26 @@ $$
 | $\frac{\pi}{4}$ | $45^\circ$ |
 | $\frac{\pi}{6}$ | $30^\circ$ |
 
+### The full circle at a glance
+
+Learn one anchor — $\pi\text{ radians}=180^\circ$ — and read the rest from it.
+
+| Degrees | $0^\circ$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ | $120^\circ$ | $135^\circ$ | $150^\circ$ | $180^\circ$ | $270^\circ$ | $360^\circ$ |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Radians | $0$ | $\frac{\pi}{6}$ | $\frac{\pi}{4}$ | $\frac{\pi}{3}$ | $\frac{\pi}{2}$ | $\frac{2\pi}{3}$ | $\frac{3\pi}{4}$ | $\frac{5\pi}{6}$ | $\pi$ | $\frac{3\pi}{2}$ | $2\pi$ |
+
+### Shortcuts worth memorising
+
+- **Radians to degrees:** replace $\pi$ with $180^\circ$, then simplify. So
+  $\frac{\pi}{3}\to\frac{180^\circ}{3}=60^\circ$.
+- **Degrees to radians:** write the angle as a fraction of $180^\circ$ and put $\pi$
+  on top. So $150^\circ=\frac{150}{180}\pi=\frac{5\pi}{6}$.
+- **Quadrants:** $90^\circ=\frac{\pi}{2}$, $180^\circ=\pi$, $270^\circ=\frac{3\pi}{2}$,
+  $360^\circ=2\pi$. Every other common angle sits halfway or a third of the way
+  between these.
+- $\pi$ is a number, so $\frac{\pi}{2}$ is roughly $1.571$ radians. Do not write
+  "$\pi=180$"; write "$\pi\text{ radians}=180^\circ$".
+
 ### Converting between radians and degrees
 
 To convert **degrees to radians**, multiply by $\frac{\pi}{180}$:
@@ -81,3 +101,14 @@ $$
 2. Convert $150^\circ$ to radians.
 3. Convert $\frac{5\pi}{6}$ radians to degrees.
 4. Complete the table: $\frac{\pi}{2}=?^\circ$ and $\pi=?^\circ$.
+5. Convert $210^\circ$ to radians.
+6. Convert $\frac{3\pi}{2}$ radians to degrees.
+
+**Answers**
+
+1. $4i$
+2. $150^\circ\times\frac{\pi}{180}=\frac{5\pi}{6}$
+3. $\frac{5\pi}{6}\times\frac{180}{\pi}=5\times30=150^\circ$
+4. $\frac{\pi}{2}=90^\circ$ and $\pi=180^\circ$
+5. $210^\circ\times\frac{\pi}{180}=\frac{7\pi}{6}$
+6. $270^\circ$

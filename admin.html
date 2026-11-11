@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#176b54" />
+    <meta
+      name="description"
+      content="How MathsFunda is edited and published: a local studio, git publishing, and owner-approved contributions."
+    />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MathsFunda" />
+    <title>Admin &amp; publishing · MathsFunda</title>
+  </head>
+  <body class="site-body">
+    <header class="site-header">
+      <a class="site-brand" href="./index.html" aria-label="MathsFunda home">
+        <span class="brand-mark">∑</span>
+        <span class="brand-copy"><strong>MathsFunda</strong><small>Class 9 · step by step</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./index.html#pathway">Pathway</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formula vault</a>
+        <a href="./methods.html">How to remember</a>
+      </nav>
+      <a class="nav-cta" href="./index.html">Home</a>
+    </header>
+
+    <main class="prose-main">
+      <p class="eyebrow">OWNERSHIP &amp; PUBLISHING</p>
+      <h1>The public site is<br /><em>read-only by design.</em></h1>
+      <p class="hero-lede">
+        Visitors can read, practise and track their own progress, but nothing they do
+        in the browser can change the published lessons. Editing happens in a local
+        studio on the owner's computer, and publishing happens through git.
+      </p>
+
+      <div class="callout">
+        <p>
+          <strong>Why there is no password here.</strong> A password checked in the
+          browser is not real security: anyone can read the JavaScript or edit the
+          page locally. The honest boundary is file access and repository access, not
+          a password box.
+        </p>
+      </div>
+
+      <h2>Who can change what</h2>
+      <table class="prose-table">
+        <thead>
+          <tr><th>Role</th><th>Can do</th><th>Cannot do</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Visitor</td>
+            <td>Read lessons, use flashcards, keep progress in their own browser.</td>
+            <td>Change published content or other people's progress.</td>
+          </tr>
+          <tr>
+            <td>Owner</td>
+            <td>Edit locally in the studio, build, commit and push to <code>main</code>.</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Contributor</td>
+            <td>Fork the repository and open a pull request.</td>
+            <td>Push directly to <code>main</code> or publish without review.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Edit locally in the studio</h2>
+      <ol>
+        <li>On the computer, run <code>npm install</code> once, then <code>npm run dev</code>.</li>
+        <li>Open <a href="./studio.html">the studio</a>. Edits are stored in that browser
+          only until you export or commit them.</li>
+        <li>Write Markdown, preview the KaTeX formulas, and check the print layout.</li>
+        <li>Use <strong>Download .md</strong> to save a chapter, or copy the content into
+          the matching file under <code>chapters/class-9/</code>.</li>
+        <li>Refresh the site pages to confirm the lesson, flashcards and formula vault
+          all agree.</li>
+      </ol>
+
+      <div class="callout">
+        <p>
+          <strong>Browser storage is not a backup.</strong> Clearing site data erases
+          studio edits. Export or commit anything you want to keep before clearing the
+          browser.
+        </p>
+      </div>
+
+      <h2>Publish through git</h2>
+      <p>From the project folder on the computer:</p>
+      <pre><code>git status
+git add .
+git commit -m "Describe the lesson change"
+git push origin main</code></pre>
+      <p>
+        The push triggers the GitHub Actions workflow, which builds the site and
+        deploys it to GitHub Pages. Check the <strong>Actions</strong> tab for a green
+        run, then reload the live URL. If the run fails, the previous deployment stays
+        live.
+      </p>
+
+      <h2>Contributions go through review</h2>
+      <p>
+        The <code>main</code> branch is protected. Collaborators cannot push to it
+        directly; they must open a pull request and receive approval. A pull request
+        merged by the owner is the approval gate. This keeps the published lessons
+        stable while still letting people suggest corrections.
+      </p>
+      <ol>
+        <li>Contributor forks the repository and makes the change on a branch.</li>
+        <li>They open a pull request describing the correction and the source.</li>
+        <li>The owner reviews the maths, the wording and the build.</li>
+        <li>The owner merges; the deploy workflow publishes the approved version.</li>
+      </ol>
+      <p>
+        For a small correction, an issue with the exact page and suggested wording is
+        enough. Do not paste personal data into an issue.
+      </p>
+
+      <h2>Where content lives</h2>
+      <table class="prose-table">
+        <thead>
+          <tr><th>What</th><th>File</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Lesson text</td><td><code>chapters/class-9/*.md</code></td></tr>
+          <tr><td>Chapter order and stage placement</td><td><code>js/curriculum.js</code></td></tr>
+          <tr><td>Flashcard decks</td><td><code>js/flashcard-data.js</code></td></tr>
+          <tr><td>Page layout and reader styling</td><td><code>css/site.css</code></td></tr>
+          <tr><td>EPUB export and page spreads</td><td><code>js/epub.js</code>, <code>js/paginate.js</code></td></tr>
+        </tbody>
+      </table>
+      <p>
+        Flashcard ids are based on deck order. Add new cards at the end of a deck so
+        existing per-device review schedules keep pointing at the right card.
+      </p>
+
+      <h2>Export the book</h2>
+      <p>
+        The studio can export the whole course as a fixed-layout EPUB with facing
+        pages, for Apple Books on iPad, and print an A4 PDF. Both exports use the same
+        pagination as the web reader, so a page break you fix in one place appears
+        everywhere.
+      </p>
+      <p>
+        A spread EPUB needs a landscape screen and <code>rendition:spread</code>
+        enabled, which the export sets. On a narrow phone screen, Apple Books will
+        show one page at a time; that is expected.
+      </p>
+
+      <h2>Installing on iPad</h2>
+      <ol>
+        <li>Open the live site in Safari.</li>
+        <li>Tap <strong>Share</strong>, then <strong>Add to Home Screen</strong>.</li>
+        <li>Launch it from the home screen and let the first visit cache the pages.</li>
+        <li>After that, lessons open offline. Progress and flashcard schedules stay on
+          that device.</li>
+      </ol>
+
+      <p><a class="primary-button" href="./studio.html">Open the local studio</a></p>
+      <p><a class="quiet-button" href="./index.html">← Back to the study site</a></p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="brand-mark">∑</span>
+        <div><strong>MathsFunda</strong><p>CBSE Class 9 mathematics · Ganita Manjari aligned</p></div>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="./index.html">Home</a>
+        <a href="./learn.html?stage=foundations">Foundations</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formulas</a>
+        <a href="./methods.html">Memory methods</a>
+      </nav>
+      <p class="footer-note">Progress is stored only in this browser.</p>
+    </footer>
+    <script type="module" src="/js/admin.js"></script>
+  </body>
+</html>

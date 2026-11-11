@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#176b54" />
+    <meta name="description" content="Read a CBSE maths lesson page by page, like a book." />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MathsFunda" />
+    <title>Reader · MathsFunda</title>
+  </head>
+  <body class="site-body reader-body">
+    <div class="reader-shell">
+      <header class="reader-bar">
+        <a class="icon-button" href="./index.html" aria-label="Back to the study home">←</a>
+        <div class="reader-meta">
+          <p id="reader-kicker" class="reader-kicker">Lesson</p>
+          <h1 id="reader-title">Loading…</h1>
+        </div>
+        <div class="reader-actions">
+          <button id="reader-toc-button" class="quiet-button" type="button">Contents</button>
+          <button id="reader-complete-button" class="quiet-button" type="button">Mark complete</button>
+        </div>
+      </header>
+
+      <div class="reader-progress" aria-hidden="true">
+        <span id="reader-progress-fill"></span>
+      </div>
+
+      <main class="reader-stage" id="reader-stage">
+        <div class="reader-page-shell" id="reader-page-shell"></div>
+        <div class="reader-measure" id="reader-measure" aria-hidden="true"></div>
+        <button class="reader-nav reader-nav-prev" id="reader-prev" type="button" aria-label="Previous page">‹</button>
+        <button class="reader-nav reader-nav-next" id="reader-next" type="button" aria-label="Next page">›</button>
+      </main>
+
+      <footer class="reader-foot">
+        <span id="reader-page-label">Page 1 of 1</span>
+        <span class="reader-tip">Swipe, tap the sides or use ← →</span>
+        <a id="reader-next-lesson" class="reader-next-link" href="./index.html">Next lesson →</a>
+      </footer>
+    </div>
+
+    <div id="reader-toc" class="reader-toc" hidden>
+      <div class="reader-toc-backdrop" data-toc-close></div>
+      <div class="reader-toc-card" role="dialog" aria-modal="true" aria-labelledby="reader-toc-title">
+        <div class="reader-toc-head">
+          <div>
+            <p class="eyebrow">IN THIS LESSON</p>
+            <h2 id="reader-toc-title">Sections</h2>
+          </div>
+          <button class="quiet-button" type="button" data-toc-close aria-label="Close contents">✕</button>
+        </div>
+        <ol id="reader-toc-list" class="reader-toc-list"></ol>
+        <a id="reader-toc-flashcards" class="reader-toc-link" href="./flashcards.html">Review this topic with flashcards →</a>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/js/reader.js"></script>
+  </body>
+</html>

@@ -1,19 +1,36 @@
+import { fileURLToPath, URL } from "node:url";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+
+const page = (name) => fileURLToPath(new URL(`./${name}.html`, import.meta.url));
 
 export default defineConfig({
   // Relative base so the build works at a domain root or under
   // https://<user>.github.io/<repo>/ without editing the config.
   base: "./",
+  build: {
+    rollupOptions: {
+      input: {
+        index: page("index"),
+        studio: page("studio"),
+        learn: page("learn"),
+        reader: page("reader"),
+        flashcards: page("flashcards"),
+        formulas: page("formulas"),
+        methods: page("methods"),
+        admin: page("admin"),
+      },
+    },
+  },
   plugins: [
     VitePWA({
       registerType: "autoUpdate",
       includeAssets: ["icons/apple-touch-icon.png"],
       manifest: {
-        name: "CBSE Maths Notes Studio",
-        short_name: "Maths Notes",
+        name: "MathsFunda — CBSE Class 9",
+        short_name: "MathsFunda",
         description:
-          "Write, preview and print CBSE mathematics notes, or export a fixed-layout EPUB for Apple Books.",
+          "A step-by-step CBSE Class 9 maths course with a flip-book reader, spaced-repetition flashcards and a formula vault.",
         lang: "en",
         start_url: ".",
         scope: ".",
@@ -50,7 +67,15 @@ export default defineConfig({
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
-        navigateFallback: "index.html",
+        // This is a multi-page site: every page is precached on its own URL.
+        // A navigateFallback would answer reader.html, learn.html and the rest
+        // with index.html, which looks like the home page hijacking the route.
+        // The plugin injects "index.html" by default, so it must be nulled.
+        navigateFallback: null,
+        // Lesson URLs carry the chapter in the query string (?ch=...). Ignore
+        // query parameters when matching precached pages so the reader,
+        // learn and flashcards pages still open offline.
+        ignoreURLParametersMatching: [/.*/],
       },
     }),
   ],
