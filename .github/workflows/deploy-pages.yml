@@ -35,6 +35,10 @@ jobs:
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          # Create the Pages site with "GitHub Actions" as the source if it is
+          # not enabled yet. Requires the pages:write permission above.
+          enablement: true
 
       - name: Upload the built site
         uses: actions/upload-pages-artifact@v3
