@@ -30,6 +30,20 @@ function tryAppend(builder, node) {
   return false;
 }
 
+// How far the real content reaches down the page. `scrollHeight` is not usable
+// here: the page body has a fixed height, so it always reports at least the full
+// page height, which made every heading look “too close to the edge”.
+export function contentBottom(builder) {
+  const body = builder.current.body;
+  const top = body.getBoundingClientRect().top;
+  let bottom = 0;
+  for (const child of body.children) {
+    const rect = child.getBoundingClientRect();
+    if (rect.height > 0) bottom = Math.max(bottom, rect.bottom - top);
+  }
+  return bottom;
+}
+
 // Break to a fresh page, but carry a trailing heading with it so headings are
 // never stranded at the bottom of a page.
 function breakPageKeepingHeading(builder, chapter) {
@@ -56,7 +70,7 @@ function placeNode(builder, node, chapter) {
     const probe = node.cloneNode(true);
     builder.current.body.appendChild(probe);
     const overflow = !builder.fits();
-    const tooCloseToEdge = builder.current.body.scrollHeight > builder.pageHeight - 120;
+    const tooCloseToEdge = contentBottom(builder) > builder.pageHeight - 120;
     builder.current.body.removeChild(probe);
     if (builder.hasContent() && (overflow || tooCloseToEdge)) {
       breakPageKeepingHeading(builder, chapter);

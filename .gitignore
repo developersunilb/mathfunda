@@ -16,3 +16,7 @@ output/EPUB/*.epub
 *.log
 .DS_Store
 Thumbs.db
+
+# local issue screenshots
+issues/
+

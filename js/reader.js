@@ -1,5 +1,5 @@
 import { renderMarkdown } from "./markdown.js";
-import { paginateChapter } from "./paginate.js";
+import { contentBottom, paginateChapter } from "./paginate.js";
 import {
   chapters,
   chapterById,
@@ -33,16 +33,52 @@ const nextLessonLink = document.querySelector("#reader-next-lesson");
 const tocPanel = document.querySelector("#reader-toc");
 const tocList = document.querySelector("#reader-toc-list");
 const tocFlashcards = document.querySelector("#reader-toc-flashcards");
+const tocEdit = document.querySelector("#reader-toc-edit");
 const toast = document.querySelector("#toast");
+const viewButton = document.querySelector("#reader-view-button");
+const tipEl = document.querySelector(".reader-tip");
 
 if (!chapter) {
   location.replace("./index.html");
 }
 
+const BOOK_MIN_WIDTH = 1024;
+const BOOK_DEFAULT_WIDTH = 1100;
+const VIEW_KEY = "mathfunda-reader-view";
+
 let pages = [];
 let current = 0;
 let turning = false;
+let bookMode = false;
 let saveTimer;
+
+/* ------------------------------------------------------------ View mode */
+
+function wantsBookView() {
+  try {
+    const saved = localStorage.getItem(VIEW_KEY);
+    if (saved === "book") return true;
+    if (saved === "single") return false;
+  } catch {
+    /* storage blocked: fall back to the screen width */
+  }
+  // Wide screens start in the two-page book layout; the toggle switches back.
+  return window.innerWidth >= BOOK_DEFAULT_WIDTH;
+}
+
+function applyViewMode() {
+  bookMode = window.innerWidth >= BOOK_MIN_WIDTH && wantsBookView();
+  shell.classList.toggle("is-book", bookMode);
+  measure.classList.toggle("is-book", bookMode);
+  viewButton.hidden = window.innerWidth < BOOK_MIN_WIDTH;
+  viewButton.textContent = bookMode ? "Single page" : "Book view";
+  viewButton.setAttribute("aria-pressed", String(bookMode));
+  if (tipEl) {
+    tipEl.textContent = bookMode
+      ? "Turn the spread with ← →, swipe or tap the sides"
+      : "Swipe, tap the sides or use ← →";
+  }
+}
 
 /* ------------------------------------------------------------- Page builder */
 
@@ -87,7 +123,9 @@ class ReaderBuilder {
   }
 
   fits() {
-    return this.current.body.scrollHeight <= this.current.body.clientHeight + 1;
+    // Keep a footer's worth of room at the bottom. `scrollHeight` alone allows
+    // the last line to slide under the page number.
+    return contentBottom(this) <= this.current.body.clientHeight - 46;
   }
 
   hasContent() {
@@ -116,6 +154,7 @@ function restorePage() {
 }
 
 function buildPages() {
+  applyViewMode();
   measure.innerHTML = "";
   shell.innerHTML = "";
   pages = [];
@@ -133,10 +172,18 @@ function buildPages() {
   // Move the rendered pages into the visible shell.
   pages.forEach((entry) => {
     shell.appendChild(entry.page);
-    entry.page.classList.remove("is-current", "is-under");
+    entry.page.classList.remove(
+      "is-current",
+      "is-under",
+      "is-turning",
+      "is-returning",
+      "is-spread-left",
+      "is-spread-right"
+    );
   });
 
   current = Math.min(restorePage(), Math.max(0, pages.length - 1));
+  if (bookMode) current = Math.floor(current / 2) * 2;
   renderPage(false);
   buildToc();
 }
@@ -157,11 +204,26 @@ function renderPage(animate = true, direction = 1) {
   if (pages.length === 0) return;
   const previous = pages[current];
   current = Math.max(0, Math.min(current, pages.length - 1));
+  if (bookMode) current = Math.floor(current / 2) * 2;
   const entry = pages[current];
+  const right = bookMode ? pages[current + 1] || null : null;
 
-  pages.forEach((page) => page.page.classList.remove("is-current", "is-under", "is-turning"));
+  pages.forEach((page) =>
+    page.page.classList.remove(
+      "is-current",
+      "is-under",
+      "is-turning",
+      "is-returning",
+      "is-spread-left",
+      "is-spread-right"
+    )
+  );
 
-  if (animate && previous && previous !== entry) {
+  if (bookMode) {
+    entry.page.classList.add("is-spread-left");
+    if (right) right.page.classList.add("is-spread-right");
+    turning = false;
+  } else if (animate && previous && previous !== entry) {
     if (direction > 0) {
       entry.page.classList.add("is-under");
       previous.page.classList.add("is-current", "is-turning");
@@ -187,15 +249,18 @@ function renderPage(animate = true, direction = 1) {
   }
 
   const total = pages.length;
-  pageLabel.textContent = `Page ${current + 1} of ${total}`;
-  progressFill.style.width = `${((current + 1) / total) * 100}%`;
+  const lastVisible = right ? current + 1 : current;
+  pageLabel.textContent = right
+    ? `Pages ${current + 1}–${lastVisible + 1} of ${total}`
+    : `Page ${current + 1} of ${total}`;
+  progressFill.style.width = `${((lastVisible + 1) / total) * 100}%`;
   prevButton.disabled = current === 0;
-  nextButton.disabled = current === total - 1;
+  nextButton.disabled = lastVisible >= total - 1;
 
   clearTimeout(saveTimer);
   saveTimer = setTimeout(() => setLessonPage(chapter.slug, current + 1), 350);
 
-  if (current === total - 1) {
+  if (lastVisible === total - 1) {
     showToast("Last page · tap Mark complete when ready");
   }
 }
@@ -230,21 +295,27 @@ function buildToc() {
 /* -------------------------------------------------------------- Navigation */
 
 function goTo(index, direction) {
-  if (turning || index === current) return;
-  const target = Math.max(0, Math.min(index, pages.length - 1));
+  if (turning) return;
+  let target = Math.max(0, Math.min(index, pages.length - 1));
+  if (bookMode) target = Math.floor(target / 2) * 2;
+  if (target === current) return;
   const dir = direction ?? (target > current ? 1 : -1);
   current = target;
   renderPage(true, dir);
 }
 
 function nextPage() {
-  if (current < pages.length - 1) goTo(current + 1, 1);
+  const step = bookMode ? 2 : 1;
+  if (current + step < pages.length) goTo(current + step, 1);
+  else if (current < pages.length - 1) goTo(pages.length - 1, 1);
   else if (isLessonDone(chapter.slug)) goToNextLesson();
   else showToast("Mark the lesson complete, then continue.");
 }
 
 function previousPage() {
-  if (current > 0) goTo(current - 1, -1);
+  const step = bookMode ? 2 : 1;
+  if (current - step >= 0) goTo(current - step, -1);
+  else if (current > 0) goTo(0, -1);
 }
 
 function goToNextLesson() {
@@ -255,6 +326,22 @@ function goToNextLesson() {
 
 prevButton.addEventListener("click", previousPage);
 nextButton.addEventListener("click", nextPage);
+
+viewButton.addEventListener("click", () => {
+  const ratio = pages.length > 1 ? current / (pages.length - 1) : 0;
+  try {
+    localStorage.setItem(VIEW_KEY, bookMode ? "single" : "book");
+  } catch {
+    /* the view still changes for this visit */
+  }
+  applyViewMode();
+  buildPages();
+  let target = Math.round(ratio * Math.max(0, pages.length - 1));
+  if (bookMode) target = Math.floor(target / 2) * 2;
+  current = Math.max(0, Math.min(target, pages.length - 1));
+  renderPage(false);
+  setLessonPage(chapter.slug, current + 1);
+});
 
 document.addEventListener("keydown", (event) => {
   if (event.target.closest("input, textarea, select")) return;
@@ -349,6 +436,8 @@ window.addEventListener("resize", () => {
     const savedPage = current;
     buildPages();
     current = Math.round(ratio * Math.max(0, pages.length - 1));
+    if (bookMode) current = Math.floor(current / 2) * 2;
+    current = Math.max(0, Math.min(current, pages.length - 1));
     renderPage(false);
     setLessonPage(chapter.slug, current + 1);
     void savedPage;
@@ -382,6 +471,7 @@ async function boot() {
     "linear-inequalities": "c9-inequalities",
   }[chapter.slug];
   if (deckLink) tocFlashcards.href = `./flashcards.html?deck=${deckLink}`;
+  tocEdit.href = `./studio.html?ch=${encodeURIComponent(chapter.slug)}`;
 
   if (document.fonts?.ready) {
     try {

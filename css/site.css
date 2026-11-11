@@ -1156,6 +1156,56 @@ button {
   animation: turn-return 0.26s ease-out;
 }
 
+/* ------------------------------------------------------- Facing-page spread */
+
+.reader-view-button {
+  white-space: nowrap;
+}
+
+.reader-page-shell.is-book {
+  width: min(100%, 1220px);
+}
+
+.reader-page-shell.is-book::before {
+  content: "";
+  position: absolute;
+  top: 2%;
+  bottom: 2%;
+  left: 50%;
+  width: 1px;
+  background: rgba(29, 36, 32, 0.14);
+  box-shadow: 0 0 18px rgba(29, 36, 32, 0.18);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.reader-page-shell.is-book .reader-page {
+  width: calc(50% - 0.6rem);
+  inset: 0 auto 0 0;
+}
+
+.reader-page-shell.is-book .reader-page.is-spread-left {
+  left: 0;
+  right: auto;
+  display: block;
+  z-index: 2;
+  box-shadow: 0 18px 42px rgba(29, 36, 32, 0.16);
+}
+
+.reader-page-shell.is-book .reader-page.is-spread-right {
+  left: auto;
+  right: 0;
+  display: block;
+  z-index: 1;
+  box-shadow: 0 18px 42px rgba(29, 36, 32, 0.16);
+}
+
+@media (max-width: 1023px) {
+  .reader-view-button {
+    display: none;
+  }
+}
+
 @keyframes turn-next {
   from {
     transform: rotateY(0) translateX(0);
@@ -1209,18 +1259,30 @@ button {
 
 .reader-measure {
   position: absolute;
-  inset: clamp(0.5rem, 2vw, 1.4rem);
+  top: clamp(0.5rem, 2vw, 1.4rem);
+  bottom: clamp(0.5rem, 2vw, 1.4rem);
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
   visibility: hidden;
   pointer-events: none;
   z-index: -1;
-  width: min(100%, 780px);
-  margin: 0 auto;
+  width: min(calc(100% - 2 * clamp(0.5rem, 2vw, 1.4rem)), 780px);
+}
+
+.reader-measure.is-book {
+  width: min(calc(100% - 2 * clamp(0.5rem, 2vw, 1.4rem)), 1220px);
 }
 
 .reader-measure .reader-page {
   display: block;
   position: absolute;
   inset: 0;
+}
+
+.reader-measure.is-book .reader-page {
+  width: calc(50% - 0.6rem);
+  inset: 0 auto 0 0;
 }
 
 .reader-nav {

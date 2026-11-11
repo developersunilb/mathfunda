@@ -31,8 +31,15 @@ function readSavedState() {
 
 const savedState = readSavedState();
 const drafts = savedState.drafts;
-let activeId =
-  savedState.activeId === CUSTOM_ID || chapterById.has(savedState.activeId)
+
+// A reader can link straight to a chapter copy with studio.html?ch=<slug>.
+const requestedSlug = new URLSearchParams(location.search).get("ch");
+const requestedChapter = requestedSlug
+  ? chapters.find((chapter) => chapter.slug === requestedSlug)
+  : null;
+let activeId = requestedChapter
+  ? requestedChapter.id
+  : savedState.activeId === CUSTOM_ID || chapterById.has(savedState.activeId)
     ? savedState.activeId
     : chapters[0]?.id || CUSTOM_ID;
 

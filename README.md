@@ -15,7 +15,7 @@ vault. The content is written in Markdown with KaTeX formulas.
 |---|---|
 | `index.html` | Landing page: the five stages, next lesson, today's panel. |
 | `learn.html?stage=foundations` | One stage at a time: Start, Foundations, Part 1, Part 2, Enrichment. |
-| `reader.html?ch=<slug>` | Flip-book lesson reader: facing-page layout on wide screens, swipe, tap zones, keys, contents. |
+| `reader.html?ch=<slug>` | Flip-book lesson reader: facing-page **Book view** on wide screens (toggle in the header), single pages on phones, swipe, tap zones, keys, contents. |
 | `flashcards.html` | 14 curated decks with retrieval practice and per-device spaced repetition. |
 | `formulas.html` | Formula vault scraped from the lesson tables, with search and print. |
 | `methods.html` | Evidence-based memorisation guide and a 15-minute routine. |
@@ -133,8 +133,11 @@ the offline app.
 ## Studio, PDF and EPUB
 
 `studio.html` is a local editing surface: Markdown on the left, rendered preview
-on the right. Edits are saved in that browser only. Use **Download .md** to save a
-chapter, or copy the text into the matching file under `chapters/class-9/`.
+on the right. Open it directly, or from a lesson: **Contents → Edit a copy in the
+local studio**. The editor accepts `studio.html?ch=<slug>` so it opens that
+chapter. Edits are saved in that browser only; the Markdown files on disk are not
+touched until you export or commit them. Use **Download .md** to save a chapter,
+or copy the text into the matching file under `chapters/class-9/`.
 
 ### Print a PDF
 
