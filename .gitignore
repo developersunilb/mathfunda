@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Generated exports (keep the folders, not the large binaries)
+output/PDFs/*.pdf
+output/EPUB/*.epub
+!output/PDFs/.gitkeep
+!output/EPUB/.gitkeep
+
+# Local files
+.env.local
+.env.*.local
+*.log
+.DS_Store
+Thumbs.db

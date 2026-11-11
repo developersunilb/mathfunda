@@ -1,0 +1,1322 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap");
+
+:root {
+  font-family: "DM Sans", Arial, sans-serif;
+  color: #202a35;
+  background: #f4f6f8;
+  font-synthesis: none;
+  --ink: #202a35;
+  --muted: #77818c;
+  --green: #176b54;
+  --green-dark: #105640;
+  --gold: #c59a39;
+  --line: #e0e6e8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+/* ---------------------------------------------------------------- Top bar */
+
+.topbar {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 12px 28px;
+  background: #fff;
+  border-bottom: 1px solid #e4e8ed;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: #fff;
+  background: var(--green);
+  font: 700 25px Georgia, serif;
+}
+
+.brand-name {
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.brand-subtitle {
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.save-status {
+  color: #6c7883;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.primary-button {
+  min-height: 42px;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--green);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.primary-button:hover {
+  background: var(--green-dark);
+}
+
+.primary-button:focus-visible,
+.quiet-button:focus-visible,
+.toolbar button:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------- Workspace */
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(350px, 0.92fr) minmax(420px, 1.08fr);
+  gap: 22px;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.editor-panel,
+.preview-panel {
+  min-width: 0;
+}
+
+.panel-heading,
+.preview-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 17px;
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  color: #78858e;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.25px;
+}
+
+.panel-heading h1,
+.preview-heading h2 {
+  margin: 0;
+  font-size: 19px;
+  letter-spacing: -0.45px;
+}
+
+.quiet-button {
+  border: 1px solid #dce2e6;
+  border-radius: 7px;
+  background: #fff;
+  padding: 8px 11px;
+  color: #596671;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.quiet-button:hover {
+  border-color: #b9c6c0;
+  color: var(--green);
+}
+
+/* --------------------------------------------------- Chapter and metadata */
+
+.chapter-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 13px;
+}
+
+.chapter-picker-label {
+  display: grid;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+  color: #65717c;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.chapter-picker-label select {
+  width: 100%;
+  min-width: 0;
+  height: 39px;
+  padding: 0 10px;
+  border: 1px solid #dce2e6;
+  border-radius: 7px;
+  color: #26333c;
+  background: #fff;
+  font-size: 13px;
+}
+
+.metadata-grid {
+  display: grid;
+  grid-template-columns: 115px minmax(0, 1fr);
+  gap: 10px;
+  margin-bottom: 13px;
+}
+
+.metadata-grid label {
+  display: grid;
+  gap: 6px;
+  color: #65717c;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.metadata-grid input,
+.metadata-grid select {
+  width: 100%;
+  min-width: 0;
+  height: 39px;
+  padding: 0 10px;
+  border: 1px solid #dce2e6;
+  border-radius: 7px;
+  color: #26333c;
+  background: #fff;
+  font-size: 13px;
+}
+
+.metadata-grid input:focus,
+.metadata-grid select:focus,
+.chapter-picker-label select:focus {
+  outline: 2px solid #a9c7ba;
+  outline-offset: 0;
+}
+
+/* --------------------------------------------------------------- Toolbar */
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px;
+  background: #e9eef0;
+  border: 1px solid #e0e6e8;
+  border-radius: 8px 8px 0 0;
+}
+
+.toolbar button {
+  min-width: 37px;
+  min-height: 34px;
+  padding: 0 9px;
+  border: 1px solid #d7dfe2;
+  border-radius: 5px;
+  background: #fff;
+  color: #34434c;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.toolbar button:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.content-label {
+  display: block;
+  padding: 12px 13px 7px;
+  background: #fff;
+  border-left: 1px solid #e0e6e8;
+  border-right: 1px solid #e0e6e8;
+  color: #87929b;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+#editor {
+  display: block;
+  width: 100%;
+  min-height: 520px;
+  resize: vertical;
+  padding: 13px 15px 18px;
+  border: 1px solid #e0e6e8;
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+  outline: none;
+  background: #fff;
+  color: #26333c;
+  font: 13px/1.75 Consolas, "Courier New", monospace;
+  tab-size: 2;
+}
+
+#editor:focus {
+  box-shadow: inset 0 0 0 1px var(--green);
+}
+
+.editor-hint {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  color: #78848d;
+  font-size: 11px;
+}
+
+code {
+  padding: 2px 4px;
+  border-radius: 4px;
+  background: #eef2f1;
+  color: var(--green);
+  font-family: Consolas, monospace;
+}
+
+.paste-banner {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 14px;
+  padding: 11px 13px;
+  border: 1px solid #d7e6de;
+  border-left: 3px solid var(--green);
+  border-radius: 6px;
+  background: #f3f8f5;
+  color: #4c5b55;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.paste-banner strong {
+  color: #245744;
+}
+
+.paste-banner-icon {
+  display: grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #dfeee6;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.paste-banner kbd {
+  padding: 1px 4px;
+  border: 1px solid #cbd8d1;
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  background: #fff;
+  color: #3f5149;
+  font: 10px Consolas, monospace;
+}
+
+.syntax-help {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 13px;
+  margin-top: 15px;
+  color: #6e7b84;
+  font-size: 11px;
+}
+
+.syntax-help strong {
+  color: #40505a;
+}
+
+/* --------------------------------------------------------------- Preview */
+
+.a4-badge {
+  padding: 6px 9px;
+  border: 1px solid #dce2e6;
+  border-radius: 20px;
+  color: #697680;
+  background: #fff;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.preview-stage {
+  padding: 20px;
+  background: #e7ebee;
+  border: 1px solid #dce2e6;
+  border-radius: 10px;
+}
+
+.paper {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  min-height: 840px;
+  margin: 0 auto;
+  padding: 48px 52px 60px;
+  background: #fff;
+  box-shadow: 0 3px 15px #26333c16;
+  color: var(--ink);
+}
+
+.paper-header {
+  margin-bottom: 26px;
+}
+
+.paper-kicker {
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.paper-rule {
+  height: 2px;
+  width: 42px;
+  margin: 11px 0 14px;
+  background: var(--gold);
+}
+
+.paper-header h1 {
+  margin: 0;
+  font: 700 25px/1.2 "Source Serif 4", Georgia, serif;
+  letter-spacing: -0.5px;
+}
+
+.document-content {
+  font: 13px/1.65 "Source Serif 4", Georgia, serif;
+  overflow-wrap: break-word;
+}
+
+.document-content > :first-child {
+  margin-top: 0;
+}
+
+.document-content h1,
+.document-content h2,
+.document-content h3,
+.document-content h4 {
+  color: var(--green);
+  font-family: "DM Sans", Arial, sans-serif;
+}
+
+.document-content h1 {
+  margin: 0 0 12px;
+  font-size: 21px;
+}
+
+.document-content h2 {
+  margin: 25px 0 11px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e7ece9;
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.document-content h3 {
+  margin: 18px 0 8px;
+  color: #34434c;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.document-content h4 {
+  margin: 15px 0 7px;
+  color: #40505a;
+  font-size: 13px;
+}
+
+.document-content p {
+  margin: 8px 0;
+}
+
+.document-content strong {
+  color: #273b34;
+}
+
+.document-content em {
+  font-style: italic;
+}
+
+.document-content u {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.document-content sup,
+.document-content sub {
+  font-size: 0.72em;
+  line-height: 0;
+}
+
+.document-content mark {
+  padding: 0 2px;
+  border-radius: 2px;
+  background: #fff2a8;
+  color: inherit;
+}
+
+.document-content a {
+  color: #14624c;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.document-content ul,
+.document-content ol {
+  padding-left: 22px;
+}
+
+.document-content li {
+  margin: 5px 0;
+}
+
+.document-content li > p {
+  margin: 0;
+}
+
+.document-content blockquote {
+  margin: 13px 0;
+  padding: 9px 13px;
+  border-left: 3px solid var(--gold);
+  background: #faf8f1;
+  color: #5b625e;
+}
+
+.document-content blockquote p {
+  margin: 4px 0;
+}
+
+.document-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 18px;
+  font: 11px/1.5 "DM Sans", Arial, sans-serif;
+}
+
+.document-content th {
+  background: #edf4f0;
+  color: #245744;
+  text-align: left;
+  font-weight: 700;
+}
+
+.document-content th,
+.document-content td {
+  padding: 8px 9px;
+  border: 1px solid #dfe7e2;
+  vertical-align: middle;
+}
+
+.document-content .katex-display {
+  margin: 14px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 2px 0;
+}
+
+.document-content .katex {
+  font-size: 1.08em;
+}
+
+.document-content .formula-box {
+  margin: 14px 0;
+  padding: 8px 14px;
+  border: 1px solid #d9e8df;
+  border-left: 4px solid var(--green);
+  border-radius: 5px;
+  background: #f5faf6;
+}
+
+.document-content .formula-box .katex-display {
+  margin: 8px 0;
+}
+
+.document-content hr {
+  border: 0;
+  border-top: 1px solid #e3e8e5;
+  margin: 22px 0;
+}
+
+.document-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 3px;
+}
+
+.document-content pre {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border: 1px solid #e1e7e4;
+  border-radius: 6px;
+  background: #f7f9f8;
+  overflow-x: auto;
+  font: 11px/1.55 Consolas, monospace;
+  white-space: pre-wrap;
+}
+
+.document-content pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.document-content input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.paper-footer {
+  position: absolute;
+  right: 52px;
+  bottom: 25px;
+  left: 52px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #e7ece9;
+  color: #89938d;
+  font: 9px "DM Sans", Arial, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.preview-note {
+  margin-top: 10px;
+  color: #77838c;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.page-break {
+  break-after: page;
+  page-break-after: always;
+  height: 1px;
+}
+
+/* ---------------------------------------------------------------- Toast */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  z-index: 50;
+  max-width: min(440px, calc(100vw - 32px));
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #1f3329;
+  color: #f5fbf7;
+  box-shadow: 0 8px 28px #14201940;
+  font-size: 12px;
+  line-height: 1.45;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 10px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.toast.is-visible {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* -------------------------------------------------------------- Responsive */
+
+@media (max-width: 1050px) {
+  .top-download {
+    display: none;
+  }
+}
+
+@media (max-width: 950px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .paper {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .topbar {
+    align-items: flex-start;
+    padding: 13px 15px;
+  }
+
+  .brand-subtitle {
+    display: none;
+  }
+
+  .top-actions {
+    align-items: flex-end;
+    flex-direction: column-reverse;
+    gap: 6px;
+  }
+
+  .save-status {
+    font-size: 10px;
+  }
+
+  .primary-button {
+    min-height: 38px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  .workspace {
+    padding: 15px;
+    gap: 25px;
+  }
+
+  .metadata-grid {
+    grid-template-columns: 100px minmax(0, 1fr);
+  }
+
+  .preview-stage {
+    padding: 8px;
+  }
+
+  .paper {
+    min-height: 700px;
+    padding: 30px 24px 55px;
+  }
+
+  .paper-footer {
+    right: 24px;
+    left: 24px;
+  }
+
+  .paper-header h1 {
+    font-size: 21px;
+  }
+
+  .document-content {
+    font-size: 12px;
+  }
+}
+
+/* ---------------------------------------------------------- Print dialog */
+
+.print-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: none;
+}
+
+.print-dialog[aria-hidden="false"] {
+  display: block;
+}
+
+.print-dialog-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 32, 27, 0.48);
+}
+
+.print-dialog-card {
+  position: relative;
+  width: min(590px, calc(100vw - 32px));
+  max-height: calc(100vh - 44px);
+  margin: 5vh auto 0;
+  overflow: auto;
+  padding: 22px;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 26px 70px rgba(12, 30, 24, 0.3);
+}
+
+.print-dialog-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.print-dialog-head h2 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: -0.4px;
+}
+
+.print-dialog-close {
+  min-width: 34px;
+  padding: 6px 9px;
+}
+
+.print-scope {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.print-scope legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.print-scope-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 11px 13px;
+  border: 1px solid #e0e6e4;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.print-scope-option:hover {
+  border-color: #bcd0c7;
+}
+
+.print-scope-option:has(input:checked) {
+  border-color: var(--green);
+  background: #f3f8f5;
+}
+
+.print-scope-option input {
+  margin-top: 3px;
+  accent-color: var(--green);
+}
+
+.print-scope-option span {
+  display: grid;
+  gap: 2px;
+}
+
+.print-scope-option strong {
+  color: #26333c;
+  font-size: 13.5px;
+}
+
+.print-scope-option small {
+  color: #6f7b76;
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+
+.print-chapter-choices {
+  margin-top: 14px;
+  padding-top: 13px;
+  border-top: 1px solid #e7ece9;
+  max-height: 230px;
+  overflow: auto;
+}
+
+.print-choice-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 9px;
+}
+
+.print-choice-actions .quiet-button {
+  padding: 5px 9px;
+  font-size: 11px;
+}
+
+.print-choice-part {
+  margin: 14px 0 5px;
+  padding-top: 10px;
+  border-top: 1px solid #edf1ef;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+}
+
+.print-choice-part:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.print-choice-topic {
+  margin: 8px 0 2px 12px;
+  color: #77818c;
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.print-choice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 2px 4px 24px;
+  color: #3b4a44;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.print-choice input {
+  accent-color: var(--green);
+}
+
+.epub-note {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border: 1px solid #e6dfc9;
+  border-left: 3px solid var(--gold);
+  border-radius: 6px;
+  background: #fbf8ee;
+  color: #5b625e;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+.print-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+body.dialog-open {
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------- EPUB exporter */
+
+.epub-book {
+  position: fixed;
+  top: 0;
+  left: -20000px;
+  width: 794px;
+  background: #fff;
+  pointer-events: none;
+}
+
+.epub-page {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 794px;
+  height: 1123px;
+  padding: 53px 57px 64px;
+  overflow: hidden;
+  background: #fff;
+  color: var(--ink);
+  font: 13px/1.65 "Source Serif 4", Georgia, serif;
+}
+
+.epub-page-body {
+  flex: 0 0 auto;
+  max-height: calc(1123px - 53px - 64px);
+  overflow: hidden;
+}
+
+.epub-page-body.document-content {
+  width: 680px;
+}
+
+.epub-page .katex-display {
+  overflow: visible !important;
+}
+
+.epub-page-footer {
+  position: absolute;
+  right: 57px;
+  bottom: 22px;
+  left: 57px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #e7ece9;
+  color: #89938d;
+  font: 9px "DM Sans", Arial, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+.epub-page-footer-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.epub-page-number {
+  flex: 0 0 auto;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.epub-chapter-label {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--green);
+}
+
+.epub-chapter-label span {
+  color: var(--gold);
+  font: 700 9px "DM Sans", Arial, sans-serif;
+  letter-spacing: 1.2px;
+}
+
+.epub-chapter-label strong {
+  color: var(--green);
+  font: 700 15px "DM Sans", Arial, sans-serif;
+}
+
+.epub-page-cover {
+  background: #103c2e;
+}
+
+.epub-cover-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 26px;
+}
+
+.epub-cover {
+  color: #f6f4ec;
+}
+
+.epub-cover-mark {
+  width: 92px;
+  height: 92px;
+  margin-bottom: 34px;
+  border: 2px solid #c59a39;
+  border-radius: 50%;
+  color: #c59a39;
+  font: 700 52px/88px Georgia, serif;
+  text-align: center;
+}
+
+.epub-cover-kicker {
+  margin: 0 0 16px;
+  color: #d9b96a;
+  font: 700 11px "DM Sans", Arial, sans-serif;
+  letter-spacing: 2.2px;
+}
+
+.epub-cover h1 {
+  margin: 0 0 16px;
+  color: #ffffff;
+  font: 700 44px/1.14 "Source Serif 4", Georgia, serif;
+  letter-spacing: -1px;
+}
+
+.epub-cover-sub {
+  max-width: 24ch;
+  margin: 0;
+  color: #d9e6df;
+  font: 16px/1.55 "Source Serif 4", Georgia, serif;
+}
+
+.epub-cover-rule {
+  width: 72px;
+  height: 3px;
+  margin: 34px 0 22px;
+  background: #c59a39;
+}
+
+.epub-cover-note {
+  margin: 0;
+  color: #a9c3b8;
+  font: 10px "DM Sans", Arial, sans-serif;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.epub-contents-head h1 {
+  margin: 0 0 10px;
+  padding: 0;
+  border-bottom: 0;
+  color: var(--green);
+  font: 700 30px/1.15 "Source Serif 4", Georgia, serif;
+  letter-spacing: -0.6px;
+}
+
+.epub-contents-kicker {
+  margin: 0 0 8px;
+  color: var(--gold);
+  font: 700 10px "DM Sans", Arial, sans-serif;
+  letter-spacing: 1.6px;
+}
+
+.epub-contents-copy {
+  max-width: 52ch;
+  margin: 0;
+  color: #5b625e;
+}
+
+.epub-toc {
+  display: grid;
+  gap: 0;
+  margin: 22px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.epub-toc li {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0;
+  padding: 9px 0;
+  border-bottom: 1px solid #e7ece9;
+}
+
+.epub-toc-index {
+  flex: 0 0 auto;
+  color: var(--gold);
+  font: 700 10px "DM Sans", Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+.epub-toc-title {
+  color: #273b34;
+  font: 600 12.5px "DM Sans", Arial, sans-serif;
+}
+
+.epub-toc-page {
+  margin-left: auto;
+  color: #89938d;
+  font: 600 11px "DM Sans", Arial, sans-serif;
+}
+
+/* ------------------------------------------------------- Complete workbook */
+
+.print-document {
+  display: none;
+}
+
+/* ------------------------------------------------------------------ Print */
+
+@page {
+  size: A4 portrait;
+  margin: 14mm 15mm 17mm;
+}
+
+@media print {
+  :root,
+  body {
+    background: #fff !important;
+  }
+
+  body.printing-all .app-shell {
+    display: none !important;
+  }
+
+  body.printing-all .print-document {
+    display: block !important;
+  }
+
+  .print-contents {
+    padding-top: 10px;
+  }
+
+  .print-contents-kicker {
+    margin: 0 0 6px;
+    color: var(--gold);
+    font: 700 10px "DM Sans", Arial, sans-serif;
+    letter-spacing: 1.4px;
+  }
+
+  .print-contents h2 {
+    margin: 0 0 10px;
+    padding: 0;
+    border-bottom: 0;
+    font-size: 24px;
+  }
+
+  .print-contents-copy {
+    max-width: 52ch;
+    color: #5b625e;
+  }
+
+  .print-order-list {
+    display: grid;
+    gap: 0;
+    margin: 24px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .print-order-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid #e7ece9;
+  }
+
+  .print-order-number {
+    color: var(--gold);
+    font: 700 11px "DM Sans", Arial, sans-serif;
+    letter-spacing: 1px;
+  }
+
+  .print-order-list strong {
+    color: #273b34;
+    font: 600 13px "DM Sans", Arial, sans-serif;
+  }
+
+  .print-chapter {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .print-chapter-label {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 0 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--green);
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .print-chapter-label span {
+    color: var(--gold);
+    font: 700 9px "DM Sans", Arial, sans-serif;
+    letter-spacing: 1.2px;
+  }
+
+  .print-chapter-label strong {
+    color: var(--green);
+    font: 700 15px "DM Sans", Arial, sans-serif;
+  }
+
+  .print-chapter > h2:first-of-type {
+    margin-top: 8px;
+  }
+
+  .topbar,
+  .editor-panel,
+  .preview-heading,
+  .preview-note,
+  .toast {
+    display: none !important;
+  }
+
+  .workspace {
+    display: block;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .preview-panel {
+    display: block;
+  }
+
+  .preview-stage {
+    padding: 0;
+    border: 0;
+    background: #fff;
+  }
+
+  .paper {
+    width: auto;
+    max-width: none;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .paper-header {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .document-content h1,
+  .document-content h2,
+  .document-content h3,
+  .document-content h4 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .document-content table,
+  .document-content blockquote,
+  .document-content .formula-box,
+  .document-content pre,
+  .document-content img {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .document-content .katex-display {
+    overflow: visible;
+  }
+
+  .paper-footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  .page-break {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
