@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#176b54" />
+    <meta name="description" content="Class 9 maths diagnostic: one question at a time, timed per question, with a downloadable result file." />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MathsFunda" />
+    <title>Diagnostic Assessment · MathsFunda</title>
+  </head>
+  <body class="site-body diagnostic-body">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <a class="site-brand" href="./index.html" aria-label="MathsFunda home">
+        <span class="brand-mark">∑</span>
+        <span class="brand-copy">
+          <strong>MathsFunda</strong>
+          <small>Class 9 · foundations to chapters</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./index.html#pathway">Pathway</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formula vault</a>
+        <a href="./methods.html">How to remember</a>
+      </nav>
+      <a class="nav-cta" href="./index.html">Home</a>
+    </header>
+
+    <main id="main" class="diagnostic-main">
+      <section class="diagnostic-intro">
+        <div class="diagnostic-card">
+          <p class="eyebrow">DIAGNOSTIC ASSESSMENT</p>
+          <h1>Diagnostic Assessment</h1>
+          <p>
+            This is a 20-question check of the skills Class 9 maths depends on. One
+            question at a time: type your answer, or tap “Don’t know / skip” and move
+            on.
+          </p>
+          <p>
+            <strong>No calculator.</strong> Work out answers on paper, then type them
+            in. Do not worry about the score.
+          </p>
+          <button id="diagnostic-begin" class="primary-button" type="button">Begin test</button>
+        </div>
+      </section>
+
+      <div id="diagnostic-modal" class="diagnostic-modal">
+        <div class="diagnostic-modal-backdrop" data-modal-close></div>
+        <div class="diagnostic-modal-card" role="dialog" aria-modal="true" aria-labelledby="diagnostic-modal-title">
+          <div class="diagnostic-modal-head">
+            <div>
+              <p class="eyebrow">Before you begin</p>
+              <h2 id="diagnostic-modal-title">Please read this first</h2>
+            </div>
+            <button class="quiet-button" type="button" data-modal-close aria-label="Close">✕</button>
+          </div>
+          <div class="diagnostic-modal-body">
+            <p>
+              This is <strong>not</strong> to judge your Maths skills. It is for the tutor to assess and fine tune
+              the learning plan so as to comfortably complete the final exam portions and math basics. There is no pass
+              or fail — answer honestly and skip anything you do not know.
+            </p>
+          </div>
+          <button id="modal-ok" class="primary-button" type="button">OK</button>
+        </div>
+      </div>
+
+      <section id="quiz-view" class="diagnostic-quiz" hidden>
+        <div class="diagnostic-card">
+          <div class="quiz-header">
+            <span id="quiz-progress" class="quiz-progress">Question 1 of 20</span>
+          </div>
+          <h2 id="quiz-question">Loading…</h2>
+          <div class="quiz-answer-area">
+            <label for="quiz-answer" class="quiz-answer-label">Your answer</label>
+            <input id="quiz-answer" type="text" class="quiz-answer-input" spellcheck="false" autocomplete="off" />
+            <p class="quiz-answer-hint">Type the answer, then tap Next.</p>
+          </div>
+          <div class="quiz-actions">
+            <button id="quiz-skip" class="quiet-button" type="button">Don’t know / skip</button>
+            <button id="quiz-next" class="primary-button" type="button">Next</button>
+          </div>
+          <p id="quiz-feedback" class="quiz-feedback" hidden></p>
+        </div>
+      </section>
+
+      <section id="finish-view" class="diagnostic-finish" hidden>
+        <div class="diagnostic-card">
+          <p class="eyebrow">DIAGNOSTIC COMPLETE</p>
+          <h1 id="finish-title">Congratulations!</h1>
+          <p id="finish-copy">You have completed the diagnostic assessment.</p>
+          <p class="finish-parent-note">
+            Your results (your answers and which questions you skipped) have
+            been saved locally. Please share the result file with your parent or tutor
+            so they can build a fine-tuning plan for the final exam portions and maths
+            basics.
+          </p>
+          <div class="finish-actions">
+            <button id="finish-download-json" class="primary-button" type="button">Download result (JSON)</button>
+            <button id="finish-download-zip" class="quiet-button" type="button">Download result (ZIP)</button>
+            <button id="finish-share" class="quiet-button" type="button">Send to WhatsApp</button>
+            <button id="finish-email" class="quiet-button" type="button">Email results to parent</button>
+            <a class="quiet-button" href="./index.html">Back to the course</a>
+          </div>
+          <p class="finish-note">
+            The files save on this device only. Nothing is uploaded anywhere. Use the
+            email button to open your device's mail app with the results ready to send.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/js/diagnostic.js"></script>
+  </body>
+</html>

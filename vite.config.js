@@ -15,6 +15,7 @@ export default defineConfig({
         studio: page("studio"),
         learn: page("learn"),
         reader: page("reader"),
+        diagnostic: page("diagnostic"),
         flashcards: page("flashcards"),
         formulas: page("formulas"),
         methods: page("methods"),
