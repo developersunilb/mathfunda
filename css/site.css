@@ -2603,6 +2603,56 @@ kbd {
   color: var(--muted);
 }
 
+.quiz-upload-area {
+  margin: 1.2rem 0;
+}
+
+.quiz-upload-label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+.quiz-upload-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.quiz-upload-input:focus {
+  outline: 2px solid rgba(23, 107, 84, 0.35);
+  border-color: var(--green);
+}
+
+.quiz-upload-hint {
+  margin-top: 0.35rem;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.quiz-upload-preview {
+  margin-top: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 100%;
+  max-height: 200px;
+}
+
+.quiz-upload-preview img {
+  display: block;
+  max-width: 100%;
+  max-height: 200px;
+}
+
 .quiz-actions {
   display: flex;
   gap: 0.6rem;

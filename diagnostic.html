@@ -83,6 +83,12 @@
             <input id="quiz-answer" type="text" class="quiz-answer-input" spellcheck="false" autocomplete="off" />
             <p class="quiz-answer-hint">Type the answer, then tap Next.</p>
           </div>
+          <div class="quiz-upload-area">
+            <label for="quiz-worksheet" class="quiz-upload-label">Worksheet photo (optional)</label>
+            <input id="quiz-worksheet" type="file" class="quiz-upload-input" accept="image/*" capture="environment" />
+            <p class="quiz-upload-hint">Snap a photo of your working, if you'd like to share it.</p>
+            <div id="quiz-upload-preview" class="quiz-upload-preview" hidden></div>
+          </div>
           <div class="quiz-actions">
             <button id="quiz-skip" class="quiet-button" type="button">Don’t know / skip</button>
             <button id="quiz-next" class="primary-button" type="button">Next</button>

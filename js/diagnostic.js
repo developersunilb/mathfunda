@@ -15,6 +15,8 @@ const modalClose = document.querySelectorAll("[data-modal-close]");
 const nextButton = document.querySelector("#quiz-next");
 const skipButton = document.querySelector("#quiz-skip");
 const answerInput = document.querySelector("#quiz-answer");
+const worksheetInput = document.querySelector("#quiz-worksheet");
+const uploadPreview = document.querySelector("#quiz-upload-preview");
 const progressEl = document.querySelector("#quiz-progress");
 const questionEl = document.querySelector("#quiz-question");
 const feedbackEl = document.querySelector("#quiz-feedback");
@@ -195,6 +197,7 @@ const QUESTIONS = [
 let currentIndex = 0;
 let startTime = 0;
 let timerInterval = null;
+let currentWorksheet = { dataUrl: null, fileName: null };
 const results = [];
 
 function showToast(message) {
@@ -238,7 +241,7 @@ function elapsedSeconds() {
   return Math.floor((Date.now() - startTime) / 1000);
 }
 
-function recordResult(skipped, answer) {
+function recordResult(skipped, answer, worksheetDataUrl, worksheetFileName) {
   const q = QUESTIONS[currentIndex];
   const entry = {
     question: q.id,
@@ -252,6 +255,10 @@ function recordResult(skipped, answer) {
     timeSeconds: elapsedSeconds(),
     answeredAt: new Date().toISOString(),
   };
+  if (worksheetDataUrl) {
+    entry.worksheetDataUrl = worksheetDataUrl;
+    entry.worksheetFileName = worksheetFileName;
+  }
   results.push(entry);
 
   // Live-log results to localStorage as each question is answered.
@@ -269,6 +276,12 @@ function renderQuestion() {
   feedbackEl.hidden = true;
   feedbackEl.textContent = "";
 
+  // Reset optional worksheet upload for the new question.
+  currentWorksheet = { dataUrl: null, fileName: null };
+  worksheetInput.value = "";
+  uploadPreview.hidden = true;
+  uploadPreview.innerHTML = "";
+
   const q = QUESTIONS[currentIndex];
   progressEl.textContent = `Question ${q.id} of ${TOTAL}`;
 
@@ -285,11 +298,12 @@ function renderQuestion() {
 
 function goNext() {
   const answer = answerInput.value.trim();
-  if (answer === "") {
-    showToast("Type an answer or tap “Don’t know / skip”.");
+  if (answer === "" && !currentWorksheet.dataUrl) {
+    showToast("Type an answer, attach a worksheet photo, or tap “Don’t know / skip”.");
     return;
   }
-  recordResult(false, answer);
+  recordResult(false, answer, currentWorksheet.dataUrl, currentWorksheet.fileName);
+  currentWorksheet = { dataUrl: null, fileName: null };
   currentIndex += 1;
   if (currentIndex >= TOTAL) {
     finishQuiz();
@@ -351,12 +365,23 @@ function buildReport() {
   lines.push("");
   lines.push("## Per-question record");
   lines.push("");
-  lines.push("| Q | Topic | Skill | Time | Status | Your answer | Correct answer |");
-  lines.push("|---|---|---|---|---|---|---|");
+  lines.push("| Q | Topic | Skill | Time | Status | Your answer | Correct answer | Worksheet photo |");
+  lines.push("|---|---|---|---|---|---|---|---|");
   for (const r of results) {
     lines.push(
-      `| ${r.question} | ${r.topic} | ${r.skill} | ${formatTime(r.timeSeconds)} | ${r.skipped ? "Skipped" : "Answered"} | ${r.studentAnswer ?? "—"} | ${r.correctAnswer} |`
+      `| ${r.question} | ${r.topic} | ${r.skill} | ${formatTime(r.timeSeconds)} | ${r.skipped ? "Skipped" : "Answered"} | ${r.studentAnswer ?? "—"} | ${r.correctAnswer} | ${r.worksheetDataUrl ? "Yes" : "—"} |`
     );
+  }
+
+  const withPhotos = results.filter((r) => r.worksheetDataUrl);
+  if (withPhotos.length > 0) {
+    lines.push("");
+    lines.push("## Worksheet photos");
+    lines.push("");
+    lines.push("Worksheet photos are included in the `worksheet-photos/` folder of the ZIP export.");
+    for (const r of withPhotos) {
+      lines.push(`- Q${r.question} (${r.topic}): ${r.worksheetFileName}`);
+    }
   }
   lines.push("");
   lines.push("## Note");
@@ -371,6 +396,17 @@ async function buildZip() {
 
   zip.file(`${baseName}.json`, JSON.stringify(results, null, 2));
   zip.file(`${baseName}.md`, buildReport());
+
+  const imagesFolder = zip.folder("worksheet-photos");
+  let imageIndex = 1;
+  for (const r of results) {
+    if (r.worksheetDataUrl) {
+      const [, base64] = r.worksheetDataUrl.split(",");
+      const ext = (r.worksheetFileName || `worksheet-Q${r.question}`).split(".").pop() || "jpg";
+      imagesFolder.file(`Q${r.question}-${imageIndex}.${ext}`, base64, { base64: true });
+      imageIndex += 1;
+    }
+  }
 
   return zip.generateAsync({ type: "blob" });
 }
@@ -441,6 +477,23 @@ skipButton.addEventListener("click", skipQuestion);
 
 answerInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") goNext();
+});
+
+worksheetInput.addEventListener("change", () => {
+  const file = worksheetInput.files?.[0];
+  if (!file) {
+    currentWorksheet = { dataUrl: null, fileName: null };
+    uploadPreview.hidden = true;
+    uploadPreview.innerHTML = "";
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = () => {
+    currentWorksheet = { dataUrl: reader.result, fileName: file.name };
+    uploadPreview.hidden = false;
+    uploadPreview.innerHTML = `<img src="${reader.result}" alt="Worksheet photo" />`;
+  };
+  reader.readAsDataURL(file);
 });
 
 async function buildJsonBlob() {

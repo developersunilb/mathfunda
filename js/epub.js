@@ -267,7 +267,14 @@ function buildOpf({ title, identifier, modified, pageCount, chapterTargets }) {
 
   const spine = Array.from({ length: pageCount }, (_, i) => {
     const name = pad(i + 1);
-    const properties = i === 0 ? ' properties="rendition:page-spread-center"' : "";
+    let properties = "";
+    if (i === 0) {
+      properties = ' properties="rendition:page-spread-center"';
+    } else if ((i - 1) % 2 === 0) {
+      properties = ' properties="rendition:page-spread-left"';
+    } else {
+      properties = ' properties="rendition:page-spread-right"';
+    }
     return `    <itemref idref="page-${name}"${properties} />`;
   }).join("\n");
 
