@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#176b54" />
+    <meta name="description" content="Your personalised Class 9 mathematics study plan based on your diagnostic results." />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MathsFunda Plan" />
+    <title>My Learning Plan · MathsFunda</title>
+    <link rel="stylesheet" href="./css/site.css" />
+  </head>
+  <body class="site-body">
+    <header class="site-header">
+      <a class="site-brand" href="./index.html" aria-label="MathsFunda home">
+        <span class="brand-mark">∑</span>
+        <span class="brand-copy"><strong>MathsFunda</strong><small>Class 9 · your learning plan</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./index.html">Home</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formula vault</a>
+        <a href="./methods.html">How to remember</a>
+      </nav>
+      <a class="nav-cta" href="./index.html">Back to course</a>
+    </header>
+
+    <main class="plan-main">
+      <!-- ======================================== RECOMMENDATIONS (LEFT PANEL) ======================================== -->
+      <section id="recommendation-section" class="plan-card" hidden>
+        <div class="plan-header">
+          <div>
+            <p class="eyebrow">RECOMMENDED NEXT</p>
+            <h2>Keep going</h2>
+            <p>
+              Short, focused lessons picked for what to study next. Open any
+              lesson in a new window; it will tick off here once completed.
+            </p>
+          </div>
+        </div>
+        <div id="recommendation-list" class="recommendation-list"></div>
+      </section>
+
+      <!-- ======================================== TODAY'S LEARNING (PRIMARY) ======================================== -->
+      <section id="today-section" class="plan-card">
+        <div class="plan-header">
+          <div>
+            <p class="eyebrow">TODAY'S LEARNING</p>
+            <h1 id="today-title">Loading your plan…</h1>
+            <p id="today-subtitle"></p>
+          </div>
+          <div id="today-mode-selector" class="mode-selector">
+            <label class="mode-label">Study time:</label>
+            <button class="mode-btn mode-btn-active" data-mode="normal">90 min</button>
+            <button class="mode-btn" data-mode="busy">30 min</button>
+            <button class="mode-btn" data-mode="veryBusy">15 min</button>
+          </div>
+        </div>
+
+        <div id="today-empty" class="plan-empty" hidden>
+          <p class="eyebrow">ALL CAUGHT UP</p>
+          <h2>Well done.</h2>
+          <p>
+            No tasks scheduled for today. You're up to date with your learning plan.
+            Come back tomorrow for your next set of tasks, or review earlier lessons
+            in the reader.
+          </p>
+          <div style="margin-top:1.5rem;">
+            <a href="./index.html" class="primary-button" type="button">Go to the course</a>
+            <a href="./flashcards.html" class="quiet-button" type="button" style="margin-left:0.5rem;">Review flashcards</a>
+          </div>
+        </div>
+
+        <div id="today-tasks" class="plan-tasks" hidden>
+          <p id="today-progress" class="plan-progress"></p>
+          <div id="today-task-list" class="plan-task-list"></div>
+          <div id="today-action" style="margin-top:1rem;">
+            <button id="mark-day-complete" class="primary-button" type="button">Mark today's tasks complete</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================== CONFIRMATION STATUS ======================================== -->
+      <section id="confirmation-section" class="plan-card" hidden>
+        <div class="plan-header">
+          <div>
+            <p class="eyebrow">QUICK CONFIRMATION CHECK</p>
+            <h2>A few questions to confirm what you know</h2>
+            <p>
+              Some diagnostic answers were skipped or unclear. These short checks
+              help us make sure we don't teach you something you already understand.
+            </p>
+          </div>
+          <a href="./confirmation.html" class="primary-button" type="button">Start confirmation check</a>
+        </div>
+        <div id="confirmation-list" class="confirmation-list"></div>
+      </section>
+
+      <!-- ======================================== 45-DAY OVERVIEW (SECONDARY) ======================================== -->
+      <section id="overview-section" class="plan-card">
+        <div class="plan-header">
+          <div>
+            <p class="eyebrow">YOUR 45-DAY PLAN</p>
+            <h2>Progress at a glance</h2>
+            <p id="overview-subtitle"></p>
+          </div>
+          <button id="overview-toggle" class="quiet-button" type="button">Show timeline</button>
+        </div>
+
+        <div id="overview-summary" class="plan-summary">
+          <div class="summary-stat">
+            <strong id="stat-total-days">0</strong><span>days in plan</span>
+          </div>
+          <div class="summary-stat">
+            <strong id="stat-completed-days">0</strong><span>days completed</span>
+          </div>
+          <div class="summary-stat">
+            <strong id="stat-coverage">0%</strong><span>syllabus covered</span>
+          </div>
+          <div class="summary-stat">
+            <strong id="stat-current-day">Day 1</strong><span>current day</span>
+          </div>
+        </div>
+
+        <div id="overview-timeline" class="plan-timeline" hidden>
+          <div class="phase-group">
+            <h3 class="phase-title phase-foundation">Phase 1 · Foundation Repair (Days 1–10)</h3>
+            <div id="phase-foundation-days" class="phase-days"></div>
+          </div>
+          <div class="phase-group">
+            <h3 class="phase-title phase-build">Phase 2 · Syllabus Development (Days 11–38)</h3>
+            <div id="phase-build-days" class="phase-days"></div>
+          </div>
+          <div class="phase-group">
+            <h3 class="phase-title phase-perform">Phase 3 · Revision & Performance (Days 39–45)</h3>
+            <div id="phase-perform-days" class="phase-days"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================== PARENT SUMMARY ======================================== -->
+      <section id="parent-summary-section" class="plan-card" hidden>
+        <div class="plan-header">
+          <div>
+            <p class="eyebrow">FOR PARENTS</p>
+            <h2>Progress summary</h2>
+            <p>
+              A simple overview of what your child has studied, what they've mastered,
+              and where they might need your support. No technical jargon needed.
+            </p>
+          </div>
+        </div>
+        <div id="parent-summary-content" class="parent-summary-content"></div>
+        <div style="margin-top:1rem;">
+          <a href="./parent.html" class="quiet-button" type="button">Open parent dashboard</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="brand-mark">∑</span>
+        <div><strong>MathsFunda</strong><p>CBSE Class 9 mathematics · your learning plan</p></div>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="./index.html">Home</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formulas</a>
+        <a href="./methods.html">Memory methods</a>
+        <a href="./admin.html">Admin &amp; publishing</a>
+      </nav>
+      <p class="footer-note">Your plan and progress are stored only in this browser.</p>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/js/study-plan.js"></script>
+  </body>
+</html>

@@ -1,17 +1,47 @@
+import katex from "katex";
 import { renderMarkdown } from "./markdown.js";
 import { contentBottom, paginateChapter } from "./paginate.js";
+import {
+  markPlanTaskComplete,
+} from "./plan-sync.js";
 import {
   chapters,
   chapterById,
   nextChapter,
   stageChapters,
 } from "./curriculum.js";
+import { conceptIdsForLessonSlug, questionConceptIdForLessonSlug } from "./adaptive-plan.js";
 import {
   isLessonDone,
   lessonState,
   markLessonDone,
   setLessonPage,
 } from "./progress.js";
+import {
+  MASTERY_STATES,
+  LESSON_STATES,
+  ERROR_CATEGORIES,
+  getLessonState,
+  startLesson,
+  setLessonPage as setEngineLessonPage,
+  completeLesson,
+  isLessonCompleted,
+  getMasteryState,
+  setMasteryState,
+  isMastered,
+  needsMasteryConfirmation,
+  recordPracticeAttempt,
+  getConfirmationQuestions,
+  assessMastery,
+  recordMistake,
+  getMistakesForConcept,
+} from "./lesson-engine.js";
+import {
+  getQuestionsForConcept,
+  getQuestion,
+  answersEquivalent,
+  validateAllQuestions,
+} from "./content-model.js";
 import "katex/dist/katex.min.css";
 import "../css/site.css";
 
@@ -39,7 +69,7 @@ const viewButton = document.querySelector("#reader-view-button");
 const tipEl = document.querySelector(".reader-tip");
 
 if (!chapter) {
-  location.replace("./index.html");
+  location.replace("./study-plan-personalized.html");
 }
 
 const BOOK_MIN_WIDTH = 1024;
@@ -54,6 +84,33 @@ let turning = false;
 let bookMode = false;
 let saveTimer;
 let parentUnlocked = false;
+
+/* ------------------------------------------------------------ Practice state */
+
+let practiceActive = false;
+let practiceQuestions = [];
+let practiceCurrentIndex = 0;
+let practiceStepAnswers = [];
+let practiceResults = [];
+let practiceConceptId = null;
+
+/* ------------------------------------------------------------ Practice DOM */
+
+let practiceOverlay = null;
+let practiceQuestionEl = null;
+let practiceInstructionEl = null;
+let practiceExpressionEl = null;
+let practiceAnswerInput = null;
+let practiceStepInputs = null;
+let practiceFeedbackEl = null;
+let practiceHintEl = null;
+let practiceResultEl = null;
+let practiceSubmitBtn = null;
+let practiceNextBtn = null;
+let practiceRetryBtn = null;
+let practiceMasteryBtn = null;
+let practiceCloseBtn = null;
+let practiceProgressEl = null;
 
 /* ------------------------------------------------------------ View mode */
 
@@ -493,6 +550,279 @@ stage.addEventListener("pointerup", (event) => {
   }
 });
 
+/* -------------------------------------------------------- Practice overlay */
+
+function createPracticeOverlay() {
+  if (practiceOverlay) return;
+
+  const overlay = document.createElement("div");
+  overlay.id = "practice-overlay";
+  overlay.className = "practice-overlay";
+  overlay.hidden = true;
+  overlay.innerHTML = `
+    <div class="practice-card">
+      <div class="practice-header">
+        <div>
+          <p class="eyebrow">PRACTICE</p>
+          <h2 id="practice-concept-title">Practice Questions</h2>
+          <p id="practice-instruction" class="quiz-instruction"></p>
+        </div>
+        <button id="practice-close" class="quiet-button" type="button">Close</button>
+      </div>
+
+      <div id="practice-expression" class="quiz-expression"></div>
+
+      <div id="practice-step-container" class="quiz-answer-area"></div>
+      <input id="practice-answer" type="text" class="quiz-answer-input" spellcheck="false" autocomplete="off" placeholder="Your answer" />
+
+      <div id="practice-hint" class="quiz-feedback"></div>
+      <div id="practice-result" class="quiz-feedback"></div>
+
+      <div class="quiz-actions">
+        <button id="practice-submit" class="primary-button" type="button">Check answer</button>
+        <button id="practice-next" class="quiet-button" type="button" hidden>Next question</button>
+        <button id="practice-retry" class="quiet-button" type="button" hidden>Try again</button>
+        <button id="practice-mastery" class="quiet-button" type="button" hidden>Take mastery check</button>
+      </div>
+
+      <div id="practice-progress" class="plan-progress"></div>
+    </div>
+  `;
+
+  shell.appendChild(overlay);
+
+  practiceOverlay = overlay;
+  practiceQuestionEl = overlay.querySelector("#practice-concept-title");
+  practiceInstructionEl = overlay.querySelector("#practice-instruction");
+  practiceExpressionEl = overlay.querySelector("#practice-expression");
+  practiceAnswerInput = overlay.querySelector("#practice-answer");
+  practiceStepInputs = overlay.querySelector("#practice-step-container");
+  practiceFeedbackEl = overlay.querySelector("#practice-hint");
+  practiceResultEl = overlay.querySelector("#practice-result");
+  practiceSubmitBtn = overlay.querySelector("#practice-submit");
+  practiceNextBtn = overlay.querySelector("#practice-next");
+  practiceRetryBtn = overlay.querySelector("#practice-retry");
+  practiceMasteryBtn = overlay.querySelector("#practice-mastery");
+  practiceCloseBtn = overlay.querySelector("#practice-close");
+  practiceProgressEl = overlay.querySelector("#practice-progress");
+
+  practiceCloseBtn.addEventListener("click", closePractice);
+  practiceSubmitBtn.addEventListener("click", submitPracticeAnswer);
+  practiceNextBtn.addEventListener("click", nextPracticeQuestion);
+  practiceRetryBtn.addEventListener("click", retryPracticeQuestion);
+  practiceMasteryBtn.addEventListener("click", takeMasteryCheck);
+  practiceAnswerInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") submitPracticeAnswer();
+  });
+}
+
+function openPractice(conceptId) {
+  createPracticeOverlay();
+  practiceConceptId = conceptId;
+  practiceQuestions = getQuestionsForConcept(conceptId);
+  practiceCurrentIndex = 0;
+  practiceResults = [];
+
+  if (practiceQuestions.length === 0) {
+    showToast("No practice questions available for this topic.");
+    return;
+  }
+
+  practiceOverlay.hidden = false;
+  showPracticeQuestion();
+}
+
+function closePractice() {
+  practiceOverlay.hidden = true;
+  practiceActive = false;
+}
+
+function showPracticeQuestion() {
+  const question = practiceQuestions[practiceCurrentIndex];
+  if (!question) {
+    finishPractice();
+    return;
+  }
+
+  practiceProgressEl.textContent = `Question ${practiceCurrentIndex + 1} of ${practiceQuestions.length}`;
+  practiceQuestionEl.textContent = question.text;
+  practiceInstructionEl.textContent = question.instruction;
+
+  renderMath(practiceExpressionEl, question.text);
+
+  practiceStepInputs.innerHTML = "";
+  practiceAnswerInput.value = "";
+  practiceFeedbackEl.textContent = "";
+  practiceResultEl.textContent = "";
+  practiceResultEl.className = "quiz-feedback";
+
+  if (question.type === "step-by-step" && question.steps.length > 0) {
+    practiceAnswerInput.hidden = true;
+    practiceStepInputs.hidden = false;
+    question.steps.forEach((s, idx) => {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.className = "quiz-answer-input";
+      input.placeholder = `Step ${s.step}`;
+      input.dataset.step = s.step;
+      practiceStepInputs.appendChild(input);
+    });
+  } else {
+    practiceAnswerInput.hidden = false;
+    practiceStepInputs.hidden = true;
+    practiceAnswerInput.focus();
+  }
+
+  practiceSubmitBtn.hidden = false;
+  practiceNextBtn.hidden = true;
+  practiceRetryBtn.hidden = true;
+  practiceMasteryBtn.hidden = true;
+}
+
+function getStepAnswers() {
+  const inputs = practiceStepInputs.querySelectorAll("input");
+  return Array.from(inputs).map((input) => input.value.trim());
+}
+
+function submitPracticeAnswer() {
+  const question = practiceQuestions[practiceCurrentIndex];
+  if (!question) return;
+
+  let studentAnswer;
+  if (question.type === "step-by-step") {
+    studentAnswer = getStepAnswers();
+  } else {
+    studentAnswer = practiceAnswerInput.value.trim();
+  }
+
+  if (!studentAnswer || (Array.isArray(studentAnswer) && studentAnswer.every((a) => !a))) {
+    showToast("Please enter an answer first.");
+    return;
+  }
+
+  const result = recordPracticeAttempt(question.id, studentAnswer);
+  practiceResults.push({ questionId: question.id, ...result });
+
+  // Record mistake if incorrect
+  if (!result.isCorrect) {
+    recordMistake(
+      question.id,
+      studentAnswer,
+      question.correctAnswer,
+      result.errorCategory || ERROR_CATEGORIES.conceptual,
+      result.errorMessage,
+      result.firstWrongStep,
+      0
+    );
+  }
+
+  practiceAnswerInput.disabled = true;
+  practiceSubmitBtn.hidden = true;
+
+  if (result.isCorrect) {
+    practiceResultEl.textContent = "Correct! Well done.";
+    practiceResultEl.className = "quiz-feedback";
+    practiceResultEl.style.color = "var(--green)";
+    practiceFeedbackEl.textContent = "";
+    practiceNextBtn.hidden = false;
+  } else {
+    practiceResultEl.textContent = "Not quite right. Let's look at why.";
+    practiceResultEl.className = "quiz-feedback";
+    practiceResultEl.style.color = "var(--rose)";
+    practiceFeedbackEl.textContent = result.errorMessage || "Check your answer and try again.";
+    practiceRetryBtn.hidden = false;
+
+    if (result.firstWrongStep) {
+      practiceFeedbackEl.textContent += ` Step ${result.firstWrongStep.stepNumber}: ${result.firstWrongStep.explanation}`;
+    }
+  }
+
+  updatePracticeProgress();
+}
+
+function retryPracticeQuestion() {
+  const question = practiceQuestions[practiceCurrentIndex];
+  if (!question) return;
+
+  practiceAnswerInput.disabled = false;
+  practiceAnswerInput.value = "";
+  practiceResultEl.textContent = "";
+  practiceFeedbackEl.textContent = "";
+  practiceRetryBtn.hidden = true;
+  practiceSubmitBtn.hidden = false;
+
+  if (question.type === "step-by-step") {
+    const inputs = practiceStepInputs.querySelectorAll("input");
+    inputs.forEach((input) => (input.value = ""));
+  }
+
+  practiceAnswerInput.focus();
+}
+
+function nextPracticeQuestion() {
+  practiceCurrentIndex += 1;
+  showPracticeQuestion();
+}
+
+function finishPractice() {
+  practiceOverlay.hidden = true;
+
+  const correctCount = practiceResults.filter((r) => r.isCorrect).length;
+  const total = practiceResults.length;
+  const accuracy = total > 0 ? correctCount / total : 0;
+
+  showToast(`Practice complete: ${correctCount} of ${total} correct.`);
+
+  // Check if concept can be mastered
+  if (practiceConceptId && accuracy >= MASTERY_THRESHOLD) {
+    const masteryResult = assessMastery(practiceConceptId, practiceResults);
+    if (masteryResult.passed) {
+      showToast("Concept mastered! Excellent work.");
+      // Mark matching plan task(s) complete once the concept is mastered.
+      for (const conceptId of conceptIdsForLessonSlug(practiceConceptId)) {
+        markPlanTaskComplete(conceptId, true);
+      }
+    }
+  }
+
+  // Refresh the reader view to show updated mastery state
+  syncCompleteButton();
+}
+
+function takeMasteryCheck() {
+  const masteryQuestions = getConfirmationQuestions(practiceConceptId);
+  if (masteryQuestions.length === 0) {
+    showToast("No mastery questions available for this topic.");
+    return;
+  }
+
+  practiceQuestions = masteryQuestions;
+  practiceCurrentIndex = 0;
+  practiceResults = [];
+  showPracticeQuestion();
+}
+
+function renderMath(element, text) {
+  if (!text || !text.trim()) {
+    element.textContent = "";
+    return;
+  }
+  const trimmed = text.trim();
+  if (trimmed.startsWith("$")) {
+    const latex = trimmed.replace(/^\$(.+)\$$/s, "$1");
+    element.innerHTML = katex.renderToString(latex, { throwOnError: false, trust: false });
+  } else {
+    element.textContent = trimmed;
+  }
+}
+
+function updatePracticeProgress() {
+  const answered = practiceResults.length;
+  const total = practiceQuestions.length;
+  const pct = total > 0 ? Math.round((answered / total) * 100) : 0;
+  practiceProgressEl.textContent = `Progress: ${answered} of ${total} (${pct}%)`;
+}
+
 /* -------------------------------------------------------- Complete / menu */
 
 function syncCompleteButton() {
@@ -504,13 +834,39 @@ function syncCompleteButton() {
 
 completeButton.addEventListener("click", () => {
   const done = isLessonDone(chapter.slug);
+  if (done) {
+    // Already completed — offer mastery check
+    const mastery = getMasteryState(chapter.slug);
+    if (isMastered(chapter.slug)) {
+      showToast("You've mastered this concept!");
+    } else if (needsMasteryConfirmation(chapter.slug)) {
+      openPractice(questionConceptIdForLessonSlug(chapter.slug));
+    } else {
+      showToast("Lesson completed. Practice to build mastery.");
+    }
+    return;
+  }
+
   markLessonDone(chapter.slug, !done);
   syncCompleteButton();
   if (!done) {
     showToast("Lesson complete — well done.");
-    setTimeout(() => {
-      if (current === pages.length - 1) goToNextLesson();
-    }, 700);
+    // Mark matching plan task(s) complete as the lesson is finished.
+    for (const conceptId of conceptIdsForLessonSlug(chapter.slug)) {
+      markPlanTaskComplete(conceptId, true);
+    }
+    // Offer practice questions to build mastery
+    const practiceConcept = questionConceptIdForLessonSlug(chapter.slug);
+    const questions = getQuestionsForConcept(practiceConcept);
+    if (questions && questions.length > 0) {
+      setTimeout(() => {
+        openPractice(practiceConcept);
+      }, 700);
+    } else {
+      setTimeout(() => {
+        if (current === pages.length - 1) goToNextLesson();
+      }, 700);
+    }
   }
 });
 

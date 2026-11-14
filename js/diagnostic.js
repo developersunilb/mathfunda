@@ -2,6 +2,13 @@ import katex from "katex";
 import JSZip from "jszip";
 import "katex/dist/katex.min.css";
 import "../css/site.css";
+import {
+  getConceptsNeedingConfirmation,
+} from "./confirmation-assessment.js";
+import {
+  mapDiagnosticToConcepts,
+  validateDiagnosticResults,
+} from "./adaptive-plan.js";
 
 const toast = document.querySelector("#toast");
 const introView = document.querySelector(".diagnostic-intro");
@@ -27,16 +34,18 @@ const downloadJsonButton = document.querySelector("#finish-download-json");
 const downloadZipButton = document.querySelector("#finish-download-zip");
 const shareButton = document.querySelector("#finish-share");
 const emailButton = document.querySelector("#finish-email");
+const confirmationButton = document.querySelector("#finish-confirmation");
 
 const TOTAL = 20;
 const LIVE_STORAGE_KEY = "mathfunda-diagnostic-live";
+const PARENT_RESULTS_KEY = "mathfunda-diagnostic-results";
 
 const QUESTIONS = [
   {
     id: 1,
     topic: "Numbers and operations",
     skill: "Division",
-    text: "$348 \\div 12$",
+    text: "$348 \\, \\div \\, 12$",
     instruction: "Calculate",
     answer: "29",
   },
@@ -44,7 +53,7 @@ const QUESTIONS = [
     id: 2,
     topic: "Numbers and operations",
     skill: "Integer addition and subtraction",
-    text: "-8 + 13 - 6",
+    text: "$-8 \\, + \\, 13 \\, - \\, 6$",
     instruction: "Simplify",
     answer: "-1",
   },
@@ -52,7 +61,7 @@ const QUESTIONS = [
     id: 3,
     topic: "Numbers and operations",
     skill: "Adding fractions",
-    text: "\\frac{2}{3} + \\frac{3}{4}",
+    text: "$\\frac{2}{3} \\, + \\, \\frac{3}{4}$",
     instruction: "Find",
     answer: "17/12",
   },
@@ -60,7 +69,7 @@ const QUESTIONS = [
     id: 4,
     topic: "Numbers and operations",
     skill: "Multiplying decimals",
-    text: "3.75 \\times 0.4",
+    text: "$3.75 \\, \\times \\, 0.4$",
     instruction: "Calculate",
     answer: "1.5",
   },
@@ -68,7 +77,7 @@ const QUESTIONS = [
     id: 5,
     topic: "Numbers and operations",
     skill: "Percentage of a quantity",
-    text: "15\\% \\text{ of } 240",
+    text: "$15\\% \\, \\text{ of } \\, 240$",
     instruction: "Find",
     answer: "36",
   },
@@ -76,7 +85,7 @@ const QUESTIONS = [
     id: 6,
     topic: "Numbers and operations",
     skill: "Ratio",
-    text: "360 \\text{ in the ratio } 2:3",
+    text: "$360 \\, \\text{ in the ratio } \\, 2:3$",
     instruction: "Divide",
     answer: "144 and 216",
   },
@@ -84,7 +93,7 @@ const QUESTIONS = [
     id: 7,
     topic: "Numbers and operations",
     skill: "Factors and multiples",
-    text: "18 \\text{ and } 24",
+    text: "$18 \\, \\text{ and } \\, 24$",
     instruction: "Find the HCF and the LCM of",
     answer: "HCF = 6, LCM = 72",
   },
@@ -92,7 +101,7 @@ const QUESTIONS = [
     id: 8,
     topic: "Numbers and operations",
     skill: "Laws of exponents",
-    text: "2^3 \\times 2^2",
+    text: "$2^3 \\, \\times \\, 2^2$",
     instruction: "Simplify",
     answer: "32",
   },
@@ -100,7 +109,7 @@ const QUESTIONS = [
     id: 9,
     topic: "Algebra",
     skill: "Like terms",
-    text: "3x + 5x - 2x",
+    text: "$3x \\, + \\, 5x \\, - \\, 2x$",
     instruction: "Simplify",
     answer: "6x",
   },
@@ -108,7 +117,7 @@ const QUESTIONS = [
     id: 10,
     topic: "Algebra",
     skill: "Linear equation",
-    text: "3x + 7 = 22",
+    text: "$3x \\, + \\, 7 \\, = \\, 22$",
     instruction: "Solve",
     answer: "x = 5",
   },
@@ -116,7 +125,7 @@ const QUESTIONS = [
     id: 11,
     topic: "Geometry and measurement",
     skill: "Angle sum of a triangle",
-    text: "48^\\circ \\text{ and } 67^\\circ",
+    text: "$48^\\circ \\, \\text{ and } \\, 67^\\circ$",
     instruction: "Two angles of a triangle are. Find the third angle.",
     answer: "65^\\circ",
   },
@@ -124,7 +133,7 @@ const QUESTIONS = [
     id: 12,
     topic: "Geometry and measurement",
     skill: "Area of a rectangle",
-    text: "12.5 \\text{ cm by } 8 \\text{ cm}",
+    text: "$12.5 \\, \\text{ cm by } \\, 8 \\, \\text{ cm}$",
     instruction: "Find the area of a rectangle measuring",
     answer: "100 cm^2",
   },
@@ -132,7 +141,7 @@ const QUESTIONS = [
     id: 13,
     topic: "Mixed skills",
     skill: "Sign rules and order of operations",
-    text: "(-3) \\times (-4) + (-2)",
+    text: "$(-3) \\, \\times \\, (-4) \\, + \\, (-2)$",
     instruction: "Simplify",
     answer: "10",
   },
@@ -140,7 +149,7 @@ const QUESTIONS = [
     id: 14,
     topic: "Mixed skills",
     skill: "Dividing fractions",
-    text: "\\frac{5}{6} \\div \\frac{2}{3}",
+    text: "$\\frac{5}{6} \\, \\div \\, \\frac{2}{3}$",
     instruction: "Find",
     answer: "5/4",
   },
@@ -156,7 +165,7 @@ const QUESTIONS = [
     id: 16,
     topic: "Mixed skills",
     skill: "Brackets and simplification",
-    text: "4(2x - 3) + 5",
+    text: "$4(2x \\, - \\, 3) \\, + \\, 5$",
     instruction: "Expand and simplify",
     answer: "8x - 7",
   },
@@ -164,7 +173,7 @@ const QUESTIONS = [
     id: 17,
     topic: "Mixed skills",
     skill: "Equation with a fraction",
-    text: "\\frac{x}{4} = 9",
+    text: "$\\frac{x}{4} \\, = \\, 9$",
     instruction: "Solve",
     answer: "x = 36",
   },
@@ -180,7 +189,7 @@ const QUESTIONS = [
     id: 19,
     topic: "Mixed skills",
     skill: "Perimeter",
-    text: "12.5 \\text{ cm by } 8 \\text{ cm}",
+    text: "$12.5 \\, \\text{ cm by } \\, 8 \\, \\text{ cm}$",
     instruction: "Find the perimeter of a rectangle measuring",
     answer: "41 cm",
   },
@@ -188,7 +197,7 @@ const QUESTIONS = [
     id: 20,
     topic: "Mixed skills",
     skill: "Coordinates and midpoint",
-    text: "(-3, 4)",
+    text: "$(-3,\\, 4)$",
     instruction: "In which quadrant does the point lie? Find the midpoint of the segment joining (2, 4) and (8, 10).",
     answer: "Quadrant II; (5, 7)",
   },
@@ -207,12 +216,26 @@ function showToast(message) {
   showToast.timer = setTimeout(() => toast.classList.remove("is-visible"), 2200);
 }
 
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (c) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;",
+  })[c]);
+}
+
 function renderMath(text) {
+  const trimmed = text.trim();
+  if (!trimmed.startsWith("$")) {
+    return escapeHtml(trimmed);
+  }
   try {
-    const latex = text.replace(/^\$(.+)\$$/s, "$1");
+    const latex = trimmed.replace(/^\$(.+)\$$/s, "$1");
     return katex.renderToString(latex, { throwOnError: false, trust: false });
   } catch {
-    return text;
+    return escapeHtml(text);
   }
 }
 
@@ -264,6 +287,7 @@ function recordResult(skipped, answer, worksheetDataUrl, worksheetFileName) {
   // Live-log results to localStorage as each question is answered.
   try {
     localStorage.setItem(LIVE_STORAGE_KEY, JSON.stringify(results));
+    localStorage.setItem(PARENT_RESULTS_KEY, JSON.stringify(results));
   } catch {
     /* storage may be full or blocked */
   }
@@ -298,6 +322,13 @@ function renderQuestion() {
 
 function goNext() {
   const answer = answerInput.value.trim();
+
+  // Reject excessively long answers
+  if (answer.length > 500) {
+    showToast("Answer is too long. Please keep it under 500 characters.");
+    return;
+  }
+
   if (answer === "" && !currentWorksheet.dataUrl) {
     showToast("Type an answer, attach a worksheet photo, or tap “Don’t know / skip”.");
     return;
@@ -335,17 +366,35 @@ function finishQuiz() {
   finishTitle.textContent = "Congratulations!";
   finishCopy.textContent = `You have completed the diagnostic assessment. You answered ${answered} of ${TOTAL} questions and skipped ${skipped}.`;
 
-  // Auto-download the JSON result to the local device.
-  const dateStamp = new Date().toISOString().replace(/[:.-]/g, "").slice(0, 13);
-  const jsonBlob = new Blob([JSON.stringify(results, null, 2)], { type: "application/json" });
-  downloadZip(jsonBlob, `mathfunda-diagnostic-${dateStamp}.json`);
-
   // Clear live storage now that the test is complete.
   try {
     localStorage.removeItem(LIVE_STORAGE_KEY);
   } catch {
     /* storage may be blocked */
   }
+
+  // Check if any concepts need confirmation assessment.
+  try {
+    const stored = localStorage.getItem(PARENT_RESULTS_KEY);
+    if (stored) {
+      const results = JSON.parse(stored);
+      const validation = validateDiagnosticResults(results);
+      if (validation.valid) {
+        const concepts = mapDiagnosticToConcepts(results);
+        const needingConfirmation = getConceptsNeedingConfirmation(concepts);
+        if (needingConfirmation.length > 0) {
+          confirmationButton.hidden = false;
+          confirmationButton.textContent = `Take confirmation check (${needingConfirmation.length} concept${needingConfirmation.length === 1 ? "" : "s"})`;
+        }
+      }
+    }
+  } catch {
+    /* confirmation check unavailable */
+  }
+
+  confirmationButton.addEventListener("click", () => {
+    location.href = "./confirmation.html";
+  }, { once: true });
 
   document.querySelector("#main").scrollIntoView({ behavior: "smooth" });
 }
@@ -424,6 +473,20 @@ function downloadZip(blob, fileName) {
 }
 
 async function shareToWhatsApp(blob, fileName) {
+  // Try direct WhatsApp URL scheme first (works on iOS/iPadOS with WhatsApp installed).
+  // Note: this opens WhatsApp with pre-filled text; the user attaches the result file manually.
+  try {
+    const text = encodeURIComponent(
+      "Here is my MathsFunda diagnostic assessment result file. Please find the attached ZIP.",
+    );
+    window.open(`whatsapp://send?text=${text}`, "_blank");
+    showToast("Opening WhatsApp…");
+    return true;
+  } catch {
+    /* fall through to Web Share API */
+  }
+
+  // Try Web Share API as fallback (desktop browsers with WhatsApp in share sheet).
   try {
     if (navigator.share && navigator.canShare && navigator.canShare({ files: [blob] })) {
       const file = new File([blob], fileName, { type: "application/zip" });
@@ -436,7 +499,7 @@ async function shareToWhatsApp(blob, fileName) {
       return true;
     }
   } catch {
-    /* fall through to email fallback */
+    /* fall through to email */
   }
   return false;
 }
@@ -487,6 +550,28 @@ worksheetInput.addEventListener("change", () => {
     uploadPreview.innerHTML = "";
     return;
   }
+
+  // Validate file type
+  if (!file.type.startsWith("image/")) {
+    showToast("Please upload an image file (JPEG, PNG, etc.).");
+    worksheetInput.value = "";
+    currentWorksheet = { dataUrl: null, fileName: null };
+    uploadPreview.hidden = true;
+    uploadPreview.innerHTML = "";
+    return;
+  }
+
+  // Validate file size (max 5MB)
+  const maxSize = 5 * 1024 * 1024;
+  if (file.size > maxSize) {
+    showToast("Image is too large. Please use a file under 5 MB.");
+    worksheetInput.value = "";
+    currentWorksheet = { dataUrl: null, fileName: null };
+    uploadPreview.hidden = true;
+    uploadPreview.innerHTML = "";
+    return;
+  }
+
   const reader = new FileReader();
   reader.onload = () => {
     currentWorksheet = { dataUrl: reader.result, fileName: file.name };

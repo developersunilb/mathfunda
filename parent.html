@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#176b54" />
+    <meta name="description" content="Parent dashboard: view your child's diagnostic results and progress." />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MathsFunda Parent" />
+    <title>Parent Dashboard · MathsFunda</title>
+    <link rel="stylesheet" href="./css/site.css" />
+  </head>
+  <body class="site-body">
+    <header class="site-header">
+      <a class="site-brand" href="./index.html" aria-label="MathsFunda home">
+        <span class="brand-mark">∑</span>
+        <span class="brand-copy"><strong>MathsFunda Parent</strong><small>Class 9 · progress monitoring</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./index.html">Home</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formula vault</a>
+        <a href="./methods.html">How to remember</a>
+      </nav>
+      <a class="nav-cta" href="./index.html">Back to course</a>
+    </header>
+
+    <main class="prose-main">
+      <section id="parent-gate" class="diagnostic-card">
+        <p class="eyebrow">PARENT ACCESS</p>
+        <h1>Parent Dashboard</h1>
+        <p>
+          View your child's diagnostic results, strengths, and areas that need
+          attention. Enter the parent password to continue.
+        </p>
+        <input id="parent-password" type="password" class="quiz-answer-input" placeholder="Password" required minlength="1" maxlength="100" />
+        <p class="quiz-answer-hint" id="parent-gate-error" style="color:#b42318; margin-top:0.5rem;"></p>
+        <div style="margin-top:1rem;">
+          <button id="parent-unlock" class="primary-button" type="button">Unlock</button>
+          <button id="parent-back" class="quiet-button" type="button" style="margin-left:0.5rem;">Back to the course</button>
+        </div>
+        <p class="quiz-answer-hint" style="margin-top:1rem;">
+          Change the password in <code>js/parent.js</code> and redeploy. This is a
+          browser-side convenience gate, not real security — keep your repository
+          private if you do not want others to see this page.
+        </p>
+      </section>
+
+      <section id="parent-dashboard" class="diagnostic-card" hidden>
+        <p class="eyebrow">CHILD'S PROGRESS</p>
+        <h1 id="parent-child-name">Child's Progress</h1>
+
+        <div id="parent-stats" class="finish-stats" style="margin-top:1rem;"></div>
+
+        <h2 style="margin-top:1.5rem;">Diagnostic Results</h2>
+        <div id="parent-diagnostic-summary"></div>
+        <table class="prose-table" id="parent-diagnostic-table" style="margin-top:1rem;">
+          <thead>
+            <tr>
+              <th>Q</th><th>Topic</th><th>Skill</th><th>Time</th><th>Status</th><th>Your answer</th><th>Correct answer</th><th>Error type</th>
+            </tr>
+          </thead>
+          <tbody id="parent-diagnostic-rows"></tbody>
+        </table>
+
+        <h2 style="margin-top:2rem;">Strengths</h2>
+        <ul id="parent-strengths"></ul>
+
+        <h2 style="margin-top:1.5rem;">Areas needing attention</h2>
+        <ul id="parent-weaknesses"></ul>
+
+        <div style="margin-top:2rem;">
+          <button id="parent-save-json" class="quiet-button" type="button">Save results (JSON)</button>
+          <button id="parent-save-pdf" class="quiet-button" type="button">Save results (PDF)</button>
+          <button id="parent-clear-results" class="quiet-button" type="button" style="color:#b42318;">Clear all results</button>
+        </div>
+
+        <div style="margin-top:2rem;">
+          <a href="./studio.html" class="primary-button" type="button">Open studio (export PDF / EPUB)</a>
+          <a href="./diagnostic.html" class="quiet-button" type="button" style="margin-left:0.5rem;">Retake diagnostic</a>
+        </div>
+
+        <div style="margin-top:1rem;">
+          <button id="parent-lock" class="quiet-button" type="button">Lock dashboard</button>
+        </div>
+
+        <div style="margin-top:1.5rem;">
+          <p class="quiz-answer-hint" style="font-size:0.8rem; color:var(--muted);">
+            <strong>Privacy:</strong> All results are stored only in this browser. Nothing is uploaded or saved to
+            the repository. Clearing results permanently deletes them from this device.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="brand-mark">∑</span>
+        <div><strong>MathsFunda</strong><p>CBSE Class 9 mathematics · parent dashboard</p></div>
+      </div>
+<nav class="footer-nav" aria-label="Footer">
+        <a href="./index.html">Home</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formula vault</a>
+        <a href="./methods.html">How to remember</a>
+        <a href="./study-plan-personalized.html">My learning plan</a>
+        <a href="./admin.html">Admin &amp; publishing</a>
+      </nav>
+      <p class="footer-note">Progress and results are stored only in this browser.</p>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/js/parent.js"></script>
+  </body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#176b54" />
+    <meta name="description" content="Quick confirmation check for MathsFunda diagnostic results." />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MathsFunda Confirmation" />
+    <title>Confirmation Check · MathsFunda</title>
+    <link rel="stylesheet" href="./css/site.css" />
+  </head>
+  <body class="site-body">
+    <header class="site-header">
+      <a class="site-brand" href="./index.html" aria-label="MathsFunda home">
+        <span class="brand-mark">∑</span>
+        <span class="brand-copy"><strong>MathsFunda</strong><small>Class 9 · quick check</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./index.html">Home</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formula vault</a>
+        <a href="./methods.html">How to remember</a>
+      </nav>
+      <a class="nav-cta" href="./index.html">Back to course</a>
+    </header>
+
+    <main class="confirmation-main">
+      <section id="confirmation-intro" class="diagnostic-card">
+        <p class="eyebrow">QUICK CONFIRMATION CHECK</p>
+        <h1>A few quick questions</h1>
+        <p>
+          Some answers in your diagnostic were skipped or unclear. These few
+          questions help us understand what you already know — so we don't
+          spend time teaching something you've already mastered.
+        </p>
+        <p>
+          <strong>This is not a test.</strong> There is no time limit, no score,
+          and you can try again anytime. Just answer what you can.
+        </p>
+        <div id="confirmation-concept-list"></div>
+        <button id="confirmation-start" class="primary-button" type="button">Start the quick check</button>
+        <a class="quiet-button" href="./index.html" style="margin-left:0.5rem;">Skip for now</a>
+      </section>
+
+      <section id="confirmation-question" class="diagnostic-card" hidden>
+        <p class="eyebrow">QUESTION <span id="confirmation-q-number">1</span> OF <span id="confirmation-q-total">1</span></p>
+        <h2 id="confirmation-concept-title"></h2>
+        <p id="confirmation-instruction" class="quiz-instruction"></p>
+        <div id="confirmation-expression" class="quiz-expression"></div>
+
+        <div class="quiz-answer-area">
+          <label for="confirmation-answer" class="quiz-answer-label">Your answer</label>
+          <input id="confirmation-answer" type="text" class="quiz-answer-input" spellcheck="false" autocomplete="off" />
+        </div>
+
+        <div id="confirmation-hint" class="quiz-feedback" style="color:var(--indigo);"></div>
+        <div id="confirmation-result" class="quiz-feedback"></div>
+
+        <div class="quiz-actions" style="margin-top:1rem;">
+          <button id="confirmation-submit" class="primary-button" type="button">Check answer</button>
+          <button id="confirmation-next" class="quiet-button" type="button" hidden>Next question</button>
+          <button id="confirmation-retry" class="quiet-button" type="button" hidden>Try another question</button>
+        </div>
+
+        <div id="confirmation-progress" class="finish-stats" style="margin-top:1rem;"></div>
+      </section>
+
+      <section id="confirmation-complete" class="diagnostic-card" hidden>
+        <p class="eyebrow">CHECK COMPLETE</p>
+        <h1>Well done.</h1>
+        <p id="confirmation-complete-message"></p>
+        <div id="confirmation-complete-stats" class="finish-stats"></div>
+        <div style="margin-top:1.5rem;">
+          <a href="./study-plan-personalized.html" class="primary-button" type="button">View my learning plan</a>
+          <a href="./index.html" class="quiet-button" type="button" style="margin-left:0.5rem;">Back to course</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="brand-mark">∑</span>
+        <div><strong>MathsFunda</strong><p>CBSE Class 9 mathematics · confirmation check</p></div>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="./index.html">Home</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formulas</a>
+        <a href="./admin.html">Admin &amp; publishing</a>
+      </nav>
+      <p class="footer-note">Responses are stored only in this browser.</p>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/js/confirmation-ui.js"></script>
+  </body>
+</html>

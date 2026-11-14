@@ -190,3 +190,58 @@ STAGES.forEach((stage, index) => {
 
 /* Keep the count honest if a chapter is added later. */
 void nextChapter;
+
+/* ------------------------------------------------------------------ Diagnostic button */
+
+const diagnosticButton = document.querySelector('a[href="./diagnostic.html"]');
+if (diagnosticButton) {
+  try {
+    const stored = localStorage.getItem("mathfunda-diagnostic-results");
+    if (stored) {
+      const results = JSON.parse(stored);
+      if (Array.isArray(results) && results.length > 0) {
+        diagnosticButton.textContent = "Start Study plan";
+        diagnosticButton.href = "./study-plan-personalized.html";
+        diagnosticButton.className = "primary-button";
+      }
+    }
+  } catch (e) {
+    /* storage may be blocked */
+  }
+}
+
+/* ------------------------------------------------------------------ Upload diagnostic JSON */
+
+const uploadInput = document.querySelector("#diagnostic-upload");
+const uploadBtn = document.querySelector("#diagnostic-upload-btn");
+if (uploadInput && uploadBtn) {
+  uploadBtn.addEventListener("click", () => uploadInput.click());
+
+  uploadInput.addEventListener("change", (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const results = JSON.parse(reader.result);
+        if (Array.isArray(results) && results.length > 0) {
+          localStorage.setItem("mathfunda-diagnostic-results", JSON.stringify(results));
+          localStorage.setItem("mathfunda-diagnostic-live", JSON.stringify(results));
+
+          diagnosticButton.textContent = "Start Study plan";
+          diagnosticButton.href = "./study-plan-personalized.html";
+          diagnosticButton.className = "primary-button";
+
+          uploadInput.value = "";
+          alert("Diagnostic results loaded. Click 'Start Study plan' to begin.");
+        } else {
+          alert("Invalid diagnostic file: expected an array of question results.");
+        }
+      } catch (err) {
+        alert("Failed to read diagnostic file. Please check it is valid JSON.");
+      }
+    };
+    reader.readAsText(file);
+  });
+}
