@@ -9,6 +9,8 @@ import {
   chapterById,
   nextChapter,
   stageChapters,
+  RESOURCE_SUFFIXES,
+  RESOURCE_LABELS,
 } from "./curriculum.js";
 import { conceptIdsForLessonSlug, questionConceptIdForLessonSlug } from "./adaptive-plan.js";
 import {
@@ -324,7 +326,9 @@ function buildPages() {
 
   const builder = new ReaderBuilder(measure);
   const label = stageKicker();
-  paginateChapter(builder, { title: chapter.title, html: renderMarkdown(chapter.content) }, label);
+  const html = renderMarkdown(chapter.content);
+  const resourcesHtml = chapter.resource ? "" : resourcesSectionHtml(chapter);
+  paginateChapter(builder, { title: chapter.title, html: html + resourcesHtml }, label);
   pages = builder.pages;
 
   pages.forEach((entry, index) => {
@@ -361,6 +365,41 @@ function stageKicker() {
     enrichment: "ENRICHMENT",
   };
   return labels[stage] || "LESSON";
+}
+
+function resourcesSectionHtml(chapter) {
+  const links = RESOURCE_SUFFIXES.map((suffix) => {
+    const targetSlug = chapter.slug + suffix;
+    const exists = chapters.some((entry) => entry.slug === targetSlug);
+    if (!exists) return null;
+    return { slug: targetSlug, label: RESOURCE_LABELS[suffix], locked: suffix === "-answer-key" };
+  }).filter(Boolean);
+
+  if (links.length === 0) return "";
+
+  const items = links
+    .map(
+      ({ slug, label, locked }) =>
+        `<li><a class="resource-link${locked ? " resource-locked" : ""}" href="./reader.html?ch=${encodeURIComponent(
+          slug
+        )}">${label}${locked ? ' <span class="resource-lock">(parent only)</span>' : ""} →</a></li>`
+    )
+    .join("");
+
+  return `
+<section class="lesson-resources">
+  <p class="eyebrow">End of lesson</p>
+  <h2>Practise and check your work</h2>
+  <ul class="lesson-resources-list">
+    ${items}
+  </ul>
+  <p class="lesson-resources-note">
+    Example and application questions are on separate pages from their solutions. The practice questions
+    have no answers shown — after your child attempts them, unlock the parent answer key to check the work
+    and explain any mistakes using the full solution method.
+  </p>
+</section>
+`;
 }
 
 function renderPage(animate = true, direction = 1) {
@@ -943,14 +982,14 @@ async function boot() {
     }
   }
 
-  // Parent gate: answer key chapter is locked unless the parent unlocks it.
-  if (chapter.slug === "diagnostic-answer-key" && !parentUnlocked && !isParentUnlocked()) {
+  // Parent gate: answer key chapters are locked unless the parent unlocks them.
+  if (chapter.slug.endsWith("-answer-key") && !parentUnlocked && !isParentUnlocked()) {
     parentUnlocked = false;
     showParentGate();
     return;
   }
 
-  if (chapter.slug === "diagnostic-answer-key") {
+  if (chapter.slug.endsWith("-answer-key")) {
     parentUnlocked = true;
     addLockButton();
   }

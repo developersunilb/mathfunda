@@ -17,7 +17,7 @@ const params = new URLSearchParams(location.search);
 const requested = params.get("stage") || STAGES[0].id;
 const stage = STAGE_BY_ID[requested] || STAGES[0];
 
-const stageLessons = stageChapters(stage.id);
+const stageLessons = stageChapters(stage.id).filter((lesson) => !lesson.resource);
 const progress = summary(stageLessons.map((lesson) => lesson.slug));
 
 document.querySelector("#stage-kicker").textContent = stage.kicker.toUpperCase();

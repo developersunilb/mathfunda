@@ -32,6 +32,42 @@ const CHAPTER_ORDER = {
   "beyond-class-9": 18,
 };
 
+const RESOURCE_SUFFIXES = [
+  "-examples",
+  "-application",
+  "-solutions",
+  "-sample-questions",
+  "-answer-key",
+];
+
+const RESOURCE_LABELS = {
+  "-examples": "Worked examples",
+  "-application": "Application questions",
+  "-solutions": "Full solutions (with diagrams)",
+  "-sample-questions": "Practice questions (no answers shown)",
+  "-answer-key": "Parent answer key (locked)",
+};
+
+function resourceForSlug(slug) {
+  if (slug === "diagnostic-answer-key") return null;
+  for (const suffix of RESOURCE_SUFFIXES) {
+    if (slug.endsWith(suffix)) {
+      return { parent: slug.slice(0, -suffix.length), suffix };
+    }
+  }
+  return null;
+}
+
+function effectiveOrder(chapter, bySlug) {
+  if (chapter.resource) {
+    const parent = bySlug.get(chapter.parentSlug);
+    const baseOrder = parent ? (CHAPTER_ORDER[parent.slug] ?? 100) : (CHAPTER_ORDER[chapter.slug] ?? 100);
+    const suffixIndex = RESOURCE_SUFFIXES.indexOf(chapter.resourceSuffix);
+    return baseOrder + (suffixIndex + 1) / 10;
+  }
+  return CHAPTER_ORDER[chapter.slug] ?? 100;
+}
+
 const TITLE_OVERRIDES = {
   "learning-roadmap": "Master Learning Roadmap",
   "study-plan-45-days": "45-Day Study Plan",
@@ -143,36 +179,52 @@ function topicOrderForChapter(chapter) {
   return index === undefined || index < 0 ? 99 : index;
 }
 
-export const chapters = Object.entries(chapterModules)
-  .map(([path, raw]) => {
-    const match = path.match(/chapters\/(class-(\d+))\/(.+)\.md$/i);
-    if (!match) return null;
-    const [, classFolder, classNumber, slug] = match;
-    const placement = placementForChapter(slug);
-    return {
-      id: `${classFolder}/${slug}`,
-      classFolder,
-      classNumber: Number(classNumber),
-      className: `Class ${classNumber}`,
-      slug,
-      part: placement.part,
-      topic: placement.topic || "",
-      topicShort: TOPIC_SHORT[placement.topic] || "",
-      title: titleFromSlug(slug),
-      content: String(raw).trim(),
-    };
-  })
-  .filter(Boolean)
-  .sort((a, b) => {
+export const chapters = (() => {
+  const base = Object.entries(chapterModules)
+    .map(([path, raw]) => {
+      const match = path.match(/chapters\/(class-(\d+))\/(.+)\.md$/i);
+      if (!match) return null;
+      const [, classFolder, classNumber, slug] = match;
+      const placement = placementForChapter(slug);
+      return {
+        id: `${classFolder}/${slug}`,
+        classFolder,
+        classNumber: Number(classNumber),
+        className: `Class ${classNumber}`,
+        slug,
+        part: placement.part,
+        topic: placement.topic || "",
+        topicShort: TOPIC_SHORT[placement.topic] || "",
+        title: titleFromSlug(slug),
+        content: String(raw).trim(),
+        resource: false,
+      };
+    })
+    .filter(Boolean);
+
+  const bySlug = new Map(base.map((chapter) => [chapter.slug, chapter]));
+
+  for (const chapter of base) {
+    const resource = resourceForSlug(chapter.slug);
+    if (resource) {
+      const parent = bySlug.get(resource.parent);
+      chapter.resource = true;
+      chapter.parentSlug = resource.parent;
+      chapter.resourceSuffix = resource.suffix;
+      chapter.part = parent ? parent.part : placementForChapter(chapter.slug).part;
+      chapter.topic = parent ? parent.topic : "";
+    }
+  }
+
+  return base.sort((a, b) => {
     if (a.classNumber !== b.classNumber) return a.classNumber - b.classNumber;
     const partDelta = PART_ORDER.indexOf(a.part) - PART_ORDER.indexOf(b.part);
     if (partDelta !== 0) return partDelta;
     const topicDelta = topicOrderForChapter(a) - topicOrderForChapter(b);
     if (topicDelta !== 0) return topicDelta;
-    const aOrder = CHAPTER_ORDER[a.slug] ?? 100;
-    const bOrder = CHAPTER_ORDER[b.slug] ?? 100;
-    return aOrder - bOrder || a.title.localeCompare(b.title);
+    return effectiveOrder(a, bySlug) - effectiveOrder(b, bySlug) || a.title.localeCompare(b.title);
   });
+})();
 
 export const chapterById = new Map(chapters.map((chapter) => [chapter.id, chapter]));
 
@@ -312,7 +364,7 @@ export function nextChapter(chapter) {
   const index = chapterIndex(chapter);
   if (index < 0) return null;
   let next = index + 1;
-  while (next < chapters.length && chapters[next].slug === "diagnostic-answer-key") {
+  while (next < chapters.length && isSkippableChapter(chapters[next])) {
     next += 1;
   }
   return next < chapters.length ? chapters[next] : null;
@@ -322,10 +374,14 @@ export function previousChapter(chapter) {
   const index = chapterIndex(chapter);
   if (index <= 0) return null;
   let prev = index - 1;
-  while (prev > 0 && chapters[prev].slug === "diagnostic-answer-key") {
+  while (prev > 0 && isSkippableChapter(chapters[prev])) {
     prev -= 1;
   }
   return prev >= 0 ? chapters[prev] : null;
+}
+
+function isSkippableChapter(chapter) {
+  return chapter.resource || chapter.slug === "diagnostic-answer-key";
 }
 
 export function lessonHref(slug, page) {
@@ -338,4 +394,4 @@ export function stageHref(stageId) {
   return `./learn.html?stage=${encodeURIComponent(stageId)}`;
 }
 
-export { PART_DEFINITIONS };
+export { PART_DEFINITIONS, RESOURCE_SUFFIXES, RESOURCE_LABELS };

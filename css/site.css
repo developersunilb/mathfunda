@@ -1539,6 +1539,105 @@ button {
   margin: 1rem 0;
 }
 
+.document-content .lesson-resources {
+  margin-top: 1.8rem;
+  border-top: 1px solid var(--line-strong);
+  padding-top: 1.2rem;
+  background: rgba(29, 36, 32, 0.03);
+  border-radius: 10px;
+  padding: 1rem 1.2rem 1.4rem;
+}
+
+.document-content .lesson-resources .eyebrow {
+  color: var(--amber);
+}
+
+.document-content .lesson-resources h2 {
+  font-size: 1.25rem;
+  color: var(--green-dark);
+  margin-bottom: 0.6rem;
+}
+
+.document-content .lesson-resources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.7rem 0 1rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.document-content .lesson-resources-list li {
+  margin: 0;
+}
+
+.document-content .lesson-resources-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+.document-content .lesson-resources-list a:hover {
+  background: var(--green-soft);
+  border-color: var(--line-strong);
+  text-decoration: none;
+}
+
+.document-content .lesson-resources-list a.resource-locked {
+  color: var(--rose);
+  border-color: rgba(164, 67, 90, 0.35);
+  background: rgba(164, 67, 90, 0.05);
+}
+
+.document-content .lesson-resources-list a.resource-locked:hover {
+  background: rgba(164, 67, 90, 0.1);
+}
+
+.document-content .lesson-resources .resource-lock {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.document-content .lesson-resources-note {
+  font-size: 0.84rem;
+  color: var(--muted);
+  margin-top: 0.9rem;
+  line-height: 1.55;
+}
+
+.document-content .diagram {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  margin: 0.8rem 0;
+  background: #fff;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--ink);
+}
+
+.document-content .diagram pre {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  background: var(--cream);
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.document-content .diagram p {
+  margin: 0.25rem 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
 /* -------------------------------------------------------------- Flashcards */
 
 .cards-main {
