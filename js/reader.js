@@ -206,7 +206,18 @@ function showParentGate() {
     if (input.value === PARENT_PASSWORD) {
       setParentUnlocked();
       parentUnlocked = true;
-      boot();
+boot();
+
+window.__mfReaderAPI = {
+  buildPages,
+  renderPage,
+  get currentPage() {
+    return current;
+  },
+  get pages() {
+    return pages;
+  },
+};
     } else {
       error.hidden = false;
       input.value = "";
@@ -952,6 +963,20 @@ async function boot() {
   kickerEl.textContent = stageKicker();
   document.title = `${chapter.title} · MathsFunda`;
 
+  const weightageEl = document.getElementById("reader-weightage");
+  if (weightageEl) {
+    if (chapter.unitMarks !== null) {
+      weightageEl.textContent = `${chapter.unitMarks} marks · ${chapter.unit
+        .split("-")
+        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(" ")}`;
+      weightageEl.className = `reader-weightage w-${chapter.weightageColor}`;
+      weightageEl.hidden = false;
+    } else {
+      weightageEl.hidden = true;
+    }
+  }
+
   const next = nextChapter(chapter);
   nextLessonLink.textContent = next ? `Next: ${next.title} →` : "Back to the study home →";
 
@@ -1000,6 +1025,22 @@ async function boot() {
 
   // Mark the neighbouring lesson as "read" for orientation.
   void stageChapters(chapter.stage);
+
+  // Shift any widgets that collide with the reader footer onto the next page.
+  if (window.__mfInteractive?.fixOverflowDeferred) {
+    window.__mfInteractive.fixOverflowDeferred();
+  }
 }
 
 boot();
+
+window.__mfReaderAPI = {
+  buildPages,
+  renderPage,
+  get currentPage() {
+    return current;
+  },
+  get pages() {
+    return pages;
+  },
+};

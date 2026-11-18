@@ -75,7 +75,7 @@ $$
 
 ### Converting speeds
 
-Speed is where units most often go wrong. Learn the two fractions:
+Speed is where units most often go wrong. Start from first principles:
 
 $$
 1\text{ km/h}=\frac{1000\text{ m}}{3600\text{ s}}=\frac{5}{18}\text{ m/s}
@@ -85,8 +85,22 @@ $$
 1\text{ m/s}=\frac{18}{5}\text{ km/h}
 $$
 
-So multiply by $\frac{5}{18}$ to change $\text{km/h}$ into $\text{m/s}$, and by
-$\frac{18}{5}$ for the reverse. Two anchors cover most questions:
+#### Three ways to remember which way round
+
+**1. Big-to-Small vs. Small-to-Big.**
+- Going from $\text{km/h}$ to $\text{m/s}$ (bigger unit $\to$ smaller unit): you want a **smaller** number, so multiply by the smaller fraction $\frac{5}{18}$.
+- Going from $\text{m/s}$ to $\text{km/h}$ (smaller unit $\to$ bigger unit): you want a **bigger** number, so multiply by the bigger fraction $\frac{18}{5}$.
+
+**2. "Number 5 lives with meters."**
+- Need your answer in **m/s**? Put 5 on top: $\frac{5}{18}$.
+- Need your answer in **km/h**? Put 18 on top: $\frac{18}{5}$.
+
+**3. Bypass fractions completely: use 3.6.**
+Because $\frac{18}{5}=3.6$:
+- $\text{km/h} \to \text{m/s}$: divide by $3.6$ (e.g. $36\div3.6=10\text{ m/s}$).
+- $\text{m/s} \to \text{km/h}$: multiply by $3.6$ (e.g. $10\times3.6=36\text{ km/h}$).
+
+Two anchors cover most questions:
 
 $$
 36\text{ km/h}=10\text{ m/s},\qquad 72\text{ km/h}=20\text{ m/s}
@@ -155,6 +169,56 @@ $$
 $$
 
 Keep the units consistent. For example, a speed in $\text{km/h}$ must be paired with a distance in $\text{km}$ and a time in hours.
+
+## Quick calculation tricks
+
+These shortcuts are allowed in CBSE working and save time in exams. Always show the standard method first, then the shortcut as a check.
+
+### Square a number ending in 5
+
+For a number $n5$ (where $n$ is the tens part):
+
+$$
+(n5)^2 = n(n+1)\text{ followed by }25
+$$
+
+**Example:** $35^2$: $3\times4=12$, then append $25$ → $\boxed{1225}$.  
+**Example:** $85^2$: $8\times9=72$, then append $25$ → $\boxed{7225}$.
+
+### Multiply by 11
+
+For a two-digit number $ab$:
+
+$$
+ab\times11 = a(a+b)b
+$$
+
+If $a+b$ is more than 9, carry the tens digit into $a$.
+
+**Example:** $35\times11$: middle is $3+5=8$ → $\boxed{385}$.  
+**Example:** $57\times11$: middle is $5+7=12$, carry 1 → $627$ → $\boxed{627}$.
+
+### Multiply by 5, 50, 500
+
+Halve the number, then append the zeros.
+
+**Example:** $64\times5$: half of 64 is 32, append 0 → $\boxed{320}$.  
+**Example:** $48\times50$: half of 48 is 24, append 00 → $\boxed{2400}$.
+
+### Multiply by 25
+
+Divide by 4, then multiply by 100 (append two zeros).
+
+**Example:** $64\times25$: $64\div4=16$, append 00 → $\boxed{1600}$.
+
+### Percentage swap
+
+$x\%$ of $y$ is the same as $y\%$ of $x$. Choose whichever is easier.
+
+**Example:** $18\%$ of $50 = 50\%$ of $18 = \boxed{9}$.  
+**Example:** $4\%$ of $250 = 250\%$ of $4 = 2.5\times4=\boxed{10}$.
+
+Common anchors: $10\%$ = divide by 10; $5\%$ = half of $10\%$; $1\%$ = divide by 100; $25\%$ = divide by 4.
 
 ## 2. Formula Bank
 

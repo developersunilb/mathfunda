@@ -20,6 +20,7 @@
         <div class="reader-meta">
           <p id="reader-kicker" class="reader-kicker">Lesson</p>
           <h1 id="reader-title">Loading…</h1>
+          <span id="reader-weightage" class="reader-weightage"></span>
         </div>
         <div class="reader-actions">
           <button
@@ -32,6 +33,7 @@
           </button>
           <button id="reader-toc-button" class="quiet-button" type="button">Contents</button>
           <button id="reader-complete-button" class="quiet-button" type="button">Mark complete</button>
+          <button id="reader-interactive-toggle" class="quiet-button reader-interactive-toggle" type="button" aria-pressed="false">Interactive</button>
         </div>
       </header>
 
@@ -71,5 +73,6 @@
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script type="module" src="/js/reader.js"></script>
+    <script type="module" src="/js/interactive-mode.js"></script>
   </body>
 </html>

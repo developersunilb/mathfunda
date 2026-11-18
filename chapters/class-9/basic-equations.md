@@ -13,6 +13,13 @@ When a term moves across the equals sign, it performs its **opposite operation**
 | Square | Square root | $x^2=25\implies x=\pm\sqrt{25}=\pm5$ |
 | Square root | Square | $\sqrt{x}=3\implies x=3^2=9$ |
 
+<div class="mf-widget-marker" data-mf-widget="1" data-mf-type="reveal">
+  <button type="button" class="mf-reveal-btn">Show solution</button>
+  <div class="mf-reveal-answer">$\boxed{x = 5}$</div>
+</div>
+
+<div class="mf-widget-marker" data-mf-widget="1" data-mf-type="balance" data-mf-target="-7" data-mf-choices="-7, +7, ×7, ÷7" data-mf-label="Balance x + 7 = 12 — which term moves across?"></div>
+
 > **Remember:** Transposition is just a shortcut for doing the same operation on both sides of the equation.
 
 <div class="formula-box">
@@ -51,6 +58,9 @@ $$
 x=\frac{15}{3}=\boxed{5}
 $$
 
+</div>
+
+<div class="mf-widget-marker" data-mf-widget="1" data-mf-type="slider" data-mf-min="1" data-mf-max="12" data-mf-target="5" data-mf-unit="" data-mf-label="Solve x + 7 = 12, then slide to x" data-mf-hint="Subtract 7 from 12, so x = 5. Slide until the value shows 5.">
 </div>
 
 ## 2. The Reciprocal Shortcut for Fractions

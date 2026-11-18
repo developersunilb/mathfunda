@@ -3567,3 +3567,127 @@ kbd {
   cursor: pointer;
 }
 
+/* ---- Resume where you left off ---- */
+.resume-section {
+  background: var(--green-soft);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+.resume-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+}
+.resume-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  color: var(--green-dark);
+  font-weight: 700;
+  text-decoration: underline;
+}
+.resume-link:hover {
+  text-decoration: none;
+}
+.resume-title {
+  font-size: 1.1rem;
+}
+.resume-page {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* ---- Exam weightage badge on lesson header ---- */
+.reader-weightage {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-left: 0.6rem;
+  white-space: nowrap;
+}
+.reader-weightage.w-green {
+  background: var(--green-soft);
+  color: var(--green-dark);
+  border: 1px solid var(--line-strong);
+}
+.reader-weightage.w-indigo {
+  background: #e8eaf6;
+  color: var(--indigo);
+  border: 1px solid var(--line-strong);
+}
+.reader-weightage.w-amber {
+  background: #fdf3e2;
+  color: var(--amber);
+  border: 1px solid var(--line-strong);
+}
+.reader-weightage.w-rose {
+  background: #fbeeef;
+  color: var(--rose);
+  border: 1px solid var(--line-strong);
+}
+.reader-weightage.w-slate {
+  background: #eef2f1;
+  color: var(--slate);
+  border: 1px solid var(--line-strong);
+}
+
+/* Weightage badge on lesson list (index browse) */
+.browse-weightage {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-left: 0.4rem;
+  white-space: nowrap;
+}
+.browse-weightage.w-green {
+  background: var(--green-soft);
+  color: var(--green-dark);
+  border: 1px solid var(--line-strong);
+}
+.browse-weightage.w-indigo {
+  background: #e8eaf6;
+  color: var(--indigo);
+  border: 1px solid var(--line-strong);
+}
+.browse-weightage.w-amber {
+  background: #fdf3e2;
+  color: var(--amber);
+  border: 1px solid var(--line-strong);
+}
+.browse-weightage.w-rose {
+  background: #fbeeef;
+  color: var(--rose);
+  border: 1px solid var(--line-strong);
+}
+.browse-weightage.w-slate {
+  background: #eef2f1;
+  color: var(--slate);
+  border: 1px solid var(--line-strong);
+}
+
+/* Resume page indicator on lesson list */
+.browse-resume {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-left: 0.4rem;
+  white-space: nowrap;
+  background: var(--amber);
+  color: #fff;
+  border: 1px solid var(--line-strong);
+}
+

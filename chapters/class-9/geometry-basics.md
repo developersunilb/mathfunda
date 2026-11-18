@@ -127,6 +127,9 @@ $$
 
 </div>
 
+<div class="mf-widget-marker" data-mf-widget="1" data-mf-type="circle-rect" data-mf-min-slices="4" data-mf-max-slices="60" data-mf-start-slices="8" data-mf-unit="cm">
+</div>
+
 ## 5. Common Class 9 Trap Alerts
 
 > ⚠️ **The triangle and parallelogram height trap:** Always use the straight vertical height $h$ that forms a $90^\circ$ right angle with the base. Never use the slanted side length in the area formula.

@@ -16,47 +16,70 @@ The foundation lessons are **short repair modules**, not a repeat of Classes 5�
 
 ## 2. The Class 9 Chapter Sequence
 
+Each chapter links straight to its lesson page. Prerequisites link to the foundation module that repairs them.
+
 | Part | Chapter | Main learning area | Prerequisites |
 |---|---|---|---|
-| 1 | 1. Orienting Yourself: The Use of Coordinates | Coordinate geometry | Number line, integers, ordered pairs |
-| 1 | 2. Introduction to Linear Polynomials | Algebra | Variables, terms, brackets |
-| 1 | 3. The World of Numbers | Number systems | Fractions, decimals, factors, roots |
-| 1 | 4. Exploring Algebraic Identities | Algebra | Multiplication, distributive property, factorisation |
-| 1 | 5. I'm Up and Down, and Round and Round | Circle geometry | Angles, triangles, circle vocabulary |
-| 1 | 6. Measuring Space: Perimeter and Area | Mensuration | Area, perimeter, units, fractions |
-| 1 | 7. The Mathematics of Maybe | Probability | Fractions, percentages, counting |
-| 1 | 8. Predicting What Comes Next | Sequences and progressions | Patterns, multiplication, algebra |
-| 2 | 9. Propositions and their Converses | Logical reasoning | Statements, geometry, if–then reasoning |
-| 2 | 10. How Quantities Combine: Understanding Data | Statistics | Averages, tables, graphs, percentages |
-| 2 | 11. The World of Algorithms | Computational thinking | Division, factors, HCF |
-| 2 | 12. Quadrilaterals | Geometry and proof | Lines, angles, triangles, congruence |
-| 2 | 13. Two Variables, One Line | Linear equations | Algebra, fractions, coordinates |
-| 2 | 14. Math of Space: Surface Area and Volume | Solid mensuration | Area, units, fractions, roots |
+| 1 | [1. Orienting Yourself: The Use of Coordinates](./reader.html?ch=geometry-basics) | Coordinate geometry | [F7 Geometry Vocabulary](./reader.html?ch=foundation-7-geometry-vocabulary) |
+| 1 | [2. Introduction to Linear Polynomials](./reader.html?ch=polynomials) | Algebra | [F5 Basic Algebra](./reader.html?ch=foundation-5-basic-algebra) |
+| 1 | [3. The World of Numbers](./reader.html?ch=number-systems) | Number systems | [F2 Fractions, Decimals and Percentages](./reader.html?ch=foundation-2-fractions-decimals-percentages) |
+| 1 | [4. Exploring Algebraic Identities](./reader.html?ch=polynomials) | Algebra | [F6 Algebraic Operations](./reader.html?ch=foundation-6-algebraic-operations) |
+| 1 | [5. I'm Up and Down, and Round and Round](./reader.html?ch=geometry-basics) | Circle geometry | [F7 Geometry Vocabulary](./reader.html?ch=foundation-7-geometry-vocabulary) |
+| 1 | [6. Measuring Space: Perimeter and Area](./reader.html?ch=geometry-basics) | Mensuration | [F8 Measurement and Units](./reader.html?ch=foundation-8-measurement-and-units) |
+| 1 | [7. The Mathematics of Maybe](./reader.html?ch=geometry-basics) | Probability | [F2 Fractions, Decimals and Percentages](./reader.html?ch=foundation-2-fractions-decimals-percentages) |
+| 1 | [8. Predicting What Comes Next](./reader.html?ch=geometry-basics) | Sequences and progressions | [F2 Fractions, Decimals and Percentages](./reader.html?ch=foundation-2-fractions-decimals-percentages) |
+| 2 | [9. Propositions and their Converses](./reader.html?ch=geometry-basics) | Logical reasoning | [F7 Geometry Vocabulary](./reader.html?ch=foundation-7-geometry-vocabulary) |
+| 2 | [10. How Quantities Combine: Understanding Data](./reader.html?ch=geometry-basics) | Statistics | [F2 Fractions, Decimals and Percentages](./reader.html?ch=foundation-2-fractions-decimals-percentages) |
+| 2 | [11. The World of Algorithms](./reader.html?ch=geometry-basics) | Computational thinking | [F1 Numbers and Signs](./reader.html?ch=foundation-1-numbers-and-signs) |
+| 2 | [12. Quadrilaterals](./reader.html?ch=geometry-basics) | Geometry and proof | [F7 Geometry Vocabulary](./reader.html?ch=foundation-7-geometry-vocabulary) |
+| 2 | [13. Two Variables, One Line](./reader.html?ch=linear-equations) | Linear equations | [F5 Basic Algebra](./reader.html?ch=foundation-5-basic-algebra) |
+| 2 | [14. Math of Space: Surface Area and Volume](./reader.html?ch=geometry-basics) | Solid mensuration | [F8 Measurement and Units](./reader.html?ch=foundation-8-measurement-and-units) |
 
 > **Syllabus note:** The textbook titles and the CBSE syllabus headings are not identical. For example, CBSE also names **Lines and Angles** and **Triangles – Congruence Theorems** explicitly. Those concepts must be mapped into the relevant chapters, verified against the school's prescribed material, and not silently omitted.
 
-## 3. Foundation Repair: The Minimum Toolkit
+## 3. Exam Weightage — Where the Marks Are
+
+The Class 9 mathematics exam is out of **80 marks**. Not all topics carry the same weight. Use this to set priorities: a topic with more marks deserves more practice time, but every topic must be attempted.
+
+| Unit | Marks (out of 80) | Share | Priority colour |
+|---|---|---:|---:|
+| Geometry | 25 | ~31% | 🟢 High |
+| Algebra | 20 | ~25% | 🟢 High |
+| Mensuration | 14 | ~18% | 🔵 Medium-high |
+| Statistics & Probability | 10 | ~12% | 🟡 Medium |
+| Number Systems | 7 | ~9% | 🟠 Medium |
+| Coordinate Geometry | 4 | ~5% | 🔴 Lower |
+
+**How to read the colour badges on each lesson:**
+- 🟢 Green — high weightage (14–25 marks). Master these first.
+- 🔵 Indigo — medium-high (14 marks).
+- 🟡 Amber — medium (7–10 marks).
+- 🔴 Rose — lower weightage (under 7 marks) or enrichment (no exam marks).
+
+Every lesson page shows its unit and exam marks in the header, so both student and parent can see at a glance how much the topic counts in the final paper.
+
+## 4. Foundation Repair: The Minimum Toolkit
 
 | Module | Lesson | Essential skills | Needed for |
 |---|---|---|---|
-| F1 | Numbers and Signs | Place value, number line, absolute value, integers, BODMAS | All chapters |
-| F2 | Fractions, Decimals and Percentages | Four operations, conversions, HCF/LCM | Chapters 3, 6, 7, 10, 14 |
-| F3 | Ratio and Proportion | Equivalent ratios, unitary method, sharing, direct and inverse proportion | Chapters 6, 7, 10, 14 |
-| F4 | Powers and Roots | Squares, cubes, roots, index laws | Chapters 3 and 4 |
-| F5 | Basic Algebra | Variables, coefficients, expressions, equations | Chapters 2, 4, 8, 13 |
-| F6 | Algebraic Operations | Brackets, distributive property, identities, factorisation | Chapters 2, 4, 13 |
-| F7 | Geometry Vocabulary | Lines, angles, triangles, quadrilaterals, circle parts | Chapters 1, 5, 9, 12 |
-| F8 | Measurement and Units | Metric conversions, perimeter, area, volume units | Chapters 6 and 14 |
+| F1 | [Numbers and Signs](./reader.html?ch=foundation-1-numbers-and-signs) | Place value, number line, absolute value, integers, BODMAS | All chapters |
+| F2 | [Fractions, Decimals and Percentages](./reader.html?ch=foundation-2-fractions-decimals-percentages) | Four operations, conversions, HCF/LCM | Chapters 3, 6, 7, 10, 14 |
+| F3 | [Ratio and Proportion](./reader.html?ch=foundation-3-ratio-and-proportion) | Equivalent ratios, unitary method, sharing, direct and inverse proportion | Chapters 6, 7, 10, 14 |
+| F4 | [Powers and Roots](./reader.html?ch=foundation-4-powers-and-roots) | Squares, cubes, roots, index laws | Chapters 3 and 4 |
+| F5 | [Basic Algebra](./reader.html?ch=foundation-5-basic-algebra) | Variables, coefficients, expressions, equations | Chapters 2, 4, 8, 13 |
+| F6 | [Algebraic Operations](./reader.html?ch=foundation-6-algebraic-operations) | Brackets, distributive property, identities, factorisation | Chapters 2, 4, 13 |
+| F7 | [Geometry Vocabulary](./reader.html?ch=foundation-7-geometry-vocabulary) | Lines, angles, triangles, quadrilaterals, circle parts | Chapters 1, 5, 9, 12 |
+| F8 | [Measurement and Units](./reader.html?ch=foundation-8-measurement-and-units) | Metric conversions, perimeter, area, volume units | Chapters 6 and 14 |
 
 A student who already understands a module should move straight to the Class 9 chapter that needs it.
 
-## 4. How the Chapters Fit Together
+## 5. How the Chapters Fit Together
 
 - **Part 1** builds the core tools: coordinates, algebra, number systems, identities, circles, mensuration, probability and sequences.
 - **Part 2** extends those tools into reasoning, data, algorithms, quadrilaterals, linear equations and solid mensuration.
 - **Enrichment** material is kept separate so that extra knowledge is not confused with examinable content.
 
-## 5. Why This Order Works
+## 6. Why This Order Works
 
 Consider this problem:
 
@@ -102,7 +125,13 @@ $$
 
 Each step depends on the one before it. That is why basic calculations and fractions come before algebra, and why algebra comes before advanced identities.
 
-## 6. Expanding an Identity: Distribution, Not Exponents
+## 7. Returning to Where You Left Off
+
+Every lesson remembers your last page automatically (stored in your browser only). When you click a foundation or chapter link from this roadmap, open it, check the formula or basics you need, then use the **Continue** button on the stage page or reopen the lesson — it opens on the same page you stopped at.
+
+To check a formula without leaving your lesson, open the **[Formula Vault](./formulas.html)** in a new tab, find the formula, then switch back to your lesson tab — your page and progress are still there.
+
+## 8. Expanding an Identity: Distribution, Not Exponents
 
 A common misconception is that exponent rules are used to expand $(a+b)^2$. They are not. Expansion uses the **distributive property**:
 
@@ -124,7 +153,7 @@ $$
 
 The same distributive idea expands every algebraic identity. Exponent rules are a different topic: they simplify expressions such as $a^m\times a^n$.
 
-## 7. How to Use This Roadmap
+## 9. How to Use This Roadmap
 
 - Take the diagnostic assessment first; do not assume which topics are weak.
 - Repair only the foundation modules that the diagnostic flags.

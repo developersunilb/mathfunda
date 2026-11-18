@@ -48,6 +48,24 @@ document.querySelector("#overall-detail").textContent =
 const last = lastLesson();
 let nextSlug = null;
 
+/* ------------------------------------------------------------ Resume card */
+
+const resumeSection = document.getElementById("resume");
+const resumeLink = document.getElementById("resume-link");
+const resumeTitle = document.getElementById("resume-title");
+const resumePage = document.getElementById("resume-page");
+
+if (last && last.slug && !isLessonDone(last.slug)) {
+  const chapter = chapters.find((c) => c.slug === last.slug);
+  const saved = lessonState(last.slug);
+  if (chapter) {
+    resumeSection.hidden = false;
+    resumeTitle.textContent = chapter.title;
+    resumePage.textContent = `Page ${saved.page}`;
+    resumeLink.href = lessonHref(last.slug, saved.page);
+  }
+}
+
 if (last && !isLessonDone(last.slug)) {
   nextSlug = last.slug;
 } else {
@@ -174,6 +192,12 @@ STAGES.forEach((stage, index) => {
             <small>${lesson.blurb}</small>
           </span>
           <span class="browse-meta">${lesson.minutes} min</span>
+          ${lesson.unitMarks !== null
+            ? `<span class="browse-weightage w-${lesson.weightageColor}">${lesson.unitMarks} marks</span>`
+            : `<span class="browse-weightage w-slate">—</span>`}
+          ${saved.page > 1 && !done
+            ? `<span class="browse-resume" title="Resume from page ${saved.page}">↻ p${saved.page}</span>`
+            : ""}
         </a>`;
     })
     .join("");

@@ -343,12 +343,80 @@ const LESSON_MINUTES = {
   "beyond-class-9": 15,
 };
 
+/* ------------------------------------------------------------------ Exam weightage */
+
+/**
+ * CBSE Class 9 Mathematics unit weightage (marks out of 80).
+ * Source: CBSE Class IX Mathematics Curriculum 2026-27.
+ */
+const UNIT_WEIGHTAGE = {
+  "number-systems": 7,
+  algebra: 20,
+  "coordinate-geometry": 4,
+  geometry: 25,
+  mensuration: 14,
+  "statistics-probability": 10,
+};
+
+const UNIT_LABEL = {
+  "number-systems": "Number Systems",
+  algebra: "Algebra",
+  "coordinate-geometry": "Coordinate Geometry",
+  geometry: "Geometry",
+  mensuration: "Mensuration",
+  "statistics-probability": "Statistics & Probability",
+};
+
+/**
+ * Map each lesson slug to its CBSE unit and exam marks.
+ * Enrichment / overview lessons have no exam marks.
+ */
+const CHAPTER_UNIT = {
+  "learning-roadmap": { unit: "overview", marks: null },
+  "study-plan-45-days": { unit: "overview", marks: null },
+  "diagnostic-assessment": { unit: "overview", marks: null },
+  "diagnostic-answer-key": { unit: "overview", marks: null },
+  "foundation-1-numbers-and-signs": { unit: "number-systems", marks: 7 },
+  "foundation-2-fractions-decimals-percentages": { unit: "number-systems", marks: 7 },
+  "foundation-3-ratio-and-proportion": { unit: "number-systems", marks: 7 },
+  "foundation-4-powers-and-roots": { unit: "number-systems", marks: 7 },
+  "foundation-5-basic-algebra": { unit: "algebra", marks: 20 },
+  "foundation-6-algebraic-operations": { unit: "algebra", marks: 20 },
+  "foundation-7-geometry-vocabulary": { unit: "geometry", marks: 25 },
+  "foundation-8-measurement-and-units": { unit: "mensuration", marks: 14 },
+  "basic-equations": { unit: "algebra", marks: 20 },
+  "number-systems": { unit: "number-systems", marks: 7 },
+  polynomials: { unit: "algebra", marks: 20 },
+  "geometry-basics": { unit: "geometry", marks: 25 },
+  "linear-equations": { unit: "algebra", marks: 20 },
+  "linear-inequalities": { unit: "enrichment", marks: null },
+  "beyond-class-9": { unit: "enrichment", marks: null },
+};
+
+/**
+ * Colour band for a weightage, used to badge lesson importance.
+ */
+function weightageColor(marks) {
+  if (marks === null) return "slate";
+  if (marks >= 20) return "green";
+  if (marks >= 14) return "indigo";
+  if (marks >= 7) return "amber";
+  return "rose";
+}
+
 for (const chapter of chapters) {
   chapter.blurb = LESSON_NOTES[chapter.slug] || "";
   chapter.minutes = LESSON_MINUTES[chapter.slug] || 20;
   chapter.stage = STAGES.find((stage) => stage.part === chapter.part)?.id || "part1";
   chapter.number = CHAPTER_ORDER[chapter.slug] ?? 99;
+
+  const unitInfo = CHAPTER_UNIT[chapter.slug] || { unit: "overview", marks: null };
+  chapter.unit = unitInfo.unit;
+  chapter.unitMarks = unitInfo.marks;
+  chapter.weightageColor = weightageColor(unitInfo.marks);
 }
+
+export { UNIT_WEIGHTAGE, UNIT_LABEL };
 
 export function stageChapters(stageId) {
   const stage = STAGE_BY_ID[stageId];

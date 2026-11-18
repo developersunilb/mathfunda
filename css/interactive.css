@@ -1,0 +1,270 @@
+/* ==========================================================================
+   MathsFunda interactive widgets — iPad-first (touch) sample styles
+   ========================================================================== */
+
+.mf-widget {
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin: 1rem 0 2rem 0;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Reserve space for widgets before they mount, so pagination accounts for
+   their height and headings don't collide with them. */
+.mf-widget-marker[data-mf-type="reveal"] {
+  min-height: 130px;
+}
+.mf-widget-marker[data-mf-type="balance"] {
+  min-height: 220px;
+}
+.mf-widget-marker[data-mf-type="slider"] {
+  min-height: 200px;
+}
+
+.mf-widget button,
+.mf-widget input[type="range"] {
+  min-height: 48px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---- Tap-to-reveal derivation ---- */
+.mf-reveal-btn {
+  align-self: start;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.mf-reveal-answer {
+  display: none;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--line);
+}
+.mf-reveal-answer p.math {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0.25rem 0;
+}
+
+/* ---- Drag-drop balance ---- */
+.mf-dd-equation {
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 0.25rem 0;
+}
+.mf-dd-dropzone {
+  border: 2px dashed var(--line-strong);
+  border-radius: 12px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0.5rem 0;
+}
+.mf-dd-dropzone.mf-filled {
+  border-style: solid;
+  background: var(--green-soft);
+  color: var(--green-dark);
+}
+.mf-dd-choices {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.mf-dd-choice {
+  min-height: 48px;
+  min-width: 64px;
+  padding: 0 1rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.mf-dd-choice.is-dragging {
+  opacity: 0.55;
+}
+.mf-dd-choice:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.mf-dd-feedback {
+  margin-top: 0.5rem;
+  font-weight: 700;
+  min-height: 1.35rem;
+}
+.mf-dd-feedback.mf-correct {
+  color: var(--green-dark);
+}
+.mf-dd-feedback.mf-wrong {
+  color: var(--rose);
+}
+
+/* ---- Formula slider ---- */
+.mf-slider {
+  align-items: center;
+}
+.mf-slider input[type="range"] {
+  width: 100%;
+  accent-color: var(--green);
+}
+.mf-slider-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+.mf-slider-value {
+  font-size: 2rem;
+  font-weight: 800;
+  min-width: 56px;
+  text-align: center;
+}
+.mf-slider-target {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-right: 0.5rem;
+  white-space: nowrap;
+}
+.mf-slider-result {
+  font-size: 1.35rem;
+  font-weight: 800;
+  font-family: var(--serif);
+  margin-top: 0.5rem;
+  text-align: center;
+  min-height: 1.6rem;
+}
+.mf-slider-hint {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-style: italic;
+}
+input[type="range"].mf-on-target {
+  accent-color: var(--amber);
+}
+
+/* Keep widgets from colliding with the reader footer (widgets mount after
+   page pagination, so give each page body breathing room). */
+.reader-page-body {
+  padding-bottom: 5rem;
+}
+.mf-widget {
+  margin-bottom: 2rem;
+}
+.reader-foot {
+  position: relative;
+  z-index: 2;
+}
+input[type="range"].mf-on-target {
+  accent-color: var(--amber);
+}
+
+/* ---- Circle-to-rectangle canvas ---- */
+.mf-canvas-wrap {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto 0.75rem auto;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.mf-canvas-wrap canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: none;
+  background: var(--cream);
+}
+.mf-canvas-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto 1rem auto;
+}
+.mf-control-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.mf-control-group label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ink);
+  min-width: 150px;
+}
+.mf-control-group input[type="range"] {
+  flex: 1;
+  accent-color: var(--green);
+}
+.mf-value {
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  min-width: 44px;
+  text-align: right;
+  color: var(--green-dark);
+  font-size: 0.95rem;
+}
+.mf-canvas-intro {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Placeholder height so pagination reserves space */
+.mf-widget-marker[data-mf-type="circle-rect"] {
+  min-height: 520px;
+}
+
+/* ---- Toast ---- */
+.mf-toast {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 12px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.95rem;
+  align-self: start;
+  margin-top: 0.5rem;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: transform 0.25s, opacity 0.25s;
+}
+.mf-toast.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ---- Confetti ---- */
+.mf-confetti {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+}
+@keyframes mf-fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+  }
+}
+button.is-done {
+  background: var(--green) !important;
+  color: #fff !important;
+  border-color: var(--green-dark) !important;
+}
