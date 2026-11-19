@@ -39,6 +39,17 @@ import {
   chapters,
   chapterById,
 } from "./curriculum.js";
+import {
+  orientation,
+  currentLevel,
+  startSession,
+  nextStep,
+  currentDay,
+  currentPhase,
+  currentConcept,
+  currentActivity,
+  activityLabel,
+} from "./orientation.js";
 
 /* --------------------------------------------------------------- Storage keys */
 
@@ -217,9 +228,71 @@ function regeneratePlan() {
   renderAll();
 }
 
+/* --------------------------------------------------------------- Orientation bar */
+
+function renderOrientation() {
+  const orient = orientation();
+  const elDay = document.querySelector("#orient-day");
+  const elPhase = document.querySelector("#orient-phase");
+  const elConcept = document.querySelector("#orient-concept");
+  const elActivity = document.querySelector("#orient-activity");
+
+  if (elDay) elDay.textContent = String(orient.day);
+  if (elPhase) elPhase.textContent = orient.phase;
+  if (elConcept) elConcept.textContent = orient.conceptTitle;
+  if (elActivity) elActivity.textContent = orient.activityLabel;
+}
+
+/* --------------------------------------------------------------- Single dominant next step */
+
+function renderNextStep() {
+  const section = document.querySelector("#next-step-section");
+  const title = document.querySelector("#next-step-title");
+  const why = document.querySelector("#next-step-why");
+  const link = document.querySelector("#next-step-link");
+
+  if (!section || !title || !why || !link) return;
+
+  const step = nextStep();
+
+  title.textContent = step.label;
+  why.textContent = step.why || "";
+  link.textContent = step.label;
+  link.href = step.href;
+
+  if (step.kind === "done") {
+    section.classList.add("is-done");
+    link.className = "quiet-button";
+    link.type = "button";
+    link.removeAttribute("href");
+    link.addEventListener("click", () => {
+      location.href = "./index.html";
+    });
+  } else {
+    section.classList.remove("is-done");
+    link.className = "primary-button";
+    link.type = "button";
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      const slug = currentConcept().slug;
+      if (slug) {
+        startSession(slug, lessonStateForSlug(slug).page, currentActivity(slug));
+      }
+      location.href = step.href;
+    });
+  }
+}
+
+function lessonStateForSlug(slug) {
+  const state = loadJson("mathfunda-progress-v1", {}).lessons || {};
+  return state[slug] || { page: 1 };
+}
+
 /* --------------------------------------------------------------- Rendering */
 
 function renderAll() {
+  renderOrientation();
+  renderNextStep();
   renderToday();
   renderRecommendations();
   renderConfirmationStatus();
@@ -385,6 +458,8 @@ function markTaskComplete(conceptId, completed) {
   renderToday();
   renderRecommendations();
   renderOverview();
+  renderOrientation();
+  renderNextStep();
 
   const allDone = checkDayComplete();
   markDayCompleteBtn.disabled = !allDone;

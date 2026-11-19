@@ -3691,3 +3691,316 @@ kbd {
   border: 1px solid var(--line-strong);
 }
 
+/* =========================================================================
+   Milestone 8 — Guided Learning & Cognitive Simplicity
+   Orientation bar, required/optional separation, session card, stopping point
+   ========================================================================= */
+
+/* ---- You-are-here orientation bar (slim, on every learning screen) ---- */
+
+.orientation-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.orientation-bar .orientation-step {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+.orientation-bar .orientation-divider {
+  color: var(--line-strong);
+  font-size: 0.7rem;
+}
+
+.orientation-bar .orientation-today {
+  color: var(--green-dark);
+  font-weight: 700;
+}
+
+/* ---- Level labels: REQUIRED vs OPTIONAL (explicit, never colour alone) ---- */
+
+.level-band {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.25rem 0 1rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.level-band .level-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+}
+
+.level-chip.required {
+  background: var(--green-soft);
+  color: var(--green-dark);
+  border: 1px solid var(--line-strong);
+}
+
+.level-chip.optional {
+  background: var(--slate-soft, #eef2f1);
+  color: var(--slate);
+  border: 1px solid var(--line-strong);
+}
+
+/* ---- Single dominant next action card ---- */
+
+.next-step-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 16px;
+  background: var(--green-soft);
+  border: 1px solid var(--line-strong);
+  margin-bottom: 1.5rem;
+}
+
+.next-step-card.is-done {
+  background: var(--slate-soft, #eef2f1);
+  border-color: var(--line);
+}
+
+.next-step-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.next-step-eyebrow {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+.next-step-card.is-done .next-step-eyebrow {
+  color: var(--slate);
+}
+
+.next-step-card h2 {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.next-step-card.is-done h2 {
+  color: var(--slate);
+}
+
+.next-step-why {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.next-step-card.is-done .next-step-why {
+  color: var(--slate);
+}
+
+/* ---- Session / stopping point card ---- */
+
+.session-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  border-radius: 16px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.session-card .session-icon {
+  font-size: 1.6rem;
+}
+
+.session-card .session-copy strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.05rem;
+}
+
+.session-card .session-copy p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.15rem 0 0;
+}
+
+.stopping-point {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: var(--green-soft);
+  border: 1px solid var(--line-strong);
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.stopping-point h2 {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  margin: 0 0 0.4rem;
+}
+
+.stopping-point p {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ---- Explore-page return banner ---- */
+
+.explore-return {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  margin-bottom: 1rem;
+  font-size: 0.84rem;
+  color: var(--ink);
+}
+
+.explore-return .explore-return-icon {
+  color: var(--green);
+}
+
+.explore-return .explore-return-strong {
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+/* ---- Emphasise the primary CTA on the Today hub ---- */
+
+.primary-cta-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+
+.primary-cta-group .quiet-button {
+  border-color: transparent;
+  color: var(--muted);
+  background: transparent;
+}
+
+.primary-cta-group .quiet-button:hover {
+  background: transparent;
+  text-decoration: underline;
+}
+
+/* ---- Reader footer: single next step emphasis ---- */
+
+.reader-footer-next {
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.reader-footer-next .next-link {
+  color: var(--green);
+  font-weight: 700;
+}
+
+/* ---- Resume card emphasis ---- */
+
+.resume-card {
+  border: 1px solid var(--line-strong);
+}
+
+/* ---- Lesson blocks (teaching experience rendered by block renderer) ---- */
+
+.lesson-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  margin-bottom: 1rem;
+  background: var(--paper);
+}
+
+.lesson-block.story {
+  border-left: 4px solid var(--green);
+}
+
+.lesson-block.prediction {
+  border-left: 4px solid var(--amber);
+  background: var(--amber-soft, #fdf6e3);
+}
+
+.lesson-block.discovery {
+  border-left: 4px solid var(--blue, #2563eb);
+}
+
+.lesson-block.worked-example {
+  border-left: 4px solid var(--purple, #7c3aed);
+}
+
+.lesson-block.memory-hook {
+  border-left: 4px solid var(--green-dark);
+  background: var(--green-soft);
+}
+
+.lesson-block.visual .lesson-block-content,
+.lesson-block.interactive .lesson-block-content {
+  text-align: center;
+}
+
+.lesson-block-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+  color: var(--ink);
+}
+
+.lesson-block-content {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.lesson-block-content p {
+  margin: 0.5rem 0;
+}
+
+.lesson-block-content ul,
+.lesson-block-content ol {
+  margin: 0.5rem 0 0.5rem 1.5rem;
+}
+
+.lesson-block.misconception-intervention,
+.lesson-block.mastery {
+  opacity: 0.85;
+  font-size: 0.88rem;
+}
+

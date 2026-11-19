@@ -29,6 +29,27 @@
     </header>
 
     <main class="cards-main">
+      <!-- Orientation bar: You are here -->
+      <div class="orientation-bar">
+        <span>Day <span id="orient-day" class="orientation-step">1</span> of 45</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-phase" class="orientation-step">Foundation Repair</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-concept" class="orientation-step">Today's lesson</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-activity" class="orientation-step orientation-today">Read the lesson</span>
+      </div>
+
+      <!-- Explore banner: Level 3 optional, with return path -->
+      <div class="explore-return">
+        <span class="explore-return-icon" aria-hidden="true">◧</span>
+        <span>
+          <strong class="explore-return-strong">You're exploring flashcards.</strong>
+          Your today's goal is still waiting for you.
+        </span>
+        <a href="./study-plan-personalized.html" class="quiet-button" type="button" style="font-size:0.72rem;padding:0.2rem 0.5rem;">← Return to today's learning</a>
+      </div>
+
       <section id="deck-view">
         <div class="cards-hero">
           <div>
@@ -136,5 +157,6 @@
     </footer>
 
     <script type="module" src="/js/flashcards.js"></script>
+    <script type="module" src="/js/orientation.js"></script>
   </body>
 </html>

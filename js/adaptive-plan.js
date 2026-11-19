@@ -1739,6 +1739,7 @@ export {
   CANONICAL_REGISTRY,
   CANONICAL_TO_DIAGNOSTIC,
   resolveCanonicalId,
+  getPhaseForDay,
   DIAGNOSTIC_RESULTS_KEY,
   ADAPTIVE_PLAN_KEY,
   normalizeAnswer,

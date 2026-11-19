@@ -30,22 +30,37 @@
     </header>
 
     <main class="plan-main">
-      <!-- ======================================== RECOMMENDATIONS (LEFT PANEL) ======================================== -->
-      <section id="recommendation-section" class="plan-card" hidden>
-        <div class="plan-header">
-          <div>
-            <p class="eyebrow">RECOMMENDED NEXT</p>
-            <h2>Keep going</h2>
-            <p>
-              Short, focused lessons picked for what to study next. Open any
-              lesson in a new window; it will tick off here once completed.
-            </p>
-          </div>
+      <!-- Orientation bar: You are here -->
+      <div class="orientation-bar">
+        <span>Day <span id="orient-day" class="orientation-step">1</span> of 45</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-phase" class="orientation-step">Foundation Repair</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-concept" class="orientation-step">Today's lesson</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-activity" class="orientation-step orientation-today">Practise the idea</span>
+      </div>
+
+      <!-- Level band: REQUIRED vs OPTIONAL -->
+      <div class="level-band">
+        <span class="level-chip required">Today · Required</span>
+        <span>
+          These tasks are today's learning goal. Everything else on this page is optional context.
+          <a href="./index.html" class="quiet-button" style="font-size:0.72rem;padding:0.15rem 0.5rem;">← Return to today's learning</a>
+        </span>
+      </div>
+
+      <!-- ======================================== SINGLE DOMINANT NEXT STEP (PRIMARY) ======================================== -->
+      <section id="next-step-section" class="next-step-card">
+        <div class="next-step-head">
+          <p class="next-step-eyebrow">WHAT TO DO NEXT</p>
         </div>
-        <div id="recommendation-list" class="recommendation-list"></div>
+        <h2 id="next-step-title">Start today's first task</h2>
+        <p id="next-step-why" class="next-step-why">This is today's focus.</p>
+        <a id="next-step-link" class="primary-button" href="#" type="button">Start task</a>
       </section>
 
-      <!-- ======================================== TODAY'S LEARNING (PRIMARY) ======================================== -->
+      <!-- ======================================== TODAY'S LEARNING (REQUIRED) ======================================== -->
       <section id="today-section" class="plan-card">
         <div class="plan-header">
           <div>
@@ -177,5 +192,6 @@
     </footer>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script type="module" src="/js/study-plan.js"></script>
+    <script type="module" src="/js/orientation.js"></script>
   </body>
 </html>

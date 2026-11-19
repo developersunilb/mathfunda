@@ -29,6 +29,26 @@
     </header>
 
     <main class="learn-main">
+      <!-- Orientation bar: You are here -->
+      <div class="orientation-bar">
+        <span>Day <span id="orient-day" class="orientation-step">1</span> of 45</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-phase" class="orientation-step">Foundation Repair</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-concept" class="orientation-step">Today's lesson</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-activity" class="orientation-step orientation-today">Read the lesson</span>
+      </div>
+
+      <!-- Level band: My Plan is Level 2 (secondary to Today) -->
+      <div class="level-band">
+        <span class="level-chip optional">My Plan · Level 2</span>
+        <span>
+          Browse the full stage plan. Your today's goal lives on the home page —
+          <a href="./index.html" class="quiet-button" style="font-size:0.72rem;padding:0.15rem 0.5rem;">← Return to today's learning</a>.
+        </span>
+      </div>
+
       <nav id="stage-tabs" class="stage-tabs" aria-label="Stages"></nav>
 
       <section class="stage-hero">
@@ -75,5 +95,6 @@
       <p class="footer-note">Progress is stored only in this browser.</p>
     </footer>
     <script type="module" src="/js/learn.js"></script>
+    <script type="module" src="/js/orientation.js"></script>
   </body>
 </html>

@@ -4,11 +4,13 @@
  * import from here, so adding a chapter only needs an entry below.
  */
 
-const chapterModules = import.meta.glob("../chapters/**/*.md", {
-  query: "?raw",
-  import: "default",
-  eager: true,
-});
+const chapterModules = (typeof import.meta.glob === "function")
+  ? import.meta.glob("../chapters/**/*.md", {
+      query: "?raw",
+      import: "default",
+      eager: true,
+    })
+  : {};
 
 const CHAPTER_ORDER = {
   "learning-roadmap": 1,

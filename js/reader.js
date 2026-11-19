@@ -44,6 +44,31 @@ import {
   answersEquivalent,
   validateAllQuestions,
 } from "./content-model.js";
+import { getStrategy, resolveComposition, getCompositionType, matchMisconception, getMisconception, getMemoryJourney, hasMemoryJourney } from "./lesson-intelligence.js";
+import { renderBlocks, renderBlock, renderMisconceptionIntervention, renderMemoryJourneyElement } from "./block-renderer.js";
+import {
+  emitLessonStarted,
+  emitPracticeStarted,
+  emitPracticeAnswered,
+  emitMisconceptionInterventionShown,
+  emitMisconceptionInterventionCompleted,
+  emitPracticeCompleted,
+  emitMasteryAssessed,
+  emitMemoryJourneyStarted,
+  emitMemoryRecallShown,
+  emitMemoryRevealUsed,
+  emitMemoryJourneyCompleted,
+  emitMemoryJourneyExited,
+} from "./pilot-events.js";
+import { mountWidgetsIn } from "./interactive-mode.js";
+import {
+  orientation,
+  currentLevel,
+  startSession,
+  nextStep,
+  afterThis,
+  currentActivity,
+} from "./orientation.js";
 import "katex/dist/katex.min.css";
 import "../css/site.css";
 
@@ -80,6 +105,20 @@ const VIEW_KEY = "mathfunda-reader-view";
 const PARENT_PASSWORD_KEY = "mathfunda-parent-unlocked";
 const PARENT_PASSWORD = "mathfunda-parent";
 
+/**
+ * Chapter → concept ID mapping.
+ *
+ * Maps reader chapter slugs to Lesson Intelligence concept IDs.
+ * Only chapters with a registered teaching strategy are listed here.
+ * Chapters not in this map use the existing Markdown rendering path unchanged.
+ */
+const CHAPTER_TO_CONCEPT_ID = {
+  "foundation-5-basic-algebra": "algebra-linear-equation",
+  "geometry-basics": "geo-circle-area",
+  "foundation-4-powers-and-roots": "numbers-exponents",
+  "foundation-1-numbers-and-signs": "numbers-hcf-lcm",
+};
+
 let pages = [];
 let current = 0;
 let turning = false;
@@ -95,6 +134,19 @@ let practiceCurrentIndex = 0;
 let practiceStepAnswers = [];
 let practiceResults = [];
 let practiceConceptId = null;
+
+/* Misconception intervention state */
+let practiceInterventionActive = false;
+let practiceInterventionQuestions = [];
+let practiceInterventionIndex = 0;
+// Keyed by "conceptId|description" to scope dedup per concept, not globally.
+let practiceInterventionShown = new Map();
+let practiceOriginalQuestionIndex = 0;
+
+/* Memory Journey state */
+let memoryJourneyActive = false;
+let memoryJourneyElements = [];
+let memoryJourneyIndex = 0;
 
 /* ------------------------------------------------------------ Practice DOM */
 
@@ -203,37 +255,26 @@ function showParentGate() {
   });
 
   submit.addEventListener("click", () => {
-    if (input.value === PARENT_PASSWORD) {
-      setParentUnlocked();
-      parentUnlocked = true;
-boot();
+      if (input.value === PARENT_PASSWORD) {
+        setParentUnlocked();
+        parentUnlocked = true;
+        boot();
+      } else {
+        error.hidden = false;
+        input.value = "";
+        input.focus();
+      }
+    });
 
-window.__mfReaderAPI = {
-  buildPages,
-  renderPage,
-  get currentPage() {
-    return current;
-  },
-  get pages() {
-    return pages;
-  },
-};
-    } else {
-      error.hidden = false;
-      input.value = "";
-      input.focus();
-    }
-  });
+    input.addEventListener("keypress", (event) => {
+      if (event.key === "Enter") submit.click();
+    });
 
-  input.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") submit.click();
-  });
-
-  card.append(title, note, input, error, submit, back);
-  overlay.appendChild(card);
-  shell.appendChild(overlay);
-  input.focus();
-}
+    card.append(title, note, input, error, submit, back);
+    overlay.appendChild(card);
+    shell.appendChild(overlay);
+    input.focus();
+  }
 
 function addLockButton() {
   const actions = document.querySelector(".reader-actions");
@@ -337,10 +378,64 @@ function buildPages() {
 
   const builder = new ReaderBuilder(measure);
   const label = stageKicker();
-  const html = renderMarkdown(chapter.content);
-  const resourcesHtml = chapter.resource ? "" : resourcesSectionHtml(chapter);
-  paginateChapter(builder, { title: chapter.title, html: html + resourcesHtml }, label);
-  pages = builder.pages;
+
+  // Composition-aware lesson rendering.
+  //
+  // Two approaches:
+  //   "enhanced" — Existing Markdown remains the primary instructional content.
+  //                Strategy intro blocks render before Markdown; outro blocks
+  //                render after. No duplication of existing explanations.
+  //   "led"      — Strategy blocks are the main instructional content.
+  //                Markdown renders as supplementary reference after blocks.
+  //
+  // Lessons without a registered strategy use the existing Markdown path
+  // unchanged — no behavioural difference.
+  const conceptId = CHAPTER_TO_CONCEPT_ID[chapter.slug];
+  const strategy = conceptId ? getStrategy(conceptId) : null;
+
+  let lessonHtml = "";
+  if (strategy) {
+    const composition = getCompositionType(strategy);
+
+    if (composition === "enhanced") {
+      // Enhanced: intro blocks → Markdown → outro blocks
+      const blockContainer = document.createElement("div");
+      const { introBlocks, outroBlocks } = resolveComposition(strategy);
+      introBlocks.forEach((block) => renderBlock(blockContainer, block));
+      const introHtml = blockContainer.innerHTML;
+
+      blockContainer.innerHTML = "";
+      outroBlocks.forEach((block) => renderBlock(blockContainer, block));
+      const outroHtml = blockContainer.innerHTML;
+
+      const html = renderMarkdown(chapter.content);
+      const resourcesHtml = chapter.resource ? "" : resourcesSectionHtml(chapter);
+      lessonHtml = introHtml + html + outroHtml + resourcesHtml;
+    } else {
+      // Led: strategy blocks as main content, then Markdown as supplementary
+      const blockContainer = document.createElement("div");
+      const { ledBlocks } = resolveComposition(strategy);
+      ledBlocks.forEach((block) => renderBlock(blockContainer, block));
+      const blocksHtml = blockContainer.innerHTML;
+
+      const html = renderMarkdown(chapter.content);
+      const resourcesHtml = chapter.resource ? "" : resourcesSectionHtml(chapter);
+      lessonHtml = blocksHtml + html + resourcesHtml;
+    }
+  } else {
+    const html = renderMarkdown(chapter.content);
+    const resourcesHtml = chapter.resource ? "" : resourcesSectionHtml(chapter);
+    lessonHtml = html + resourcesHtml;
+  }
+
+  paginateChapter(builder, { title: chapter.title, html: lessonHtml }, label);
+
+  // Mount any interactive widgets found in page bodies.
+  // This covers both existing Markdown widget markers (e.g. circle-rect in
+  // geometry-basics) and any rendered by strategy blocks.
+  pages.forEach((entry) => {
+    mountWidgetsIn(entry.body);
+  });
 
   pages.forEach((entry, index) => {
     entry.footerNumber.textContent = String(index + 1);
@@ -679,6 +774,7 @@ function openPractice(conceptId) {
   }
 
   practiceOverlay.hidden = false;
+  emitPracticeStarted(conceptId, practiceQuestions.length);
   showPracticeQuestion();
 }
 
@@ -686,6 +782,221 @@ function closePractice() {
   practiceOverlay.hidden = true;
   practiceActive = false;
 }
+
+/* ------------------------------------------------------------ Memory Journey */
+
+let memoryJourneyOverlay = null;
+let memoryConceptTitleEl = null;
+let memoryElementTitleEl = null;
+let memoryExpressionEl = null;
+let memoryRecallWrapEl = null;
+let memoryRecallPromptEl = null;
+let memoryRecallAnswerInputEl = null;
+let memoryRecallRevealBtnEl = null;
+let memoryRecallAnswerDisplayEl = null;
+let memoryNextBtnEl = null;
+let memoryCloseBtnEl = null;
+let memoryProgressEl = null;
+
+/* Memory Journey stats tracking (for pilot instrumentation) */
+let memoryJourneyStats = {
+  elementCount: 0,
+  elementsViewed: 0,
+  recallsShown: 0,
+  revealsUsed: 0,
+  completed: false,
+};
+
+let memoryJourneyConceptId = null;
+
+function createMemoryJourneyOverlay() {
+memoryRecallAnswerDisplayEl = null;
+memoryNextBtnEl = null;
+
+function createMemoryJourneyOverlay() {
+  if (memoryJourneyOverlay) return;
+
+  const overlay = document.createElement("div");
+  overlay.id = "memory-journey-overlay";
+  overlay.className = "memory-journey-overlay";
+  overlay.hidden = true;
+  overlay.innerHTML = `
+    <div class="memory-card">
+      <div class="memory-header">
+        <div>
+          <p class="eyebrow">MEMORY JOURNEY</p>
+          <h2 id="memory-concept-title">Remember what you learned</h2>
+          <p id="memory-element-title" class="memory-element-title"></p>
+        </div>
+        <button id="memory-close" class="quiet-button" type="button">Close</button>
+      </div>
+
+      <div id="memory-expression" class="memory-expression"></div>
+
+      <div id="memory-recall-wrap" class="memory-recall-wrap" hidden>
+        <p id="memory-recall-prompt" class="memory-recall-prompt"></p>
+        <input id="memory-recall-answer" type="text" class="memory-recall-input" spellcheck="false" autocomplete="off" placeholder="Type your answer..." />
+        <button id="memory-recall-reveal" class="quiet-button" type="button">Reveal answer</button>
+        <div id="memory-recall-answer-display" class="memory-recall-answer-display" hidden></div>
+      </div>
+
+      <div id="memory-actions" class="quiz-actions">
+        <button id="memory-next" class="primary-button" type="button">Next</button>
+      </div>
+
+      <div id="memory-progress" class="plan-progress"></div>
+    </div>
+  `;
+
+  shell.appendChild(overlay);
+
+  memoryJourneyOverlay = overlay;
+  memoryConceptTitleEl = overlay.querySelector("#memory-concept-title");
+  memoryElementTitleEl = overlay.querySelector("#memory-element-title");
+  memoryExpressionEl = overlay.querySelector("#memory-expression");
+  memoryRecallWrapEl = overlay.querySelector("#memory-recall-wrap");
+  memoryRecallPromptEl = overlay.querySelector("#memory-recall-prompt");
+  memoryRecallAnswerInputEl = overlay.querySelector("#memory-recall-answer");
+  memoryRecallRevealBtnEl = overlay.querySelector("#memory-recall-reveal");
+  memoryRecallAnswerDisplayEl = overlay.querySelector("#memory-recall-answer-display");
+  memoryNextBtnEl = overlay.querySelector("#memory-next");
+  memoryCloseBtnEl = overlay.querySelector("#memory-close");
+  memoryProgressEl = overlay.querySelector("#memory-progress");
+
+  memoryCloseBtnEl.addEventListener("click", closeMemoryJourney);
+  memoryNextBtnEl.addEventListener("click", nextMemoryElement);
+  memoryRecallRevealBtnEl.addEventListener("click", revealRecallAnswer);
+  memoryRecallAnswerInputEl.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") revealRecallAnswer();
+  });
+}
+
+function openMemoryJourney(conceptId) {
+  createMemoryJourneyOverlay();
+  const journey = getMemoryJourney(conceptId);
+  if (!journey || !journey.elements || journey.elements.length === 0) {
+    return;
+  }
+
+  memoryJourneyElements = journey.elements;
+  memoryJourneyIndex = 0;
+  memoryJourneyActive = true;
+
+  memoryJourneyStats = {
+    elementCount: journey.elements.length,
+    elementsViewed: 0,
+    recallsShown: 0,
+    revealsUsed: 0,
+    completed: false,
+  };
+
+  memoryJourneyConceptId = conceptId;
+
+  emitMemoryJourneyStarted(conceptId, journey.elements.length);
+
+  const chapter = chapterById(conceptId) || chapters.find((c) => c.slug === conceptId);
+  if (chapter) {
+    memoryConceptTitleEl.textContent = chapter.title;
+  } else {
+    memoryConceptTitleEl.textContent = "Remember what you learned";
+  }
+
+  memoryJourneyOverlay.hidden = false;
+  showMemoryElement(0);
+}
+
+function showMemoryElement(index) {
+  if (index < 0 || index >= memoryJourneyElements.length) {
+    closeMemoryJourney();
+    return;
+  }
+
+  const element = memoryJourneyElements[index];
+  memoryJourneyIndex = index;
+
+  memoryJourneyStats.elementsViewed += 1;
+
+  if (element.recallPrompt) {
+    memoryJourneyStats.recallsShown += 1;
+    emitMemoryRecallShown(memoryJourneyConceptId, index, element.type, true);
+  }
+
+  memoryElementTitleEl.textContent = element.title || "";
+  memoryExpressionEl.innerHTML = element.content || "";
+
+  memoryRecallWrapEl.hidden = true;
+  memoryRecallAnswerInputEl.value = "";
+  memoryRecallAnswerDisplayEl.hidden = true;
+  memoryRecallRevealBtnEl.hidden = false;
+
+  if (element.recallPrompt) {
+    memoryRecallWrapEl.hidden = false;
+    memoryRecallPromptEl.textContent = element.recallPrompt;
+  }
+
+  const current = index + 1;
+  const total = memoryJourneyElements.length;
+  memoryProgressEl.textContent = `Remember ${current} of ${total}`;
+
+  memoryNextBtnEl.textContent = index === total - 1 ? "Finish" : "Next";
+}
+
+function revealRecallAnswer() {
+  if (!memoryRecallAnswerDisplayEl.hidden) return;
+
+  const element = memoryJourneyElements[memoryJourneyIndex];
+  if (element.recallAnswer) {
+    memoryRecallAnswerDisplayEl.hidden = false;
+    memoryRecallAnswerDisplayEl.innerHTML = `<p><strong>Remember:</strong> ${element.recallAnswer}</p>`;
+  }
+  memoryRecallRevealBtnEl.hidden = true;
+  memoryRecallAnswerInputEl.disabled = true;
+
+  memoryJourneyStats.revealsUsed += 1;
+  emitMemoryRevealUsed(memoryJourneyConceptId, memoryJourneyIndex, element.type);
+}
+
+function nextMemoryElement() {
+  showMemoryElement(memoryJourneyIndex + 1);
+}
+
+function closeMemoryJourney() {
+  memoryJourneyOverlay.hidden = true;
+  memoryJourneyActive = false;
+
+  const wasCompleted =
+    memoryJourneyIndex === memoryJourneyElements.length - 1;
+
+  if (wasCompleted) {
+    memoryJourneyStats.completed = true;
+    emitMemoryJourneyCompleted(
+      memoryJourneyConceptId,
+      memoryJourneyStats.elementsViewed,
+      memoryJourneyStats.recallsShown,
+      memoryJourneyStats.revealsUsed
+    );
+  } else {
+    emitMemoryJourneyExited(
+      memoryJourneyConceptId,
+      memoryJourneyIndex,
+      memoryJourneyStats.elementsViewed,
+      memoryJourneyStats.recallsShown,
+      memoryJourneyStats.revealsUsed
+    );
+  }
+
+  memoryJourneyElements = [];
+  memoryJourneyIndex = 0;
+  memoryJourneyConceptId = null;
+  memoryJourneyStats = {
+    elementCount: 0,
+    elementsViewed: 0,
+    recallsShown: 0,
+    revealsUsed: 0,
+    completed: false,
+  };
+}
+
 
 function showPracticeQuestion() {
   const question = practiceQuestions[practiceCurrentIndex];
@@ -752,6 +1063,7 @@ function submitPracticeAnswer() {
 
   const result = recordPracticeAttempt(question.id, studentAnswer);
   practiceResults.push({ questionId: question.id, ...result });
+  emitPracticeAnswered(question.id, result.isCorrect, result.errorCategory, practiceConceptId);
 
   // Record mistake if incorrect
   if (!result.isCorrect) {
@@ -769,6 +1081,13 @@ function submitPracticeAnswer() {
   practiceAnswerInput.disabled = true;
   practiceSubmitBtn.hidden = true;
 
+  // If we're in the middle of a misconception intervention, handle this
+  // as a corrective answer rather than a new practice attempt.
+  if (practiceInterventionActive) {
+    handleCorrectiveAnswer(studentAnswer);
+    return;
+  }
+
   if (result.isCorrect) {
     practiceResultEl.textContent = "Correct! Well done.";
     practiceResultEl.className = "quiz-feedback";
@@ -776,14 +1095,32 @@ function submitPracticeAnswer() {
     practiceFeedbackEl.textContent = "";
     practiceNextBtn.hidden = false;
   } else {
-    practiceResultEl.textContent = "Not quite right. Let's look at why.";
-    practiceResultEl.className = "quiz-feedback";
-    practiceResultEl.style.color = "var(--rose)";
-    practiceFeedbackEl.textContent = result.errorMessage || "Check your answer and try again.";
-    practiceRetryBtn.hidden = false;
+    // Check for a known misconception before showing generic feedback.
+    // Only trigger a targeted intervention when the mistake can be
+    // confidently matched to a defined misconception.
+    const misconception = matchMisconception(practiceConceptId, {
+      errorCategory: result.errorCategory || ERROR_CATEGORIES.conceptual,
+      studentAnswer,
+      firstWrongStep: result.firstWrongStep,
+    });
 
-    if (result.firstWrongStep) {
-      practiceFeedbackEl.textContent += ` Step ${result.firstWrongStep.stepNumber}: ${result.firstWrongStep.explanation}`;
+    if (
+      misconception &&
+      misconception.correctiveQuestions &&
+      misconception.correctiveQuestions.length > 0 &&
+      !practiceInterventionShown.has(`${practiceConceptId}|${misconception.description}`)
+    ) {
+      startMisconceptionIntervention(misconception, practiceCurrentIndex);
+    } else {
+      practiceResultEl.textContent = "Not quite right. Let's look at why.";
+      practiceResultEl.className = "quiz-feedback";
+      practiceResultEl.style.color = "var(--rose)";
+      practiceFeedbackEl.textContent = result.errorMessage || "Check your answer and try again.";
+      practiceRetryBtn.hidden = false;
+
+      if (result.firstWrongStep) {
+        practiceFeedbackEl.textContent += ` Step ${result.firstWrongStep.stepNumber}: ${result.firstWrongStep.explanation}`;
+      }
     }
   }
 
@@ -791,6 +1128,18 @@ function submitPracticeAnswer() {
 }
 
 function retryPracticeQuestion() {
+  // If in a misconception intervention, retry the current corrective question.
+  if (practiceInterventionActive) {
+    practiceAnswerInput.disabled = false;
+    practiceAnswerInput.value = "";
+    practiceResultEl.textContent = "";
+    practiceFeedbackEl.textContent = "";
+    practiceRetryBtn.hidden = true;
+    practiceSubmitBtn.hidden = false;
+    practiceAnswerInput.focus();
+    return;
+  }
+
   const question = practiceQuestions[practiceCurrentIndex];
   if (!question) return;
 
@@ -809,6 +1158,160 @@ function retryPracticeQuestion() {
   practiceAnswerInput.focus();
 }
 
+/* ------------------------------------------------------------ Misconception intervention */
+
+/**
+ * Start a targeted misconception intervention.
+ * Shows the misconception explanation and corrective questions.
+ * @param {Object} misconception - Matched misconception data
+ * @param {number} originalQuestionIndex - Practice question index to return to
+ */
+function startMisconceptionIntervention(misconception, originalQuestionIndex) {
+  practiceInterventionActive = true;
+  practiceInterventionShown.set(`${practiceConceptId}|${misconception.description}`, true);
+  practiceInterventionQuestions = [...(misconception.correctiveQuestions || [])];
+  practiceInterventionIndex = 0;
+  practiceOriginalQuestionIndex = originalQuestionIndex;
+
+  emitMisconceptionInterventionShown(
+    practiceConceptId,
+    misconception.description,
+    originalQuestionIndex
+  );
+
+  // Hide practice question controls, show intervention content
+  practiceAnswerInput.hidden = true;
+  practiceStepInputs.hidden = true;
+  practiceSubmitBtn.hidden = true;
+  practiceRetryBtn.hidden = true;
+  practiceNextBtn.hidden = true;
+
+  // Render the intervention block into the feedback area
+  practiceFeedbackEl.innerHTML = "";
+  const container = document.createElement("div");
+  renderMisconceptionIntervention(container, misconception, practiceInterventionQuestions);
+  practiceFeedbackEl.appendChild(container);
+
+  practiceResultEl.textContent = "Let's look at this more closely.";
+  practiceResultEl.className = "quiz-feedback";
+  practiceResultEl.style.color = "var(--amber)";
+
+  // Show the first corrective question
+  showCorrectiveQuestion();
+}
+
+/**
+ * Display the current corrective question.
+ */
+function showCorrectiveQuestion() {
+  const questionId = practiceInterventionQuestions[practiceInterventionIndex];
+  if (!questionId) {
+    endMisconceptionIntervention();
+    return;
+  }
+
+  const question = getQuestion(questionId);
+  if (!question) {
+    endMisconceptionIntervention();
+    return;
+  }
+
+  practiceProgressEl.textContent = `Practice ${practiceInterventionIndex + 1} of ${practiceInterventionQuestions.length}`;
+  practiceQuestionEl.textContent = question.text;
+  practiceInstructionEl.textContent = question.instruction;
+
+  renderMath(practiceExpressionEl, question.text);
+
+  practiceStepInputs.innerHTML = "";
+  practiceAnswerInput.value = "";
+  practiceAnswerInput.hidden = false;
+  practiceStepInputs.hidden = true;
+  practiceResultEl.textContent = "";
+
+  if (question.type === "step-by-step" && question.steps.length > 0) {
+    practiceAnswerInput.hidden = true;
+    practiceStepInputs.hidden = false;
+    question.steps.forEach((s, idx) => {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.className = "quiz-answer-input";
+      practiceStepInputs.appendChild(input);
+    });
+  }
+
+  practiceAnswerInput.focus();
+}
+
+/**
+ * Handle an answer submitted during a misconception intervention.
+ * Corrective questions do NOT call recordPracticeAttempt — they must not
+ * affect mastery state or the original practice results.
+ * @param {string|string[]} studentAnswer
+ */
+function handleCorrectiveAnswer(studentAnswer) {
+  const questionId = practiceInterventionQuestions[practiceInterventionIndex];
+  const question = getQuestion(questionId);
+  if (!question) {
+    endMisconceptionIntervention();
+    return;
+  }
+
+  const isCorrect = answersEquivalent(studentAnswer, question.correctAnswer);
+
+  if (isCorrect) {
+    practiceResultEl.textContent = "Correct! You've got it.";
+    practiceResultEl.className = "quiz-feedback";
+    practiceResultEl.style.color = "var(--green)";
+    practiceFeedbackEl.textContent = "";
+
+    // Move to next corrective question or end intervention
+    practiceInterventionIndex += 1;
+    if (practiceInterventionIndex >= practiceInterventionQuestions.length) {
+      // Small delay then return to original practice question
+      setTimeout(() => {
+        endMisconceptionIntervention();
+      }, 1200);
+    } else {
+      practiceNextBtn.hidden = false;
+    }
+  } else {
+    practiceResultEl.textContent = "Not quite right. Try again.";
+    practiceResultEl.className = "quiz-feedback";
+    practiceResultEl.style.color = "var(--rose)";
+    const errorMessage = question.errorTypes?.conceptual || "Check your answer and try again.";
+    practiceFeedbackEl.textContent = errorMessage;
+    practiceRetryBtn.hidden = false;
+  }
+
+  updatePracticeProgress();
+}
+
+/**
+ * End the misconception intervention and return to the original practice question.
+ */
+function endMisconceptionIntervention() {
+  practiceInterventionActive = false;
+  emitMisconceptionInterventionCompleted(
+    practiceConceptId,
+    practiceInterventionQuestions.length
+  );
+  practiceInterventionQuestions = [];
+  practiceInterventionIndex = 0;
+
+  practiceAnswerInput.hidden = false;
+  practiceStepInputs.hidden = true;
+  practiceSubmitBtn.hidden = false;
+  practiceRetryBtn.hidden = true;
+  practiceNextBtn.hidden = true;
+
+  practiceResultEl.textContent = "";
+  practiceFeedbackEl.textContent = "";
+
+  // Return to the original practice question
+  practiceCurrentIndex = practiceOriginalQuestionIndex;
+  showPracticeQuestion();
+}
+
 function nextPracticeQuestion() {
   practiceCurrentIndex += 1;
   showPracticeQuestion();
@@ -817,15 +1320,32 @@ function nextPracticeQuestion() {
 function finishPractice() {
   practiceOverlay.hidden = true;
 
+  // Reset intervention dedup for the next practice session.
+  practiceInterventionShown.clear();
+
   const correctCount = practiceResults.filter((r) => r.isCorrect).length;
   const total = practiceResults.length;
   const accuracy = total > 0 ? correctCount / total : 0;
+
+  emitPracticeCompleted(
+    practiceConceptId,
+    accuracy,
+    total,
+    practiceConceptId && accuracy >= MASTERY_THRESHOLD,
+    null
+  );
 
   showToast(`Practice complete: ${correctCount} of ${total} correct.`);
 
   // Check if concept can be mastered
   if (practiceConceptId && accuracy >= MASTERY_THRESHOLD) {
     const masteryResult = assessMastery(practiceConceptId, practiceResults);
+    emitMasteryAssessed(
+      practiceConceptId,
+      masteryResult.passed,
+      masteryResult.accuracy,
+      MASTERY_THRESHOLD
+    );
     if (masteryResult.passed) {
       showToast("Concept mastered! Excellent work.");
       // Mark matching plan task(s) complete once the concept is mastered.
@@ -837,6 +1357,11 @@ function finishPractice() {
 
   // Refresh the reader view to show updated mastery state
   syncCompleteButton();
+
+  // Offer the Memory Journey after practice completes.
+  if (practiceConceptId && hasMemoryJourney(practiceConceptId)) {
+    openMemoryJourney(practiceConceptId);
+  }
 }
 
 function takeMasteryCheck() {
@@ -1019,20 +1544,47 @@ async function boot() {
     addLockButton();
   }
 
+  emitLessonStarted(chapter.slug);
+
   buildPages();
   syncCompleteButton();
   setLessonPage(chapter.slug, current + 1);
+
+  // Orientation bar: You are here
+  const orient = orientation();
+  const elDay = document.querySelector("#orient-day");
+  const elPhase = document.querySelector("#orient-phase");
+  const elConcept = document.querySelector("#orient-concept");
+  const elActivity = document.querySelector("#orient-activity");
+  if (elDay) elDay.textContent = String(orient.day);
+  if (elPhase) elPhase.textContent = orient.phase;
+  if (elConcept) elConcept.textContent = orient.conceptTitle;
+  if (elActivity) elActivity.textContent = orient.activityLabel;
+
+  // What happens next (single next step in footer)
+  const nextStepEl = document.querySelector("#reader-next-step");
+  const lessonComplete = isLessonDone(chapter.slug);
+  const nextStepResult = nextStep({ onReader: true, lessonComplete });
+  const after = afterThis({ onReader: true, lessonComplete, practised: false });
+  if (nextStepEl) {
+    if (nextStepResult.kind === "done") {
+      nextStepEl.innerHTML = `<span class="reader-footer-next"><strong>You're done for today.</strong> Come back tomorrow.</span>`;
+    } else {
+      nextStepEl.innerHTML = `<span class="reader-footer-next">Next: <span class="next-link">${after ? after.label : "Practise the idea"}</span></span>`;
+    }
+  }
 
   // Mark the neighbouring lesson as "read" for orientation.
   void stageChapters(chapter.stage);
 
   // Shift any widgets that collide with the reader footer onto the next page.
-  if (window.__mfInteractive?.fixOverflowDeferred) {
-    window.__mfInteractive.fixOverflowDeferred();
+      if (window.__mfInteractive?.fixOverflowDeferred) {
+        window.__mfInteractive.fixOverflowDeferred();
+      }
+    }
   }
-}
 
-boot();
+  boot();
 
 window.__mfReaderAPI = {
   buildPages,

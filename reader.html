@@ -16,6 +16,16 @@
   <body class="site-body reader-body">
     <div class="reader-shell">
       <header class="reader-bar">
+        <!-- Orientation bar: You are here -->
+        <div class="orientation-bar" style="margin-bottom:0.4rem;">
+          <span>Day <span id="orient-day" class="orientation-step">1</span> of 45</span>
+          <span class="orientation-divider">→</span>
+          <span id="orient-phase" class="orientation-step">Foundation Repair</span>
+          <span class="orientation-divider">→</span>
+          <span id="orient-concept" class="orientation-step">Today's lesson</span>
+          <span class="orientation-divider">→</span>
+          <span id="orient-activity" class="orientation-step orientation-today">Read the lesson</span>
+        </div>
         <a class="icon-button" href="./index.html" aria-label="Back to the study home">←</a>
         <div class="reader-meta">
           <p id="reader-kicker" class="reader-kicker">Lesson</p>
@@ -34,6 +44,7 @@
           <button id="reader-toc-button" class="quiet-button" type="button">Contents</button>
           <button id="reader-complete-button" class="quiet-button" type="button">Mark complete</button>
           <button id="reader-interactive-toggle" class="quiet-button reader-interactive-toggle" type="button" aria-pressed="false">Interactive</button>
+          <a href="./study-plan-personalized.html" class="quiet-button" type="button" style="font-size:0.72rem;padding:0.25rem 0.6rem;">← Return to today's learning</a>
         </div>
       </header>
 
@@ -52,6 +63,7 @@
         <span id="reader-page-label">Page 1 of 1</span>
         <span class="reader-tip">Swipe, tap the sides or use ← →</span>
         <a id="reader-next-lesson" class="reader-next-link" href="./index.html">Next lesson →</a>
+        <p id="reader-next-step" class="reader-footer-next"></p>
       </footer>
     </div>
 
@@ -74,5 +86,6 @@
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script type="module" src="/js/reader.js"></script>
     <script type="module" src="/js/interactive-mode.js"></script>
+    <script type="module" src="/js/orientation.js"></script>
   </body>
 </html>

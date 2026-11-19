@@ -19,9 +19,34 @@ import {
 } from "./progress.js";
 import { allCards, totalCards } from "./flashcard-data.js";
 import { formulaOfTheDay, renderInline } from "./formulas.js";
+import {
+  orientation,
+  currentLevel,
+  startSession,
+  nextStep,
+  returnToTodayUrl,
+  currentDay,
+  currentPhase,
+  currentConcept,
+  currentActivity,
+} from "./orientation.js";
 import "../css/site.css";
 
 const allSlugs = chapters.map((chapter) => chapter.slug);
+
+/* ------------------------------------------------------------------ Orientation bar */
+
+const orient = orientation();
+
+const orientDay = document.querySelector("#orient-day");
+const orientPhase = document.querySelector("#orient-phase");
+const orientConcept = document.querySelector("#orient-concept");
+const orientActivity = document.querySelector("#orient-activity");
+
+if (orientDay) orientDay.textContent = String(orient.day);
+if (orientPhase) orientPhase.textContent = orient.phase;
+if (orientConcept) orientConcept.textContent = orient.conceptTitle;
+if (orientActivity) orientActivity.textContent = orient.activityLabel;
 
 /* ------------------------------------------------------------------ Facts */
 
@@ -43,12 +68,44 @@ document.querySelector("#overall-detail").textContent =
     ? "No lessons completed yet. Start with the roadmap."
     : `${overall.done} of ${overall.total} lessons complete.`;
 
-/* ------------------------------------------------------------- Next lesson */
+/* ------------------------------------------------------------- Next step (primary CTA) */
 
-const last = lastLesson();
-let nextSlug = null;
+const step = nextStep();
 
-/* ------------------------------------------------------------ Resume card */
+const heroContinue = document.querySelector("#hero-continue");
+const navContinue = document.querySelector("#nav-continue");
+const todayWhy = document.querySelector("#today-why");
+const nextLessonTitle = document.querySelector("#next-lesson-title");
+const nextLessonMeta = document.querySelector("#next-lesson-meta");
+const nextLessonLink = document.querySelector("#next-lesson-link");
+
+if (heroContinue) {
+  heroContinue.textContent = step.label;
+  heroContinue.href = step.href;
+  heroContinue.className = step.kind === "done" ? "quiet-button" : "primary-button";
+  heroContinue.addEventListener("click", (event) => {
+    if (step.kind !== "done" && step.href) {
+      startSession(
+        currentConcept().slug || "",
+        lessonState(currentConcept().slug || "").page,
+        currentActivity(currentConcept().slug)
+      );
+    }
+  });
+}
+
+if (navContinue) {
+  navContinue.textContent = step.label.length > 20 ? "Continue today" : step.label;
+  navContinue.href = step.href;
+}
+
+if (todayWhy) todayWhy.textContent = step.why || "One short lesson, then a few practice questions.";
+
+if (nextLessonTitle) nextLessonTitle.textContent = step.label;
+if (nextLessonMeta) nextLessonMeta.textContent = step.why || "";
+if (nextLessonLink) nextLessonLink.href = step.href;
+
+/* ------------------------------------------------------------- Resume card */
 
 const resumeSection = document.getElementById("resume");
 const resumeLink = document.getElementById("resume-link");
@@ -74,21 +131,6 @@ if (last && !isLessonDone(last.slug)) {
 
 const nextLesson = chapters.find((chapter) => chapter.slug === nextSlug) || chapters[0];
 const nextStage = STAGES.find((stage) => stage.id === nextLesson.stage);
-
-document.querySelector("#next-lesson-title").textContent = nextLesson.title;
-document.querySelector("#next-lesson-meta").textContent = `${nextLesson.minutes} min · ${nextStage ? nextStage.title : "Lesson"}`;
-document.querySelector("#next-lesson-link").href = lessonHref(
-  nextLesson.slug,
-  lessonState(nextLesson.slug).page
-);
-
-document.querySelector("#hero-continue").textContent = overall.done === 0 ? "Start with the roadmap" : `Continue: ${nextLesson.title}`;
-document.querySelector("#hero-continue").href = lessonHref(
-  nextLesson.slug,
-  lessonState(nextLesson.slug).page
-);
-document.querySelector("#nav-continue").textContent = overall.done === 0 ? "Start learning" : "Continue";
-document.querySelector("#nav-continue").href = document.querySelector("#hero-continue").href;
 
 /* ------------------------------------------------------------------- Today */
 

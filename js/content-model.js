@@ -437,6 +437,509 @@ function validateAllQuestions() {
   return { valid: allErrors.length === 0, errors: allErrors };
 }
 
+/* ----------------------------------------------------------- Lesson strategies */
+
+/**
+ * Lesson Intelligence registry — data only, no logic.
+ *
+ * Each entry describes HOW a concept should be taught. The adaptive engine
+ * (adaptive-plan.js) remains the authority for WHAT to teach; this registry
+ * supplies the teaching experience for a selected concept.
+ *
+ * Composition approaches:
+ *   "enhanced" — Existing Markdown remains the primary instructional content.
+ *                Strategy blocks introduce or enrich the lesson without
+ *                repeating explanations, worked examples or practice already
+ *                present in Markdown. Blocks are placed before (intro) or
+ *                after (outro) the Markdown content.
+ *   "led"      — The strategy supplies the main instructional experience.
+ *                Existing Markdown content is supplementary reference material.
+ *
+ * Block placement (for "enhanced" composition):
+ *   "before" — Render before Markdown content (intro, hooks, prediction)
+ *   "after"  — Render after Markdown content (reflection, memory hook)
+ *
+ * Block types (renderer-agnostic):
+ *   story | prediction | visual | interactive | discovery |
+ *   worked-example | guided-practice | independent-practice |
+ *   explain | misconception-intervention | memory-hook | mastery
+ *
+ * Not every lesson uses every block. The renderer renders blocks by declared
+ * type + content; it contains no concept-specific logic.
+ */
+const LESSON_STRATEGIES = {
+  // ================================================================
+  // Linear equation — Strategy-enhanced existing lesson
+  // Existing Markdown (foundation-5-basic-algebra) teaches the seesaw
+  // balance, transposition, and worked examples. Strategy adds only
+  // complementary prediction, reflection and memory elements.
+  // ================================================================
+  "algebra-linear-equation": {
+    conceptId: "algebra-linear-equation",
+    lessonSlug: "foundation-5-basic-algebra",
+    learningGoal: "Understand that an equation is a balance and solve it by undoing operations.",
+    composition: "enhanced",
+    prerequisiteConcepts: [],
+    teachingStrategy: {
+      primary: "worked-example",
+      supporting: ["visual"],
+      interaction: "none",
+    },
+    experience: {
+      blocks: [
+        {
+          type: "prediction",
+          title: "What do you think?",
+          placement: "before",
+          content:
+            "You have a mystery number. Add 7 to it and you get 12.\nBefore reading the method, what number do you think it is?",
+        },
+        {
+          type: "explain",
+          title: "Explain it",
+          placement: "after",
+          content: "In one sentence: why does subtracting 7 from both sides keep the balance?",
+        },
+        {
+          type: "memory-hook",
+          title: "Remember this",
+          placement: "after",
+          content: "An equation is a balance. Do the same to both sides.",
+        },
+      ],
+    },
+    misconception: {
+      description: "Changes sign incorrectly when transposing terms across the equals sign",
+      targetedExplanation:
+        "When you move a term to the other side of the equation, its sign flips (+ becomes −, − becomes +). You are not 'moving' the number — you are doing the same operation to both sides.",
+      errorSignals: [
+        {
+          errorCategory: "conceptual",
+          studentAnswerPattern: /sign|transpos|switch|flip|side/i,
+        },
+        {
+          errorCategory: "conceptual",
+          stepTextContains: "subtract",
+        },
+      ],
+      correctiveQuestions: ["q-eq-1", "q-eq-3"],
+    },
+    retrieval: {
+      prompts: ["Solve x + 5 = 12.", "What is the first step to solve 3x = 15?"],
+    },
+    memoryJourney: {
+      elements: [
+        {
+          type: "question",
+          title: "The Question",
+          content: "You have a mystery number. Add 7 to it and you get 12. What was the number?",
+          recallPrompt: "In one sentence: how do you find the missing number?",
+          recallAnswer: "Undo the +7 by subtracting 7 from both sides: x = 12 - 7 = 5.",
+        },
+        {
+          type: "discovery",
+          title: "The Discovery",
+          content: "An equation is balanced. Whatever you do to one side, you must do to the other side, or it tips.",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "idea",
+          title: "The Idea",
+          content: "To solve an equation, undo each operation step by step until the variable stands alone.",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "rule",
+          title: "The Rule",
+          content: "x + 7 = 12 means x = 12 - 7 = 5. Subtract the same amount from both sides.",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "watchout",
+          title: "Watch Out",
+          content: "To solve an equation, do the same operation to both sides. If you add, subtract, multiply or divide on one side, you must do the same on the other side — otherwise the balance tips.",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "remember",
+          title: "Remember",
+          content: "An equation is a balance. Do the same to both sides.",
+          recallPrompt: "Say it in your own words: what is an equation?",
+          recallAnswer: "An equation is a balanced statement — both sides are equal.",
+        },
+      ],
+    },
+  },
+
+  // ================================================================
+  // Circle area — Strategy-enhanced existing lesson
+  // Existing Markdown (geometry-basics) has the Circle → Rectangle widget
+  // at line 130 and the worked example at line 116. Strategy adds discovery
+  // prompts around the existing interaction without duplicating the widget.
+  // Exactly one circle-rect widget marker exists (in Markdown).
+  // ================================================================
+  "geo-circle-area": {
+    conceptId: "geo-circle-area",
+    lessonSlug: "geometry-basics",
+    learningGoal: "Understand why the area of a circle is πr².",
+    composition: "enhanced",
+    prerequisiteConcepts: ["geo-area-rectangle", "geo-radius"],
+    teachingStrategy: {
+      primary: "discovery",
+      supporting: ["visual"],
+      interaction: "existing",
+    },
+    experience: {
+      blocks: [
+        {
+          type: "story",
+          title: "From circle to rectangle",
+          placement: "before",
+          content:
+            "We know how to find the area of a rectangle. But how do we find the area of a circle?",
+        },
+        {
+          type: "prediction",
+          title: "What do you think?",
+          placement: "before",
+          content: "If you cut a circle into thin slices and rearrange them, what shape do they make?",
+        },
+        {
+          type: "discovery",
+          title: "What we found",
+          placement: "before",
+          content:
+            "The rearranged slices form a rectangle: height = r, width = πr (half the circumference).\nSo area = πr × r = πr².",
+        },
+        {
+          type: "explain",
+          title: "Explain it",
+          placement: "after",
+          content: "Why does the formula contain r²? In one sentence.",
+        },
+        {
+          type: "memory-hook",
+          title: "Remember this",
+          placement: "after",
+          content: "Circle area = π × radius × radius = πr².",
+        },
+      ],
+    },
+    misconception: {
+      description: "Confuses circumference (2πr) with area (πr²)",
+      targetedExplanation:
+        "Circumference is the distance around the edge (2πr). Area is the space inside (πr²). They measure different things.",
+    },
+    retrieval: {
+      prompts: ["What is the area of a circle with radius 5 cm?", "How is circle area different from circumference?"],
+    },
+    memoryJourney: {
+      elements: [
+        {
+          type: "question",
+          title: "The Question",
+          content: "We know the area of a rectangle. But how do we find the area of a circle?",
+          recallPrompt: "In one sentence: what shape do circle slices form when rearranged?",
+          recallAnswer: "A rectangle (approximately) — height = r, width = πr.",
+        },
+        {
+          type: "discovery",
+          title: "The Discovery",
+          content: "Cut a circle into thin slices and rearrange them — they form a rectangle: height = r, width = πr.",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "idea",
+          title: "The Idea",
+          content: "The circle's area equals the area of this rectangle: πr × r = πr².",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "rule",
+          title: "The Rule",
+          content: "Area of a circle = π × radius × radius = πr².",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "watchout",
+          title: "Watch Out",
+          content: "Circumference (2πr) is the distance around the edge. Area (πr²) is the space inside. They measure different things.",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "remember",
+          title: "Remember",
+          content: "Circle area = πr². Think: 'π × r × r' — use the radius (not the diameter) times itself times pi.",
+          recallPrompt: "What is the area of a circle with radius 7 cm?",
+          recallAnswer: "π × 7 × 7 = 154 cm² (using π = 22/7).",
+        },
+      ],
+    },
+  },
+
+  // ================================================================
+  // Exponents — Strategy-enhanced existing lesson
+  // Existing Markdown (foundation-4-powers-and-roots) teaches the exponent
+  // laws at line 59-73. Strategy adds pattern-discovery framing and memory
+  // support without repeating the rules or worked examples.
+  // ================================================================
+  "numbers-exponents": {
+    conceptId: "numbers-exponents",
+    lessonSlug: "foundation-4-powers-and-roots",
+    learningGoal: "Understand that an exponent is shorthand for repeated multiplication.",
+    composition: "enhanced",
+    prerequisiteConcepts: [],
+    teachingStrategy: {
+      primary: "discovery",
+      supporting: ["pattern"],
+      interaction: "none",
+    },
+    experience: {
+      blocks: [
+        {
+          type: "prediction",
+          title: "What do you think?",
+          placement: "before",
+          content: "2 × 2 × 2 × 2 × 2 = 32. That's five 2s multiplied together.\nIf you had to write ten 2s multiplied together, is there a shorter way?",
+        },
+        {
+          type: "discovery",
+          title: "The shorthand",
+          placement: "before",
+          content:
+            "Instead of writing 2 × 2 × 2 × 2 × 2, mathematicians write 2⁵. The small 5 means 'five 2s multiplied'.",
+        },
+        {
+          type: "explain",
+          title: "Explain it",
+          placement: "after",
+          content: "Why do we add exponents when multiplying powers with the same base?",
+        },
+        {
+          type: "memory-hook",
+          title: "Remember this",
+          placement: "after",
+          content: "Same base, multiply → add the exponents.",
+        },
+      ],
+    },
+    misconception: {
+      description: "Multiplies exponents instead of adding them (2³ × 2² = 2⁶)",
+      targetedExplanation:
+        "2³ × 2² means (2×2×2) × (2×2) — that's five 2s total, so 2⁵, not 2⁶. When multiplying powers with the same base, you add the exponents because you are counting the total number of base factors.",
+      errorSignals: [
+        {
+          errorCategory: "conceptual",
+          studentAnswerPattern: /2⁶|2\^6|64/i,
+        },
+        {
+          errorCategory: "conceptual",
+          stepTextContains: "multiply",
+        },
+      ],
+      correctiveQuestions: ["q-exp-1", "q-exp-2"],
+    },
+    retrieval: {
+      prompts: ["Simplify 2⁴ × 2³.", "What does 5² mean in words?"],
+    },
+    memoryJourney: {
+      elements: [
+        {
+          type: "question",
+          title: "The Question",
+          content: "2 × 2 × 2 × 2 × 2 = 32. That's five 2s multiplied together. Is there a shorter way to write it?",
+          recallPrompt: "What does 2⁵ mean in plain words?",
+          recallAnswer: "Two to the power five — five 2s multiplied together.",
+        },
+        {
+          type: "discovery",
+          title: "The Discovery",
+          content: "Instead of writing all the 2s, mathematicians write a small number (the exponent) to count how many times the base appears.",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "idea",
+          title: "The Idea",
+          content: "2⁵ is just shorthand for 2 × 2 × 2 × 2 × 2 — five 2s multiplied.",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "rule",
+          title: "The Rule",
+          content: "When multiplying powers with the same base, add the exponents: 2³ × 2² = 2⁵.",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "watchout",
+          title: "Watch Out",
+          content: "2³ × 2² is NOT 2⁶. You add exponents (3 + 2 = 5), not multiply them.",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "remember",
+          title: "Remember",
+          content: "When multiplying powers with the same base, add their exponents.",
+          recallPrompt: "Simplify 2⁴ × 2³ without writing out all the 2s.",
+          recallAnswer: "2⁴ × 2³ = 2⁷ (4 + 3 = 7 twos multiplied together).",
+        },
+      ],
+    },
+  },
+
+  // ================================================================
+  // HCF/LCM — Strategy-led lesson
+  // The existing chapter (foundation-1-numbers-and-signs) covers digits,
+  // place value and sign rules — it does not teach HCF or LCM. The strategy
+  // supplies the complete instructional experience. Markdown content remains
+  // as supplementary reference material.
+  // ================================================================
+  "numbers-hcf-lcm": {
+    conceptId: "numbers-hcf-lcm",
+    lessonSlug: "foundation-1-numbers-and-signs",
+    learningGoal: "Understand when to use HCF (biggest equal group) vs LCM (when things meet again).",
+    composition: "led",
+    prerequisiteConcepts: [],
+    teachingStrategy: {
+      primary: "story",
+      supporting: ["real-world-problem"],
+      interaction: "none",
+    },
+    experience: {
+      blocks: [
+        {
+          type: "story",
+          title: "Two buses leave together",
+          content:
+            "One bus comes every 18 minutes. Another comes every 24 minutes. When will they meet again?",
+        },
+        {
+          type: "prediction",
+          title: "What do you think?",
+          content: "Will they meet at 18 minutes? At 24? At some other time?",
+        },
+        {
+          type: "discovery",
+          title: "Two different questions",
+          content:
+            "'When will they meet again?' → LCM (common multiples).\n'What is the biggest equal group?' → HCF (common factors).",
+        },
+        {
+          type: "worked-example",
+          title: "Find the LCM of 18 and 24",
+          content: "Multiples of 18: 18, 36, 54, 72… Multiples of 24: 24, 48, 72… They meet at 72 minutes.",
+        },
+        {
+          type: "guided-practice",
+          title: "Try HCF",
+          content: "What is the biggest number that divides both 18 and 24?",
+          questions: ["q-hcf-1"],
+        },
+        {
+          type: "independent-practice",
+          title: "Try LCM",
+          content: "When will buses with intervals 20 and 30 minutes meet?",
+          questions: ["q-hcf-2"],
+        },
+        {
+          type: "explain",
+          title: "Explain it",
+          content: "In your own words: what is the difference between HCF and LCM?",
+        },
+        {
+          type: "memory-hook",
+          title: "Remember this",
+          content: "HCF = biggest equal group. LCM = when they meet again.",
+        },
+        {
+          type: "mastery",
+          title: "Check what you know",
+          content: "Three HCF/LCM questions.",
+          questions: ["q-hcf-1", "q-hcf-2", "q-hcf-3"],
+          threshold: 0.8,
+        },
+      ],
+    },
+    misconception: {
+      description: "Confuses HCF and LCM — uses LCM when HCF is needed and vice versa",
+      targetedExplanation:
+        "HCF answers 'biggest equal group' — you are looking for common factors. LCM answers 'when do they meet again' — you are looking for common multiples. They are different questions with different answers.",
+      errorSignals: [],
+      correctiveQuestions: ["q-hcf-1", "q-hcf-2"],
+    },
+    retrieval: {
+      prompts: ["Find the HCF of 20 and 30.", "Two bells ring every 12 and 15 minutes — when will they ring together?"],
+    },
+    memoryJourney: {
+      elements: [
+        {
+          type: "question",
+          title: "The Question",
+          content: "One bus comes every 18 minutes. Another comes every 24 minutes. When will they meet again?",
+          recallPrompt: "In one sentence: what are the two different questions hiding here?",
+          recallAnswer: "'When will they meet again?' → LCM. 'What is the biggest equal group?' → HCF.",
+        },
+        {
+          type: "discovery",
+          title: "The Discovery",
+          content: "There are two different questions: when events meet (LCM) and the biggest equal group (HCF).",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "idea",
+          title: "The Idea",
+          content: "HCF finds common factors (biggest equal group). LCM finds common multiples (when they meet).",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          "type": "rule",
+          title: "The Rule",
+          content: "HCF of 18 and 24 = 6 (biggest number dividing both). LCM of 18 and 24 = 72 (when they meet).",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "watchout",
+          title: "Watch Out",
+          content: "HCF and LCM answer different questions. Don't use LCM when you need HCF, and vice versa.",
+          recallPrompt: null,
+          recallAnswer: null,
+        },
+        {
+          type: "remember",
+          title: "Remember",
+          content: "HCF is the greatest number that divides all given numbers exactly. LCM is when they meet again.",
+          recallPrompt: "Two bells ring every 12 and 15 minutes — when do they ring together?",
+          recallAnswer: "LCM(12, 15) = 60 minutes.",
+        },
+      ],
+    },
+  },
+};
+
+/**
+ * Get the teaching strategy for a concept.
+ * Returns null if no strategy is defined for the concept.
+ * @param {string} conceptId
+ * @returns {Object|null}
+ */
+function getLessonStrategy(conceptId) {
+  return LESSON_STRATEGIES[conceptId] || null;
+}
+
 /* ----------------------------------------------------------- Exports */
 
 export {
@@ -444,6 +947,8 @@ export {
   LESSON_STATES,
   ERROR_CATEGORIES,
   MASTERY_THRESHOLD,
+  LESSON_STRATEGIES,
+  getLessonStrategy,
   createQuestion,
   createSingleAnswerQuestion,
   step,

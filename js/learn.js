@@ -11,6 +11,9 @@ import {
   nextUnfinished,
   summary,
 } from "./progress.js";
+import {
+  orientation,
+} from "./orientation.js";
 import "../css/site.css";
 
 const params = new URLSearchParams(location.search);
@@ -109,5 +112,16 @@ if (nextLesson) {
   navContinue.href = lessonHref(nextLesson.slug, lessonState(nextLesson.slug).page);
   navContinue.textContent = progress.done === 0 ? "Start stage" : "Continue";
 }
+
+// Orientation bar
+const orient = orientation();
+const elDay = document.querySelector("#orient-day");
+const elPhase = document.querySelector("#orient-phase");
+const elConcept = document.querySelector("#orient-concept");
+const elActivity = document.querySelector("#orient-activity");
+if (elDay) elDay.textContent = String(orient.day);
+if (elPhase) elPhase.textContent = orient.phase;
+if (elConcept) elConcept.textContent = orient.conceptTitle;
+if (elActivity) elActivity.textContent = orient.activityLabel;
 
 void chapters;

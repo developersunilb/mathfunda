@@ -541,4 +541,8 @@ function boot() {
   fixOverflowDeferred();
 }
 
+/* --------------------------------------------------------------- Exports for block renderer */
+
+export { mountReveal, mountBalance, mountSlider, mountCircleRect, mountWidgetsIn };
+
 boot();

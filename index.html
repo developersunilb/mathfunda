@@ -37,27 +37,41 @@
     </header>
 
     <main id="main">
+      <!-- =====================================================================
+           LEVEL 1 — TODAY (required). One path: what should I do today?
+           ===================================================================== -->
+
+      <div class="orientation-bar">
+        <span>Day <span id="orient-day" class="orientation-step">1</span> of 45</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-phase" class="orientation-step">Foundation Repair</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-concept" class="orientation-step">Today's lesson</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-activity" class="orientation-step orientation-today">Read the lesson</span>
+      </div>
+
       <section class="hero">
         <div class="hero-copy">
-          <p class="eyebrow">CBSE MATHEMATICS · GANITA MANJARI</p>
-          <h1>Class 9 maths,<br /><em>one strong step at a time.</em></h1>
-          <p class="hero-lede">
-            Start with the eight foundations that everything else assumes. Read each
-            lesson like a small book, then lock it in with flashcards that come back
-            exactly when your memory needs them.
+          <p class="eyebrow">TODAY'S GOAL · REQUIRED</p>
+          <h1>What should I do today?</h1>
+          <p class="hero-lede" id="today-why">
+            One short lesson, then a few practice questions. Finish it and you're
+            done for today — nothing more is expected.
           </p>
-          <div class="hero-actions">
+          <div class="primary-cta-group">
             <a id="hero-continue" class="primary-button" href="#pathway">Start with the foundations</a>
             <a class="quiet-button" href="./diagnostic.html">Take the 20-question diagnostic</a>
             <input type="file" id="diagnostic-upload" accept=".json" style="display:none;" />
             <button class="quiet-button" id="diagnostic-upload-btn">Upload results JSON</button>
           </div>
-          <ul class="hero-facts">
-            <li><strong id="fact-lessons">18</strong><span>lessons</span></li>
-            <li><strong id="fact-cards">100</strong><span>recall cards</span></li>
-            <li><strong id="fact-progress">0%</strong><span>complete</span></li>
-            <li><strong id="fact-streak">0</strong><span>day streak</span></li>
-          </ul>
+          <div class="today-next">
+            <p class="eyebrow">NEXT STEP</p>
+            <a id="next-lesson-link" class="today-next-link" href="./reader.html?ch=learning-roadmap">
+              <span id="next-lesson-title">Master Learning Roadmap</span>
+              <small id="next-lesson-meta">12 min · Start here</small>
+            </a>
+          </div>
         </div>
 
         <aside class="hero-card" aria-label="Today">
@@ -76,14 +90,6 @@
             </div>
           </div>
 
-          <div class="today-next">
-            <p class="eyebrow">UP NEXT</p>
-            <a id="next-lesson-link" class="today-next-link" href="./reader.html?ch=learning-roadmap">
-              <span id="next-lesson-title">Master Learning Roadmap</span>
-              <small id="next-lesson-meta">12 min · Start here</small>
-            </a>
-          </div>
-
           <a id="today-cards" class="today-cards" href="./flashcards.html">
             <span class="today-cards-icon" aria-hidden="true">◧</span>
             <span>
@@ -100,6 +106,7 @@
         </aside>
       </section>
 
+      <!-- Resume exactly where stopped -->
       <section id="resume" class="resume-section" hidden>
         <div class="section-head">
           <div>
@@ -118,15 +125,28 @@
         </div>
       </section>
 
+      <!-- =====================================================================
+           LEVEL 3 — EXPLORE (optional). Never competes with today's goal.
+           ===================================================================== -->
+
+      <div class="level-band">
+        <span class="level-chip optional">Optional · Explore</span>
+        <span>
+          These are extra resources. Your today's goal above is what matters most.
+          <a href="#main" class="quiet-button" style="font-size:0.72rem;padding:0.15rem 0.5rem;">← Return to today's learning</a>
+        </span>
+      </div>
+
       <section id="pathway" class="pathway">
         <div class="section-head">
           <div>
-            <p class="eyebrow">THE PATHWAY</p>
-            <h2>Five stages, in a deliberate order</h2>
+            <p class="eyebrow">EXPLORE · OPTIONAL</p>
+            <h2>The pathway</h2>
           </div>
           <p class="section-note">
-            Do not skip to Class 9. Each stage assumes the one before it. You can
-            always jump ahead, but the recommended route is left to right.
+            Five stages in a deliberate order. These are optional extras — today's
+            goal (above) is your required work. You can always return here from any
+            page with "Return to today's learning."
           </p>
         </div>
         <div id="stage-cards" class="stage-cards"></div>
@@ -142,7 +162,7 @@
             check. Reading feels light because you only ever see one page at a time.
           </p>
           <div class="coach-actions">
-            <a class="primary-button" href="./methods.html">Learn the memory method</a>
+            <a class="quiet-button" href="./methods.html">Learn the memory method</a>
             <a class="quiet-button" href="./learn.html?stage=foundations">See all eight foundations</a>
           </div>
         </div>
@@ -168,12 +188,12 @@
       <section class="browse">
         <div class="section-head">
           <div>
-            <p class="eyebrow">BROWSE EVERYTHING</p>
+            <p class="eyebrow">EXPLORE · OPTIONAL</p>
             <h2>All lessons, in study order</h2>
           </div>
           <p class="section-note">
             Prefer to see the whole map? Open a stage below. Otherwise, stay with the
-            stage cards above and let the “Up next” panel guide you.
+            stage cards above and let the "Next step" panel guide you.
           </p>
         </div>
         <div id="stage-sections" class="stage-sections"></div>
@@ -184,22 +204,21 @@
           <p class="eyebrow">RETRIEVAL PRACTICE</p>
           <h3>Test yourself before you feel ready</h3>
           <p>Trying to remember is the act that strengthens memory — not re-reading.</p>
-          <a href="./flashcards.html">Open flashcards →</a>
+          <a class="quiet-button" href="./flashcards.html">Open flashcards →</a>
         </article>
         <article>
           <p class="eyebrow">SPACED REPETITION</p>
           <h3>Review at the edge of forgetting</h3>
           <p>Each card schedules its own next appearance, so revision stays short.</p>
-          <a href="./methods.html">See the schedule →</a>
+          <a class="quiet-button" href="./methods.html">See the schedule →</a>
         </article>
         <article>
           <p class="eyebrow">FORMULA VAULT</p>
           <h3>Every formula, one search away</h3>
           <p>Pulled straight from the lessons, grouped by topic, printable on one page.</p>
-          <a href="./formulas.html">Open the vault →</a>
+          <a class="quiet-button" href="./formulas.html">Open the vault →</a>
         </article>
       </section>
-    </main>
 
       <section class="behind-project">
         <div class="section-head">
@@ -210,16 +229,16 @@
           I built MathsFunda because I was a desperate father trying to teach my own
           child mathematics — and watching every lesson end in tears, mine as much as
           theirs. The textbooks moved too fast, the language felt like a wall, and the
-          fear of “not being good at maths” was setting in before Class 9 had even
+          fear of "not being good at maths" was setting in before Class 9 had even
           begun.
         </p>
         <p>
           So I started over. I broke each idea into the smallest possible step, wrote
           it in plain language, and tested it one evening at a time. Slowly, the panic
           turned into questions, the questions into answers, and the answers into
-          confidence. My child didn’t suddenly love maths — but they stopped fearing
-          it. That is the standard I hold every page on this site to: if it doesn’t
-          make a nervous learner feel a little more capable, it doesn’t belong here.
+          confidence. My child didn't suddenly love maths — but they stopped fearing
+          it. That is the standard I hold every page on this site to: if it doesn't
+          make a nervous learner feel a little more capable, it doesn't belong here.
         </p>
         <div class="story-signature">
           — A father who once stared at a worksheet and wanted to walk away
@@ -230,12 +249,12 @@
         <p><strong>Educational disclaimer:</strong> MathsFunda is a supplementary
         learning resource for CBSE Class 9 mathematics. It is aligned with the
         Ganita Manjari framework and the NCERT syllabus, but it is not a replacement
-        for classroom teaching, your school’s prescribed textbook, or your teacher’s
+        for classroom teaching, your school's prescribed textbook, or your teacher's
         guidance.</p>
         <p>
           All formulas, examples and practice questions are provided for educational
           purposes. While we take care to keep the content accurate, mathematics is
-          precise — if you spot an error or something that doesn’t match your school’s
+          precise — if you spot an error or something that doesn't match your school's
           method, please check with your teacher before using it in an examination
           context.</p>
         <p>
@@ -275,5 +294,6 @@
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script type="module" src="/js/landing.js"></script>
+    <script type="module" src="/js/orientation.js"></script>
   </body>
 </html>
