@@ -97,7 +97,6 @@ const modeButtons = document.querySelectorAll(".mode-btn");
 let planData = null;
 let dailyPlan = [];
 let completion = {}; // { [conceptId]: boolean }
-let currentDay = 1;
 let studyMode = "normal";
 let concepts = {}; // { [conceptId]: concept entry }
 
