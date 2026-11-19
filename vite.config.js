@@ -20,6 +20,7 @@ export default defineConfig({
         formulas: page("formulas"),
         methods: page("methods"),
         admin: page("admin"),
+        pilottest: page("pilottest"),
       },
     },
   },
