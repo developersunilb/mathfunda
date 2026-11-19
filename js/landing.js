@@ -302,9 +302,11 @@ if (uploadInput && uploadBtn) {
           localStorage.setItem("mathfunda-diagnostic-results", JSON.stringify(results));
           localStorage.setItem("mathfunda-diagnostic-live", JSON.stringify(results));
 
-          diagnosticButton.textContent = "Start Study plan";
-          diagnosticButton.href = "./study-plan-personalized.html";
-          diagnosticButton.className = "primary-button";
+          if (diagnosticButton) {
+            diagnosticButton.textContent = "Start Study plan";
+            diagnosticButton.href = "./study-plan-personalized.html";
+            diagnosticButton.className = "primary-button";
+          }
 
           uploadInput.value = "";
           alert("Diagnostic results loaded. Click 'Start Study plan' to begin.");
