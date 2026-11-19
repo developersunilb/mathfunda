@@ -5,7 +5,7 @@
  */
 
 const chapterModules = (typeof import.meta.glob === "function")
-  ? import.meta.glob("../chapters/**/*.md", {
+  ? import.meta.glob("chapters/**/*.md", {
       query: "?raw",
       import: "default",
       eager: true,
