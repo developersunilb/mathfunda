@@ -20,14 +20,20 @@ const params = new URLSearchParams(location.search);
 const requested = params.get("stage") || STAGES[0].id;
 const stage = STAGE_BY_ID[requested] || STAGES[0];
 
-const stageLessons = stageChapters(stage.id).filter((lesson) => !lesson.resource);
-const progress = summary(stageLessons.map((lesson) => lesson.slug));
+const allStageChapters = stageChapters(stage.id);
+const stageLessons = allStageChapters.filter((lesson) => !lesson.resource);
+// Fallback: if no lessons after filtering, use all stage chapters
+const effectiveLessons = stageLessons.length > 0 ? stageLessons : allStageChapters;
+const progress = summary(effectiveLessons.map((lesson) => lesson.slug));
+
+// Debug: log stage chapter info for troubleshooting
+console.log("[learn] stage:", stage.id, "part:", stage.part, "allChapters:", allStageChapters.length, "filtered:", stageLessons.length, "effective:", effectiveLessons.length);
 
 document.querySelector("#stage-kicker").textContent = stage.kicker.toUpperCase();
 document.querySelector("#stage-title").textContent = stage.title;
 document.querySelector("#stage-blurb").textContent = stage.blurb;
-document.querySelector("#stage-count").textContent = `${stageLessons.length} lesson${stageLessons.length === 1 ? "" : "s"}`;
-document.querySelector("#stage-minutes").textContent = `${stageLessons.reduce((sum, lesson) => sum + lesson.minutes, 0)} min of reading`;
+document.querySelector("#stage-count").textContent = `${effectiveLessons.length} lesson${effectiveLessons.length === 1 ? "" : "s"}`;
+document.querySelector("#stage-minutes").textContent = `${effectiveLessons.reduce((sum, lesson) => sum + lesson.minutes, 0)} min of reading`;
 document.querySelector("#stage-done").textContent = `${progress.done} complete`;
 document.title = `${stage.title} · MathsFunda`;
 
@@ -35,12 +41,17 @@ const ring = document.querySelector("#stage-ring");
 ring.style.setProperty("--value", progress.percent);
 document.querySelector("#stage-percent").textContent = `${progress.percent}%`;
 
-const nextSlug = nextUnfinished(stageLessons.map((lesson) => lesson.slug));
-const nextLesson = stageLessons.find((lesson) => lesson.slug === nextSlug) || stageLessons[0];
+const nextSlug = nextUnfinished(effectiveLessons.map((lesson) => lesson.slug));
+const nextLesson = effectiveLessons.find((lesson) => lesson.slug === nextSlug) || effectiveLessons[0];
 const continueButton = document.querySelector("#stage-continue");
-continueButton.href = nextLesson ? lessonHref(nextLesson.slug, lessonState(nextLesson.slug).page) : "./index.html";
-continueButton.textContent =
-  progress.done === 0 ? "Start stage" : progress.done === progress.total ? "Review stage" : "Continue stage";
+if (nextLesson) {
+  continueButton.href = lessonHref(nextLesson.slug, lessonState(nextLesson.slug).page);
+  continueButton.textContent =
+    progress.done === 0 ? "Start stage" : progress.done === progress.total ? "Review stage" : "Continue stage";
+} else {
+  continueButton.href = "./index.html";
+  continueButton.textContent = "No lessons available";
+}
 document.querySelector("#stage-progress-copy").textContent =
   progress.done === 0
     ? "Start with the first lesson."
@@ -63,7 +74,7 @@ STAGES.forEach((entry) => {
 
 const list = document.querySelector("#lesson-list");
 
-stageLessons.forEach((lesson, index) => {
+effectiveLessons.forEach((lesson, index) => {
   const done = isLessonDone(lesson.slug);
   const saved = lessonState(lesson.slug);
   const item = document.createElement("li");
