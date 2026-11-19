@@ -119,6 +119,8 @@ const resumeLink = document.getElementById("resume-link");
 const resumeTitle = document.getElementById("resume-title");
 const resumePage = document.getElementById("resume-page");
 
+const last = lastLesson();
+
 if (last && last.slug && !isLessonDone(last.slug)) {
   const chapter = chapters.find((c) => c.slug === last.slug);
   const saved = lessonState(last.slug);

@@ -44,7 +44,6 @@ import {
   currentLevel,
   startSession,
   nextStep,
-  currentDay,
   currentPhase,
   currentConcept,
   currentActivity,
@@ -99,6 +98,7 @@ let dailyPlan = [];
 let completion = {}; // { [conceptId]: boolean }
 let studyMode = "normal";
 let concepts = {}; // { [conceptId]: concept entry }
+let currentDay = 1;
 
 function showToast(message) {
   const toast = document.querySelector("#toast");
