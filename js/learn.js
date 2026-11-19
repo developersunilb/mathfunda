@@ -41,8 +41,7 @@ const ring = document.querySelector("#stage-ring");
 ring.style.setProperty("--value", progress.percent);
 document.querySelector("#stage-percent").textContent = `${progress.percent}%`;
 
-const nextSlug = nextUnfinished(effectiveLessons.map((lesson) => lesson.slug));
-const nextLesson = effectiveLessons.find((lesson) => lesson.slug === nextSlug) || effectiveLessons[0];
+const nextLesson = effectiveLessons[0];
 const continueButton = document.querySelector("#stage-continue");
 if (nextLesson) {
   continueButton.href = lessonHref(nextLesson.slug, lessonState(nextLesson.slug).page);
