@@ -26,8 +26,14 @@ const stageLessons = allStageChapters.filter((lesson) => !lesson.resource);
 const effectiveLessons = stageLessons.length > 0 ? stageLessons : allStageChapters;
 const progress = summary(effectiveLessons.map((lesson) => lesson.slug));
 
-// Debug: log stage chapter info for troubleshooting
-console.log("[learn] stage:", stage.id, "part:", stage.part, "allChapters:", allStageChapters.length, "filtered:", stageLessons.length, "effective:", effectiveLessons.length);
+// Debug logging
+console.log("[learn] stage.id:", stage.id, "stage.part:", stage.part);
+console.log("[learn] chapters length:", chapters.length, "first chapter:", chapters[0]?.part, chapters[0]?.slug);
+console.log("[learn] STAGE_BY_ID foundations:", STAGE_BY_ID["foundations"]?.part, STAGE_BY_ID["foundations"]?.id);
+console.log("[learn] allStageChapters:", allStageChapters.length, "stageLessons:", stageLessons.length, "effective:", effectiveLessons.length);
+if (allStageChapters.length > 0) {
+  console.log("[learn] first allStageChapters:", allStageChapters[0].slug, allStageChapters[0].part);
+}
 
 document.querySelector("#stage-kicker").textContent = stage.kicker.toUpperCase();
 document.querySelector("#stage-title").textContent = stage.title;
