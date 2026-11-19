@@ -12,6 +12,9 @@ const chapterModules = (typeof import.meta.glob === "function")
     })
   : {};
 
+// Debug logging for chapter loading
+console.log("[curriculum] chapterModules keys:", Object.keys(chapterModules).slice(0, 5), "count:", Object.keys(chapterModules).length);
+
 const CHAPTER_ORDER = {
   "learning-roadmap": 1,
   "study-plan-45-days": 2,
