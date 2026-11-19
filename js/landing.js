@@ -53,17 +53,24 @@ if (orientActivity) orientActivity.textContent = orient.activityLabel;
 const overall = summary(allSlugs);
 const streak = streakDays();
 
-document.querySelector("#fact-lessons").textContent = String(chapters.length);
-document.querySelector("#fact-cards").textContent = String(totalCards());
-document.querySelector("#fact-progress").textContent = `${overall.percent}%`;
-document.querySelector("#fact-streak").textContent = String(streak);
+const factLessonsEl = document.querySelector("#fact-lessons");
+const factCardsEl = document.querySelector("#fact-cards");
+const factProgressEl = document.querySelector("#fact-progress");
+const factStreakEl = document.querySelector("#fact-streak");
+if (factLessonsEl) factLessonsEl.textContent = String(chapters.length);
+if (factCardsEl) factCardsEl.textContent = String(totalCards());
+if (factProgressEl) factProgressEl.textContent = `${overall.percent}%`;
+if (factStreakEl) factStreakEl.textContent = String(streak);
 
 const ring = document.querySelector("#overall-ring");
-ring.style.setProperty("--value", overall.percent);
-document.querySelector("#overall-percent").textContent = `${overall.percent}%`;
-document.querySelector("#overall-title").textContent =
+if (ring) ring.style.setProperty("--value", overall.percent);
+const overallPercentEl = document.querySelector("#overall-percent");
+if (overallPercentEl) overallPercentEl.textContent = `${overall.percent}%`;
+const overallTitleEl = document.querySelector("#overall-title");
+if (overallTitleEl) overallTitleEl.textContent =
   overall.done === 0 ? "Your course" : overall.done === overall.total ? "Course complete" : "Course in progress";
-document.querySelector("#overall-detail").textContent =
+const overallDetailEl = document.querySelector("#overall-detail");
+if (overallDetailEl) overallDetailEl.textContent =
   overall.done === 0
     ? "No lessons completed yet. Start with the roadmap."
     : `${overall.done} of ${overall.total} lessons complete.`;
