@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MathsFunda — Human Pilot Test</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #1a1a1a;
+        line-height: 1.5;
+        font-size: 13px;
+        background: #fff;
+      }
+      .page {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+        margin-bottom: 0.25rem;
+        color: #1a1a1a;
+      }
+      .subtitle {
+        font-size: 0.85rem;
+        color: #666;
+        margin-bottom: 1.5rem;
+      }
+      h2 {
+        font-size: 1.15rem;
+        margin: 1.5rem 0 0.75rem;
+        border-bottom: 2px solid #e0e0e0;
+        padding-bottom: 0.35rem;
+      }
+      h3 {
+        font-size: 0.95rem;
+        margin: 1rem 0 0.5rem;
+      }
+      p, li {
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+      ul, ol {
+        padding-left: 1.5rem;
+        margin: 0.5rem 0 0.75rem;
+      }
+      li {
+        margin-bottom: 0.3rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0.75rem 0 1.25rem;
+        font-size: 0.82rem;
+      }
+      th, td {
+        border: 1px solid #ccc;
+        padding: 0.45rem 0.6rem;
+        text-align: left;
+      }
+      th {
+        background: #f5f5f5;
+        font-weight: 600;
+      }
+      .section {
+        break-inside: avoid;
+      }
+      .obs-section {
+        border: 1px solid #ddd;
+        padding: 0.9rem 1rem;
+        margin: 0.9rem 0;
+        break-inside: avoid;
+      }
+      .obs-label {
+        font-weight: 600;
+        display: inline-block;
+        width: 180px;
+      }
+      .obs-blank {
+        display: inline-block;
+        border-bottom: 1px dotted #999;
+        min-width: 200px;
+      }
+      .checkbox {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 1.5px solid #555;
+        margin-right: 0.4rem;
+        vertical-align: text-bottom;
+      }
+      .important {
+        background: #fff8e1;
+        border: 1px solid #ffd54f;
+        padding: 0.7rem 1rem;
+        margin: 0.9rem 0;
+        border-radius: 4px;
+      }
+      .print-button {
+        display: block;
+        margin: 1.5rem auto;
+        padding: 0.7rem 1.5rem;
+        background: #1a1a1a;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.9rem;
+      }
+      .print-button:hover {
+        background: #333;
+      }
+      @media print {
+        .no-print { display: none; }
+        .page { max-width: 100%; padding: 0.5rem; }
+        body { font-size: 11px; }
+        h1 { font-size: 1.3rem; }
+        h2 { font-size: 1rem; }
+        .obs-section, table { break-inside: avoid; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <h1>MathsFunda — Human Pilot Test</h1>
+      <p class="subtitle">Stage 3 · Lesson Intelligence Pilot Study · Observer Guide</p>
+
+      <button class="print-button" onclick="window.print()">🖨️ Print to PDF</button>
+
+      <div class="section">
+        <h2>Purpose</h2>
+        <p>Determine whether the Lesson Intelligence architecture actually helps a Class 9 child understand and remember mathematics better.</p>
+        <div class="important">
+          <strong>Your role:</strong> Observer, not teacher. Do not explain lessons during the session. Record what happens; interpret later.
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Setup</h2>
+        <table>
+          <tr><td style="width:35%"><strong>Date</strong></td><td class="obs-blank"></td></tr>
+          <tr><td><strong>Learner</strong></td><td class="obs-blank"></td></tr>
+          <tr><td><strong>Location</strong></td><td class="obs-blank"></td></tr>
+          <tr><td><strong>Device</strong></td><td class="obs-blank"></td></tr>
+        </table>
+        <p><strong>Four pilot concepts</strong> (one per session):</p>
+        <ol>
+          <li>Linear equations — <code>foundation-5-basic-algebra</code></li>
+          <li>Circle Area — <code>geometry-basics</code></li>
+          <li>Exponents — <code>foundation-4-powers-and-roots</code></li>
+          <li>HCF/LCM — <code>foundation-1-numbers-and-signs</code></li>
+        </ol>
+      </div>
+
+      <div class="section">
+        <h2>Session Structure</h2>
+        <p><strong>Day 0 — Learn concept (~30–45 min per concept):</strong></p>
+        <ol>
+          <li>Open MathsFunda at <code>./index.html</code></li>
+          <li>Follow "Today's Learning" to the concept</li>
+          <li>Read the lesson (with teaching blocks if strategy-enhanced)</li>
+          <li>Complete practice questions</li>
+          <li>If misconception detected → targeted intervention appears automatically</li>
+          <li>Complete practice → Memory Journey opens automatically</li>
+          <li>Close Memory Journey when done</li>
+        </ol>
+        <p><strong>Day 1 or 2 — Delayed recall (~10–15 min per concept):</strong></p>
+        <ol>
+          <li>Without reopening the lesson, give the transfer question</li>
+          <li>Ask the learner to explain their reasoning out loud</li>
+          <li>Record what they remember and what they got wrong</li>
+        </ol>
+      </div>
+
+      <div class="section">
+        <h2>What to Observe</h2>
+        <ul>
+          <li><strong>Confusion:</strong> Where does the learner stop understanding? Hesitation? Rereading? Skipping?</li>
+          <li><strong>Aha moment:</strong> When does the learner suddenly understand? "Oh, I get it." Changing from guessing to explaining.</li>
+          <li><strong>Friction:</strong> What feels unnecessary or annoying? UI elements, clicking, reading load.</li>
+          <li><strong>Mistakes:</strong> Let the MathsFunda flow respond. Observe: Mistake → feedback → intervention → retry → explanation.</li>
+          <li><strong>Recovery:</strong> Does the child recover independently? How?</li>
+          <li><strong>Memory Journey:</strong> Does the child engage with recall? Attempt answer before revealing? Skip or reveal immediately?</li>
+          <li><strong>Transfer:</strong> Can they solve a new problem with the same idea?</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Raw Observation Template</h2>
+        <p>Fill in during/after each session:</p>
+
+        <div class="obs-section">
+          <h3>Concept: <span class="obs-blank"></span> Date: <span class="obs-blank"></span></h3>
+          <p><span class="obs-label">Confusion:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Aha moment:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Biggest friction:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Mistake made:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">How she recovered:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Memory Journey reaction:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Immediate explanation (in her own words):</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">My score (1–5):</span> <span class="obs-blank" style="width:80px"></span></p>
+        </div>
+
+        <div class="obs-section">
+          <h3>Concept: <span class="obs-blank"></span> Date: <span class="obs-blank"></span></h3>
+          <p><span class="obs-label">Confusion:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Aha moment:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Biggest friction:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Mistake made:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">How she recovered:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Memory Journey reaction:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Immediate explanation (in her own words):</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">My score (1–5):</span> <span class="obs-blank" style="width:80px"></span></p>
+        </div>
+
+        <div class="obs-section">
+          <h3>Concept: <span class="obs-blank"></span> Date: <span class="obs-blank"></span></h3>
+          <p><span class="obs-label">Confusion:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Aha moment:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Biggest friction:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Mistake made:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">How she recovered:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Memory Journey reaction:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Immediate explanation (in her own words):</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">My score (1–5):</span> <span class="obs-blank" style="width:80px"></span></p>
+        </div>
+
+        <div class="obs-section">
+          <h3>Concept: <span class="obs-blank"></span> Date: <span class="obs-blank"></span></h3>
+          <p><span class="obs-label">Confusion:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Aha moment:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Biggest friction:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Mistake made:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">How she recovered:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Memory Journey reaction:</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">Immediate explanation (in her own words):</span> <span class="obs-blank" style="width:100%"></span></p>
+          <p><span class="obs-label">My score (1–5):</span> <span class="obs-blank" style="width:80px"></span></p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Delayed Recall Questions (Day 1 or 2)</h2>
+        <p><strong>Do not reopen the lesson first. Do not provide hints.</strong></p>
+        <table>
+          <thead>
+            <tr><th>Concept</th><th>Transfer Question</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Linear equations</strong></td><td>Give <code>3x - 4 = 11</code>. Solve it and explain why you subtract 4 from both sides first, then divide by 3.</td></tr>
+            <tr><td><strong>Circle Area</strong></td><td>Give radius 10 cm. Find the area. Then ask: "Why did you use the radius twice in the formula?"</td></tr>
+            <tr><td><strong>Exponents</strong></td><td>Give <code>3⁴ × 3²</code>. Simplify it and explain what happens to the exponents and why.</td></tr>
+            <tr><td><strong>HCF/LCM</strong></td><td>"Two bells ring every 14 and 21 minutes. When will they ring together?" Ask whether this is HCF or LCM and why.</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Delayed recall results:</strong></p>
+        <table>
+          <thead>
+            <tr><th>Concept</th><th>Got answer right?</th><th>Could explain why?</th><th>Score (1–5)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Linear equations</td><td></td><td></td><td></td></tr>
+            <tr><td>Circle Area</td><td></td><td></td><td></td></tr>
+            <tr><td>Exponents</td><td></td><td></td><td></td></tr>
+            <tr><td>HCF/LCM</td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <h2>1–5 Scoring Sheet (after all sessions)</h2>
+        <table>
+          <thead>
+            <tr><th>Dimension</th><th>Linear</th><th>Circle Area</th><th>Exponents</th><th>HCF/LCM</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Initial understanding</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Conceptual clarity</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Aha moment</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Low confusion</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Practice independence</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Mistake correction</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Immediate recall</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Delayed recall</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Transfer to new problem</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Engagement</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Low UI friction</td><td></td><td></td><td></td><td></td></tr>
+            <tr><td>Overall teaching effectiveness</td><td></td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:0.8rem;color:#666;">For Confusion and UI friction: 1 = severe/problematic, 5 = very little</p>
+      </div>
+
+      <div class="section">
+        <h2>Guardrails</h2>
+        <ul>
+          <li><strong>Do NOT:</strong> Explain the lesson to the learner while they are using it</li>
+          <li><strong>Do NOT:</strong> Optimize or change lessons after the first child</li>
+          <li><strong>Do NOT:</strong> Add features, games, streaks, or rewards based on early impressions</li>
+          <li><strong>Do NOT:</strong> Score everything immediately during the session</li>
+          <li><strong>Do NOT:</strong> Convert observations into conclusions prematurely</li>
+        </ul>
+        <ul>
+          <li><strong>DO:</strong> Record observations as they happen</li>
+          <li><strong>DO:</strong> Let the MathsFunda flow respond to mistakes naturally</li>
+          <li><strong>DO:</strong> Note unexpected behaviour (ignoring explanations, getting excited by unexpected things, using own methods)</li>
+          <li><strong>DO:</strong> Share raw observations first; interpretation comes after</li>
+        </ul>
+      </div>
+
+      <div class="important">
+        <strong>Share with me after the study:</strong>
+        <ol>
+          <li>The completed raw observation templates (even if messy)</li>
+          <li>The delayed recall results</li>
+          <li>The 1–5 scoring sheet</li>
+          <li>Any unexpected behaviour you noticed</li>
+        </ol>
+        <p style="margin-top:0.5rem;font-weight:600;">The product needs a child more than it needs another feature. The engineering is done. Now observe.</p>
+      </div>
+
+      <button class="print-button" onclick="window.print()" style="margin-bottom:2rem;">🖨️ Print to PDF</button>
+    </div>
+  </body>
+</html>
