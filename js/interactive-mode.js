@@ -401,6 +401,23 @@ function mountWidgetsInAllPages() {
   document.querySelectorAll(".reader-page-body").forEach(mountWidgetsIn);
 }
 
+function unmountWidgetsInAllPages() {
+  document.querySelectorAll(MARKER_SELECTOR).forEach((el) => {
+    if (!el.dataset.mfMounted) return;
+    if (el.dataset.mfOriginalHtml !== undefined) {
+      el.innerHTML = el.dataset.mfOriginalHtml;
+      delete el.dataset.mfOriginalHtml;
+    } else {
+      const answer = el.querySelector(".mf-reveal-answer");
+      const btn = el.querySelector(".mf-reveal-btn");
+      if (answer) answer.style.display = "none";
+      if (btn) btn.textContent = "Show solution";
+    }
+    el.classList.remove("mf-widget");
+    delete el.dataset.mfMounted;
+  });
+}
+
 /* ------------------------------------------------------------------ Overflow / page-shift */
 
 const FOOTER_ROOM = 150;
@@ -415,7 +432,7 @@ function widgetWrappersOn(body) {
 
 function shiftOverflowingWidgets() {
   const api = window.__mfReaderAPI;
-  if (!api) return false;
+  if (!api || !enabled) return false;
 
   const pages = document.querySelectorAll(".reader-page-body");
   let moved = false;
@@ -435,11 +452,11 @@ function shiftOverflowingWidgets() {
   }
 
   if (moved) {
-    // Re-mount widgets (some moved pages) and re-paginate to settle heights.
+    // Re-mount the moved widgets so they behave correctly on their new page.
+    // Do NOT rebuild the pages here: buildPages() re-renders from the source
+    // markdown, which puts the widget straight back where it overflowed and
+    // makes the observer loop forever.
     mountWidgetsInAllPages();
-    api.buildPages();
-    mountWidgetsInAllPages();
-    api.renderPage(false);
     return true;
   }
   return false;
@@ -453,6 +470,7 @@ function fixOverflow(maxPasses = 6) {
 }
 
 function fixOverflowDeferred() {
+  if (!enabled) return;
   // Give the browser time to lay out newly mounted widgets, then check.
   // Retry a few times in case layout happens across multiple frames
   // (canvas sizing, control wrapping, zoom changes, etc.).
@@ -523,6 +541,7 @@ function boot() {
   };
 
   const observer = new MutationObserver((mutations) => {
+    if (!enabled) return;
     let mounted = false;
     for (const m of mutations) {
       for (const node of m.addedNodes) {
@@ -537,8 +556,10 @@ function boot() {
   const shell = document.getElementById("reader-page-shell");
   if (shell) observer.observe(shell, { childList: true, subtree: true });
 
-  mountWidgetsInAllPages();
-  fixOverflowDeferred();
+  if (enabled) {
+    mountWidgetsInAllPages();
+    fixOverflowDeferred();
+  }
 }
 
 /* --------------------------------------------------------------- Exports for block renderer */

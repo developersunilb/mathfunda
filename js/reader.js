@@ -43,6 +43,7 @@ import {
   getQuestion,
   answersEquivalent,
   validateAllQuestions,
+  MASTERY_THRESHOLD,
 } from "./content-model.js";
 import { getStrategy, resolveComposition, getCompositionType, matchMisconception, getMisconception, getMemoryJourney, hasMemoryJourney } from "./lesson-intelligence.js";
 import { renderBlocks, renderBlock, renderMisconceptionIntervention, renderMemoryJourneyElement } from "./block-renderer.js";
@@ -429,6 +430,7 @@ function buildPages() {
   }
 
   paginateChapter(builder, { title: chapter.title, html: lessonHtml }, label);
+  pages = builder.pages;
 
   // Mount any interactive widgets found in page bodies.
   // This covers both existing Markdown widget markers (e.g. circle-rect in
@@ -808,10 +810,6 @@ let memoryJourneyStats = {
 };
 
 let memoryJourneyConceptId = null;
-
-function createMemoryJourneyOverlay() {
-memoryRecallAnswerDisplayEl = null;
-memoryNextBtnEl = null;
 
 function createMemoryJourneyOverlay() {
   if (memoryJourneyOverlay) return;
@@ -1523,6 +1521,8 @@ async function boot() {
   }[chapter.slug];
   if (deckLink) tocFlashcards.href = `./flashcards.html?deck=${deckLink}`;
   tocEdit.href = `./studio.html?ch=${encodeURIComponent(chapter.slug)}`;
+  const exportLink = document.querySelector("#reader-export-link");
+  if (exportLink) exportLink.href = `./studio.html?ch=${encodeURIComponent(chapter.slug)}`;
 
   if (document.fonts?.ready) {
     try {
@@ -1578,13 +1578,14 @@ async function boot() {
   void stageChapters(chapter.stage);
 
   // Shift any widgets that collide with the reader footer onto the next page.
-      if (window.__mfInteractive?.fixOverflowDeferred) {
-        window.__mfInteractive.fixOverflowDeferred();
-      }
-    }
+  if (window.__mfInteractive?.fixOverflowDeferred) {
+    window.__mfInteractive.fixOverflowDeferred();
   }
+}
 
-  boot();
+boot().catch((error) => {
+  console.error("[reader] boot failed", error);
+});
 
 window.__mfReaderAPI = {
   buildPages,

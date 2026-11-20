@@ -20,3 +20,6 @@ Thumbs.db
 # local issue screenshots
 issues/
 
+# Playwright run artifacts
+test-results/
+

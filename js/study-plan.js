@@ -391,8 +391,12 @@ function renderRevisionTask(c) {
 /* --------------------------------------------------------------- Recommendations (left panel) */
 
 function renderRecommendations() {
+  // The recommendations panel was removed from the page; skip quietly so the
+  // rest of init() (including the study-mode buttons) still wires up.
+  if (!recommendationSection || !recommendationList) return;
+
   if (!dailyPlan || dailyPlan.length === 0) {
-    if (recommendationSection) recommendationSection.hidden = true;
+    recommendationSection.hidden = true;
     return;
   }
 

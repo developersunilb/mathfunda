@@ -132,6 +132,7 @@ if (last && last.slug && !isLessonDone(last.slug)) {
   }
 }
 
+let nextSlug;
 if (last && !isLessonDone(last.slug)) {
   nextSlug = last.slug;
 } else {

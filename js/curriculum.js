@@ -4,13 +4,14 @@
  * import from here, so adding a chapter only needs an entry below.
  */
 
-const chapterModules = (typeof import.meta.glob === "function")
-  ? import.meta.glob("./../chapters/**/*.md", {
-      query: "?raw",
-      import: "default",
-      eager: true,
-    })
-  : {};
+// Vite replaces this call at build time. Do not wrap it in
+// `typeof import.meta.glob === "function"` — that check is false at runtime,
+// so the glob would silently fall back to an empty object.
+const chapterModules = import.meta.glob("./../chapters/**/*.md", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+});
 
 // Debug logging for chapter loading
 console.log("[curriculum] chapterModules keys:", Object.keys(chapterModules).slice(0, 5), "count:", Object.keys(chapterModules).length);
