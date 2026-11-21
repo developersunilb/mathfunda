@@ -5,9 +5,8 @@ import { VitePWA } from "vite-plugin-pwa";
 const page = (name) => fileURLToPath(new URL(`./${name}.html`, import.meta.url));
 
 export default defineConfig({
-  // Relative base so the build works at a domain root or under
-  // https://<user>.github.io/<repo>/ without editing the config.
-  base: "./",
+  // GitHub Pages subdirectory hosting at https://<user>.github.io/<repo>/
+  base: "/mathfunda/",
   build: {
     rollupOptions: {
       input: {
@@ -34,8 +33,8 @@ export default defineConfig({
         description:
           "A step-by-step CBSE Class 9 maths course with a flip-book reader, spaced-repetition flashcards and a formula vault.",
         lang: "en",
-        start_url: ".",
-        scope: ".",
+        start_url: "/mathfunda/",
+        scope: "/mathfunda/",
         display: "standalone",
         orientation: "any",
         background_color: "#f4f6f8",

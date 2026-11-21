@@ -294,6 +294,37 @@
     </footer>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script>
+      // PWA safety net.
+      //
+      // 1. If a new service worker takes control while this page is open, reload
+      //    once so we never keep running against stale/deleted asset chunks.
+      // 2. If the module scripts fail to run (e.g. an old cache points at a
+      //    removed bundle), don't leave the formula panel stuck on "Loading…".
+      (function () {
+        var hadController = false;
+        try {
+          hadController = Boolean(navigator.serviceWorker && navigator.serviceWorker.controller);
+          if (navigator.serviceWorker) {
+            var reloading = false;
+            navigator.serviceWorker.addEventListener("controllerchange", function () {
+              if (!hadController || reloading) return;
+              reloading = true;
+              location.reload();
+            });
+          }
+        } catch (error) {
+          /* service workers unavailable: continue normally */
+        }
+
+        window.setTimeout(function () {
+          var el = document.getElementById("formula-of-day");
+          if (el && /Loading/.test(el.textContent)) {
+            el.innerHTML = '<a href="./formulas.html">Open the formula vault →</a>';
+          }
+        }, 8000);
+      })();
+    </script>
     <script type="module" src="/js/landing.js"></script>
     <script type="module" src="/js/orientation.js"></script>
   </body>
