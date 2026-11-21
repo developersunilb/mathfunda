@@ -20,6 +20,7 @@ export default defineConfig({
         methods: page("methods"),
         admin: page("admin"),
         pilottest: page("pilottest"),
+        studyPlanPersonalized: page("study-plan-personalized"),
       },
     },
   },
