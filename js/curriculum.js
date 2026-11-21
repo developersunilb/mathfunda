@@ -7,7 +7,7 @@
 // Vite replaces this call at build time. Do not wrap it in
 // `typeof import.meta.glob === "function"` — that check is false at runtime,
 // so the glob would silently fall back to an empty object.
-const chapterModules = import.meta.glob("./../chapters/**/*.md", {
+const chapterModules = import.meta.glob("../chapters/**/*.md", {
   query: "?raw",
   import: "default",
   eager: true,
