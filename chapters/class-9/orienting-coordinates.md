@@ -326,7 +326,7 @@ Since AB² + AC² = BC², the converse of the Pythagorean theorem applies — **
 
 ## 11. Real-Life Application
 
-### Question 12
+### Question 22
 A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
 
 <details>
@@ -337,7 +337,7 @@ A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then t
 - Total ≈ 5 + 5.66 + 10.63 = **21.29 km**
 </details>
 
-### Question 19
+### Question 23
 A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger runs around the boundary twice. What distance does he cover?
 
 <details>
@@ -349,7 +349,7 @@ Length = 4 - (-5) = 9 units. Width = 3 - (-2) = 5 units. Perimeter = 2(9+5) = 28
 
 ## 12. Retrieval Practice
 
-### Question 13
+### Question 24
 Without looking back, write the coordinates of a point in Quadrant III.
 
 <details>
@@ -357,7 +357,7 @@ Without looking back, write the coordinates of a point in Quadrant III.
 (-3, -5) — both coordinates negative
 </details>
 
-### Question 21
+### Question 25
 Write the distance formula from memory.
 
 <details>
@@ -365,7 +365,7 @@ Write the distance formula from memory.
 √((x₂ - x₁)² + (y₂ - y₁)²)
 </details>
 
-### Question 22
+### Question 26
 Complete the table:
 
 | Point | Quadrant |
@@ -393,7 +393,7 @@ Complete the table:
 
 ---
 
-## 12. Formula Reference (Formula Vault)
+## 14. Formula Reference (Formula Vault)
 
 | Formula | When to Use |
 |---|---|
@@ -434,9 +434,9 @@ Complete the table:
 23. Perimeter = 28 units, Two rounds = 52 units
 
 **Retrieval Practice:**
-23. (-3, -5) (example)
-24. √((x₂-x₁)² + (y₂-y₁)²)
-25. (4, -3)→IV, (-2, 5)→II, (-4, -1)→III, (0, 7)→on y-axis
+24. (-3, -5) (example)
+25. √((x₂-x₁)² + (y₂-y₁)²)
+26. (4, -3)→IV, (-2, 5)→II, (-4, -1)→III, (0, 7)→on y-axis
 
 ---
 
