@@ -14,22 +14,6 @@ Coordinates give us a **standard way to describe location**. Whether you are nav
 
 ---
 
-## 3. Prior Knowledge Activation
-
-Before we begin, let's recall what you already know:
-
-| Concept | What You Should Know |
-|---|---|
-| **Number line** | Positive numbers to the right of zero, negative numbers to the left |
-| **Number line operations** | Moving right = adding, moving left = subtracting |
-| **Two perpendicular lines** | Perpendicular lines intersect at 90° |
-| **Ordered pairs** | A pair of numbers written as `(x, y)` where order matters |
-
-> **Quick Check:** On a number line, if you start at 2 and move 5 units left, where do you land?  
-> *Answer: -3. (You moved 5 units in the negative direction: 2 - 5 = -3)*
-
----
-
 ## 3. Discover: The Cartesian Plane
 
 ### 3.1 The Idea
@@ -326,8 +310,8 @@ Since AB² + AC² = BC², the converse of the Pythagorean theorem applies — **
 
 ## 11. Real-Life Application
 
-### Question 12
-A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
+### Question 22
+A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled? *(Each grid unit represents 1 kilometre.)*
 
 <details>
 <summary>Click for solution</summary>
@@ -337,7 +321,7 @@ A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then t
 - Total ≈ 5 + 5.66 + 10.63 = **21.29 km**
 </details>
 
-### Question 19
+### Question 23
 A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger runs around the boundary twice. What distance does he cover?
 
 <details>
@@ -424,7 +408,7 @@ Complete the table:
 11. Collinear (AB + BC = AC)
 12. AB = 10 units, BC = 6 units. Total = 16 units
 13. Perimeter = 28 units, Two rounds = 56 units
-14. Perimeter = 2(6+4) = 20 units
+14. Perimeter = 20 units
 15. (0, 4)
 16. (3.5, 4.5)
 17. B(3, -1) and D(-1, 3)
@@ -432,8 +416,8 @@ Complete the table:
 **Reasoning & Error Detection:**
 18. No. Distance = 6 units.
 19. No. Midpoint = (4, 7).
-20. Yes, collinear (AB + BC = AC).
-21. Yes, right-angled at A (AB² + AC² = BC²).
+20. Yes, right-angled at A (AB² + AC² = BC²).
+21. Yes, collinear (AB + BC = AC).
 
 **Real-Life Application:**
 22. Total ≈ 21.29 km
