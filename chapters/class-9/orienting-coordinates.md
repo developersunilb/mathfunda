@@ -258,7 +258,7 @@ Points A(-3, 2) and B(3, -2) are opposite ends of a diameter of a circle. Find t
 Three points A(2, 3), B(4, 6), C(6, 9) lie on a straight line. Verify this using distances.
 
 ### Question 12
-A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
+A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled? *(Each grid unit represents 1 kilometre.)*
 
 ### Question 13
 A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger runs around the boundary twice. What distance does he cover?
@@ -326,8 +326,8 @@ Since AB² + AC² = BC², the converse of the Pythagorean theorem applies — **
 
 ## 11. Real-Life Application
 
-### Question 22
-A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
+### Question 18
+A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled? *(Each grid unit represents 1 kilometre.)*
 
 <details>
 <summary>Click for solution</summary>
@@ -337,7 +337,7 @@ A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then t
 - Total ≈ 5 + 5.66 + 10.63 = **21.29 km**
 </details>
 
-### Question 23
+### Question 19
 A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger runs around the boundary twice. What distance does he cover?
 
 <details>
@@ -393,14 +393,14 @@ Complete the table:
 
 ---
 
-## 14. Formula Reference (Formula Vault)
+## 12. Formula Reference (Formula Vault)
 
 | Formula | When to Use |
 |---|---|
 | Distance: √((x₂ - x₁)² + (y₂ - y₁)²) | Distance between any two points |
 | Midpoint: ((x₁+x₂)/2, (y₁+y₂)/2) | Midpoint of a segment |
-| Distance on x-axis: |x₂ - x₁| | Points on same horizontal line |
-| Distance on y-axis: |y₂ - y₁| | Points on same vertical line |
+| Horizontal distance: |x₂ - x₁| | Points on same horizontal line |
+| Vertical distance: |y₂ - y₁| | Points on same vertical line |
 
 > **Formula Vault Link:** For a complete list of coordinate geometry formulas, see the [Formula Vault](../formulas.html).
 
@@ -426,8 +426,8 @@ Complete the table:
 **Reasoning & Error Detection:**
 18. No. Distance = 6 units.
 19. No. Midpoint = (4, 7).
-20. Yes, right-angled at A (AB² + AC² = BC²).
-21. Yes, collinear (AB + BC = AC).
+20. Yes, collinear (AB + BC = AC).
+21. Yes, right-angled at A (AB² + AC² = BC²).
 
 **Real-Life Application:**
 22. Total ≈ 21.29 km
