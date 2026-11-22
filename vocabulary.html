@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#176b54" />
+    <meta
+      name="description"
+      content="Maths Vocabulary: a searchable glossary of formal maths words and symbols, with plain-language meanings, exact definitions and examples for CBSE Class 9."
+    />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="MathsFunda" />
+    <title>Maths vocabulary · MathsFunda</title>
+  </head>
+  <body class="site-body vocab-body">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <a class="site-brand" href="./index.html" aria-label="MathsFunda home">
+        <span class="brand-mark">∑</span>
+        <span class="brand-copy"><strong>MathsFunda</strong><small>Class 9 · step by step</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="./index.html#pathway">Pathway</a>
+        <a href="./learn.html?stage=foundations">Foundations</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formula vault</a>
+        <a href="./vocabulary.html" aria-current="page">Maths vocabulary</a>
+        <a href="./methods.html">How to remember</a>
+      </nav>
+      <a class="nav-cta" href="./index.html">Home</a>
+    </header>
+
+    <main id="main" class="vocab-main">
+      <div class="orientation-bar">
+        <span>Day <span id="orient-day" class="orientation-step">1</span> of 45</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-phase" class="orientation-step">Foundation Repair</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-concept" class="orientation-step">Today's lesson</span>
+        <span class="orientation-divider">→</span>
+        <span id="orient-activity" class="orientation-step orientation-today">Read the lesson</span>
+      </div>
+
+      <div class="explore-return">
+        <span class="explore-return-icon" aria-hidden="true">◧</span>
+        <span>
+          <strong class="explore-return-strong">You're exploring the vocabulary reference.</strong>
+          Your today's goal is still waiting for you.
+        </span>
+        <a href="./study-plan-personalized.html" class="quiet-button" type="button" style="font-size:0.72rem;padding:0.2rem 0.5rem;">← Return to today's learning</a>
+      </div>
+
+      <section class="vocab-hero">
+        <div>
+          <p class="eyebrow">MATHS VOCABULARY</p>
+          <h1>The words,<br /><em>in plain language.</em></h1>
+          <p class="hero-lede">
+            Mathematics is precise, but it is not a foreign language. Every entry gives
+            the student-friendly meaning first, the exact definition second, then an
+            example and the lessons where the idea appears. Search a word, a phrase or a
+            symbol.
+          </p>
+        </div>
+        <div class="vocab-search">
+          <label for="vocab-query">Search a word or symbol</label>
+          <input
+            id="vocab-query"
+            type="search"
+            placeholder="e.g. congruent, slope, ∠, midpoint"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <div class="vocab-meta">
+            <span id="vocab-count" aria-live="polite">0 terms</span>
+            <button id="vocab-print" class="quiet-button" type="button">Print / Save as PDF</button>
+          </div>
+          <p class="vocab-shortcut">Tip: press <kbd>/</kbd> to jump to the search box.</p>
+        </div>
+      </section>
+
+      <section class="vocab-symbols" aria-labelledby="vocab-symbols-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">SYMBOL CHEAT SHEET</p>
+            <h2 id="vocab-symbols-title">Spot the symbol</h2>
+          </div>
+          <p class="section-note">
+            Tap a symbol to jump to its entry, or type the symbol itself into the search
+            box. Line segment, ray and line notation are in the Geometry section.
+          </p>
+        </div>
+        <div id="vocab-symbol-strip" class="vocab-symbol-strip"></div>
+      </section>
+
+      <section class="vocab-controls" aria-label="Filter the glossary">
+        <div class="vocab-filter" role="group" aria-label="Filter by topic">
+          <span class="vocab-filter-label">Topic</span>
+          <div id="vocab-category-chips" class="vocab-chips"></div>
+        </div>
+        <div class="vocab-filter" role="group" aria-label="Filter by level">
+          <span class="vocab-filter-label">Level</span>
+          <div id="vocab-level-chips" class="vocab-chips"></div>
+        </div>
+        <p class="vocab-note">
+          Start with <strong>Foundation</strong>, then <strong>Class 9 core</strong>.
+          <strong>Enrichment</strong> terms are useful beyond the syllabus.
+        </p>
+      </section>
+
+      <nav id="vocab-az" class="vocab-az" aria-label="Jump to a letter"></nav>
+
+      <p id="vocab-empty" class="vocab-empty" hidden>
+        No terms match that search. Try a shorter word, or a symbol such as ∠ or ⊥.
+      </p>
+      <div id="vocab-list" class="vocab-list"></div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <span class="brand-mark">∑</span>
+        <div><strong>MathsFunda</strong><p>CBSE Class 9 mathematics · Ganita Manjari aligned</p></div>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="./index.html">Home</a>
+        <a href="./flashcards.html">Flashcards</a>
+        <a href="./formulas.html">Formulas</a>
+        <a href="./methods.html">Memory methods</a>
+        <a href="./admin.html">Admin &amp; publishing</a>
+      </nav>
+      <p class="footer-note">Plain meaning first, precise definition second. Examples are illustrative, not extra rules.</p>
+    </footer>
+
+    <script type="module" src="/js/vocabulary.js"></script>
+    <script type="module" src="/js/orientation.js"></script>
+  </body>
+</html>

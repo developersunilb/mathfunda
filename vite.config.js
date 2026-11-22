@@ -17,6 +17,7 @@ export default defineConfig({
         diagnostic: page("diagnostic"),
         flashcards: page("flashcards"),
         formulas: page("formulas"),
+        vocabulary: page("vocabulary"),
         methods: page("methods"),
         admin: page("admin"),
         pilottest: page("pilottest"),
