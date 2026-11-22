@@ -242,7 +242,7 @@ Points A(-3, 2) and B(3, -2) are opposite ends of a diameter of a circle. Find t
 Three points A(2, 3), B(4, 6), C(6, 9) lie on a straight line. Verify this using distances.
 
 ### Question 12
-A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
+A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled? (Each grid unit represents 1 kilometre.)
 
 ### Question 13
 A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger runs around the boundary twice. What distance does he cover?
@@ -369,11 +369,14 @@ Complete the table:
 
 ---
 
-## 13. Memory Hook
+## 13. Memory Hooks
 
-> **Memory Hook:**  
-> **x comes before y, just like in the alphabet.**  
-> x = horizontal (left/right), y = vertical (up/down).
+> **Memory Hooks:**  
+> **x comes before y**, just like in the alphabet.  
+> x = horizontal (left/right), y = vertical (up/down).  
+> **C** for counter-clockwise quadrants: I → II → III → IV.  
+> **Distance formula:** Pythagoras — Δx² + Δy² = d².  
+> **Midpoint:** Average the x's, average the y's.
 
 ---
 
@@ -406,22 +409,16 @@ Complete the table:
 9. Perimeter = 20 units, Area = 25 sq units
 10. Centre = (0, 0), Radius = √13 units
 11. Collinear (AB + BC = AC)
-12. AB = 10 units, BC = 6 units. Total = 16 units
-13. Perimeter = 28 units, Two rounds = 56 units
-14. Perimeter = 20 units
-15. (0, 4)
-16. (3.5, 4.5)
-17. B(3, -1) and D(-1, 3)
 
 **Reasoning & Error Detection:**
 18. No. Distance = 6 units.
 19. No. Midpoint = (4, 7).
-20. Yes, right-angled at A (AB² + AC² = BC²).
-21. Yes, collinear (AB + BC = AC).
+20. Yes, collinear (AB + BC = AC).
+21. Yes, right-angled at A (AB² + AC² = BC²).
 
 **Real-Life Application:**
 22. Total ≈ 21.29 km
-23. Perimeter = 28 units, Two rounds = 52 units
+23. Perimeter = 28 units, Two rounds = 56 units
 
 **Retrieval Practice:**
 24. (-3, -5) (example)
@@ -430,27 +427,11 @@ Complete the table:
 
 ---
 
-## 14. Memory Hook Card
+## 15. Spaced Retrieval Schedule
 
-> **Coordinate Geometry Memory Card**
->
-> | Concept | Hook |
-> |---|---|
-> | Order of coordinates | **x before y** — alphabetical order |
-> | Quadrant order | **C** for counter-clockwise: I → II → III → IV |
-> | Distance formula | Pythagoras: Δx² + Δy² = d² |
-> | Midpoint | Average the x's, average the y's |
-> | Origin | (0, 0) — where axes cross |
-> | x-axis | y = 0 |
-> | y-axis | x = 0 |
-
----
-
-## 15. Retrieval Practice
-
-> **Tomorrow:** Without looking at this chapter, write the distance formula and the midpoint formula from memory.  
-> **In a week:** Plot the points (2, 3), (-1, 4), (-3, -2), (4, -1) and name their quadrants.  
-> **In a month:** Explain to a friend why the distance formula works (hint: Pythagoras).
+**Tomorrow:** Without looking at this chapter, write the distance formula and the midpoint formula from memory.  
+**In a week:** Plot the points (2, 3), (-1, 4), (-3, -2), (4, -1) and name their quadrants.  
+**In a month:** Explain to a friend why the distance formula works (hint: Pythagoras).
 
 ---
 
