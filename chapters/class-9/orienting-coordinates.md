@@ -326,7 +326,7 @@ Since AB² + AC² = BC², the converse of the Pythagorean theorem applies — **
 
 ## 11. Real-Life Application
 
-### Question 18
+### Question 12
 A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
 
 <details>
@@ -349,7 +349,7 @@ Length = 4 - (-5) = 9 units. Width = 3 - (-2) = 5 units. Perimeter = 2(9+5) = 28
 
 ## 12. Retrieval Practice
 
-### Question 20
+### Question 13
 Without looking back, write the coordinates of a point in Quadrant III.
 
 <details>
