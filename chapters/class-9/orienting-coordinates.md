@@ -316,7 +316,7 @@ A triangle has vertices A(1, 1), B(4, 1), C(1, 5). Verify whether this is a righ
 <summary>Click for answer</summary>
 AB: distance from (1,1) to (4,1) = 3 (horizontal)  
 AC: distance from (1,1) to (1,5) = 4 (vertical)  
-BC: distance from (4,1) to (1,5) = √((4-1)² + (1-5)²) = √(9+16) = 5  
+BC: distance from (4,1) to (1,5) = √((4-1)² + (1-5)²) = √(9+16) = **5 units**
 
 Check: AB² + AC² = 3² + 4² = 9 + 16 = 25. BC² = 5² = 25.  
 Since AB² + AC² = BC², the converse of the Pythagorean theorem applies — **AB ⟂ AC**, so the triangle is right-angled at A.
@@ -342,12 +342,12 @@ A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger r
 
 <details>
 <summary>Click for solution</summary>
-Length = 4 - (-5) = 9 units. Width = 3 - (-2) = 5 units. Perimeter = 2(9+5) = 28 units. Two rounds = **52 units**.
+Length = 4 - (-5) = 9 units. Width = 3 - (-2) = 5 units. Perimeter = 2(9+5) = 28 units. Two rounds = **56 units**.
 </details>
 
 ---
 
-## 11. Retrieval Practice
+## 12. Retrieval Practice
 
 ### Question 20
 Without looking back, write the coordinates of a point in Quadrant III.
@@ -385,7 +385,7 @@ Complete the table:
 
 ---
 
-## 12. Memory Hook
+## 13. Memory Hook
 
 > **Memory Hook:**  
 > **x comes before y, just like in the alphabet.**  
@@ -393,7 +393,7 @@ Complete the table:
 
 ---
 
-## 13. Formula Reference (Formula Vault)
+## 12. Formula Reference (Formula Vault)
 
 | Formula | When to Use |
 |---|---|
@@ -419,7 +419,7 @@ Complete the table:
 6. B(7, 3)
 7. Right triangle (AB ⟂ AC), Area = 6 sq units
 8. AB = 10 units, BC = 6 units. Total = 16 units
-9. Perimeter = 22 units, Area = 30 sq units
+9. Perimeter = 20 units, Area = 25 sq units
 10. Centre = (0, 0), Radius = √13 units
 11. Collinear (AB + BC = AC)
 
