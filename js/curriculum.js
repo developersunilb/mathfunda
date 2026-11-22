@@ -92,7 +92,7 @@ const TITLE_OVERRIDES = {
   "basic-equations": "Basic Equations",
   "number-systems": "Number Systems",
   polynomials: "Polynomials",
-  "linear-equations": "Linear Equations in Two Variables",
+  "linear-equations": "Two Variables, One Line",
   "linear-inequalities": "Linear Inequalities (Enrichment)",
   "beyond-class-9": "Beyond Class 9 (Enrichment)",
 };

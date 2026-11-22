@@ -207,6 +207,100 @@ const QUESTION_BANK = {
     {}, 2, 4
   ),
 
+  // ---- Algebra: Linear Equations in Two Variables ----
+  "q-lin2-01": createSingleAnswerQuestion(
+    "q-lin2-01", "linear-equations-two-var",
+    "$2x+3y=12$ in standard form $ax+by+c=0$", "State $a$, $b$, $c$",
+    "a=2, b=3, c=-12", {}, 1, 3
+  ),
+  "q-lin2-02": createSingleAnswerQuestion(
+    "q-lin2-02", "linear-equations-two-var",
+    "Is $(1,5)$ a solution of $x+2y=11$?", "Yes or No",
+    "Yes", {}, 1, 3
+  ),
+  "q-lin2-03": createSingleAnswerQuestion(
+    "q-lin2-03", "linear-equations-two-var",
+    "Is $(4,2)$ a solution of $x-y=2$?", "Yes or No",
+    "Yes", {}, 1, 3
+  ),
+  "q-lin2-04": createSingleAnswerQuestion(
+    "q-lin2-04", "linear-equations-two-var",
+    "For $y=2x+1$, state its slope and y-intercept.", "State slope and y-intercept",
+    "slope=2, y-intercept=1", {}, 2, 4
+  ),
+  "q-lin2-05": createSingleAnswerQuestion(
+    "q-lin2-05", "linear-equations-two-var",
+    "Taxi: ₹30 flag-fall plus ₹15/km. Cost for 8 km.", "Find the cost",
+    "₹150", {}, 2, 4
+  ),
+  "q-lin2-06": createSingleAnswerQuestion(
+    "q-lin2-06", "linear-equations-two-var",
+    "Mother + daughter = 46; mother − daughter = 20.", "Find their ages",
+    "Mother 33, daughter 13", {}, 2, 5
+  ),
+  "q-lin2-07": createSingleAnswerQuestion(
+    "q-lin2-07", "linear-equations-two-var",
+    "Digits add to 11; the number is 27 more than its reverse.", "Find the number",
+    "74", {}, 3, 5
+  ),
+  "q-lin2-08": createQuestion(
+    "q-lin2-08", "linear-equations-two-var",
+    "Solve $2x+y=7$ and $x-y=2$ by substitution.", "Find $(x,y)$",
+    "(3,1)",
+    [
+      step(1, "From $x-y=2$: $x=y+2$", "Isolate $x$", "Rearrange the second equation.", {}),
+      step(2, "$2(y+2)+y=7 \\Rightarrow 3y+4=7 \\Rightarrow y=1$", "Substitute and solve for $y$", "Substitute $x=y+2$ into the first equation.", {}),
+      step(3, "$x=1+2=3$", "Back-substitute to find $x$", "Use $x=y+2$ with $y=1$.", {}),
+    ],
+    {}, 3, 6
+  ),
+  "q-lin2-09": createQuestion(
+    "q-lin2-09", "linear-equations-two-var",
+    "Solve $3x+4y=10$ and $6x-4y=2$ by elimination.", "Find $(x,y)$",
+    "(\\frac43,\\frac32)",
+    [
+      step(1, "$(3x+4y)+(6x-4y)=10+2 \\Rightarrow 9x=12 \\Rightarrow x=\\frac43$", "Add to cancel $y$", "The $y$ terms have opposite signs, so add the equations.", {}),
+      step(2, "$3(\\frac43)+4y=10 \\Rightarrow 4+4y=10 \\Rightarrow y=\\frac32$", "Back-substitute to find $y$", "Use $x=\\frac43$ in the first equation.", {}),
+    ],
+    {}, 3, 6
+  ),
+  "q-lin2-10": createSingleAnswerQuestion(
+    "q-lin2-10", "linear-equations-two-var",
+    "Number of solutions for $x+2y=6$ and $2x+4y=12$.", "State number and reason",
+    "Infinitely many (coincident lines)", {}, 2, 4
+  ),
+  "q-lin2-11": createSingleAnswerQuestion(
+    "q-lin2-11", "linear-equations-two-var",
+    "Number of solutions for $x+y=4$ and $x+y=7$.", "State number and reason",
+    "No solution (parallel distinct lines)", {}, 2, 4
+  ),
+  "q-lin2-12": createQuestion(
+    "q-lin2-12", "linear-equations-two-var",
+    "Find the intersection of $3x+2y=12$ and $x-y=1$.", "Find $(x,y)$",
+    "(\\frac{14}{5},\\frac95)",
+    [
+      step(1, "From $x-y=1$: $x=y+1$", "Isolate $x$", "Rearrange the second equation.", {}),
+      step(2, "$3(y+1)+2y=12 \\Rightarrow 5y+3=12 \\Rightarrow y=\\frac95$", "Substitute and solve for $y$", "Substitute $x=y+1$ into the first equation.", {}),
+      step(3, "$x=\\frac95+1=\\frac{14}{5}$", "Back-substitute to find $x$", "Use $x=y+1$ with $y=\\frac95$.", {}),
+    ],
+    {}, 3, 6
+  ),
+  "q-lin2-13": createSingleAnswerQuestion(
+    "q-lin2-13", "linear-equations-two-var",
+    "For what $k$ do $kx+2y=5$ and $3x+6y=15$ have infinitely many solutions?", "Find $k$",
+    "k=1", {}, 3, 5
+  ),
+  "q-lin2-14": createSingleAnswerQuestion(
+    "q-lin2-14", "linear-equations-two-var",
+    "For what $k$ do $kx+3y=5$ and $2x+6y=12$ have no solution?", "Find $k$",
+    "k=1", {}, 3, 5
+  ),
+  "q-lin2-15": createSingleAnswerQuestion(
+    "q-lin2-15", "linear-equations-two-var",
+    "3 pencils and 2 erasers cost ₹14; 2 pencils and 3 erasers cost ₹16.", "Find the cost of each",
+    "Pencil ₹2, eraser ₹4", {}, 3, 5
+  ),
+
   // ---- Coordinate Geometry: Midpoint ----
   "q-mid-1": createSingleAnswerQuestion(
     "q-mid-1", "midpoint", "Join (2, 4) and (8, 10)", "Find the midpoint", "(5, 7)",

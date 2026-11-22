@@ -4,20 +4,34 @@ Attempt these **without looking at the answers**. Write your working on paper. A
 
 ## Questions
 
-1. Complete a table of values for $y=3x-2$ at $x=0,1,2,3,4$.
-2. Draw the graph of $y=x+2$ and state its gradient and y-intercept.
-3. Solve $2x-5=11$.
-4. Solve $\frac{x}{4}=9$.
-5. Find the equation of the line through $(0,4)$ and $(2,8)$.
-6. Is $(3,10)$ a solution of $y=3x+1$?
-7. A taxi charges a ₹50 flag-fall plus ₹12 per km. Write an equation for the cost $C$ for $d$ km, and find the cost for 15 km.
-8. The graph of a line passes through $(0,3)$ and $(4,11)$. Find its gradient and write its equation.
-9. Solve $5x+3=3x+11$.
-10. Two lines are $y=2x+1$ and $y=x+4$. Find the point where they intersect.
-11. Complete a table of values for $y=2x+3$ at $x=-1,0,1,2$.
-12. Find the equation of the line through $(1,5)$ and $(3,11)$.
-13. Solve $4x-7=9$.
-14. Solve $\frac{x-3}{2}=5$.
-15. Is $(-1,1)$ a solution of $y=2x+3$?
+1. Write $2x+3y=12$ in standard form $ax+by+c=0$ and state $a$, $b$, $c$.
+
+2. Is $(1,5)$ a solution of $x+2y=11$?
+
+3. Is $(4,2)$ a solution of $x-y=2$?
+
+4. For $y=2x+1$, state its slope and y-intercept.
+
+5. A taxi charges ₹30 flag-fall plus ₹15/km. Write the cost equation for $d$ km and find the cost for 8 km.
+
+6. Mother + daughter = 46; mother − daughter = 20. Find their ages.
+
+7. The digits of a two-digit number add to 11. The number is 27 more than its reverse. Find the number.
+
+8. Solve $2x+y=7$ and $x-y=2$ by substitution.
+
+9. Solve $3x+4y=10$ and $6x-4y=2$ by elimination.
+
+10. State the number of solutions for $x+2y=6$ and $2x+4y=12$, and why.
+
+11. State the number of solutions for $x+y=4$ and $x+y=7$, and why.
+
+12. Graph $3x+2y=12$ and $x-y=1$; read the intersection and verify algebraically.
+
+13. For what value of $k$ do $kx+2y=5$ and $3x+6y=15$ have infinitely many solutions?
+
+14. For what value of $k$ do $kx+3y=5$ and $2x+6y=12$ have no solution?
+
+15. 3 pencils and 2 erasers cost ₹14. 2 pencils and 3 erasers cost ₹16. Find the cost of each.
 
 **Do not write answers on this page.** Use a separate sheet of paper for your working, then check against the parent answer key.

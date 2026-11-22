@@ -639,6 +639,54 @@ const DECKS = [
         front: "How do you draw the graph of a linear equation quickly?",
         back: "Find two easy points, often the intercepts, plot them, and join with a straight line.",
       },
+      {
+        front: "Slope of $ax+by+c=0$ when $b\\ne0$?",
+        back: tex`$m=-a/b$. Undefined when $b=0$ (vertical line).`,
+      },
+      {
+        front: "y-intercept of $ax+by+c=0$ when $b\\ne0$?",
+        back: tex`$d=-c/b$ (we use $d$ for the intercept, not $c$).`,
+      },
+      {
+        front: "x-intercept of $ax+by+c=0$ when $a\\ne0$?",
+        back: tex`$-c/a$.`,
+      },
+      {
+        front: "Graph of $x=k$ for $k\\ne0$?",
+        back: "A vertical line through $(k,0)$, parallel to the y-axis. It has no y-intercept.",
+      },
+      {
+        front: "Graph of $y=k$?",
+        back: "A horizontal line through $(0,k)$, parallel to the x-axis.",
+      },
+      {
+        front: "What does a unique solution of a pair mean geometrically?",
+        back: "The two lines intersect at exactly one point (different slopes).",
+      },
+      {
+        front: "What does no solution of a pair mean geometrically?",
+        back: "The lines are parallel and distinct (same slope, different intercept).",
+      },
+      {
+        front: "What does infinitely many solutions of a pair mean geometrically?",
+        back: "The lines coincide — one equation is a non-zero multiple of the other.",
+      },
+      {
+        front: "First step of the substitution method?",
+        back: "Isolate one variable in one of the two equations.",
+      },
+      {
+        front: "Goal of the elimination method?",
+        back: "Add or subtract the equations so one variable cancels out.",
+      },
+      {
+        front: "When is the ratio test for a pair valid?",
+        back: "Only when $a_2,b_2,c_2\\ne0$. Otherwise use elimination or the multiple test.",
+      },
+      {
+        front: "The three representations of a linear relationship?",
+        back: "Algebraic equation $\\rightarrow$ ordered-pair solutions $\\rightarrow$ geometric line. All three describe the same line.",
+      },
     ],
   },
   {

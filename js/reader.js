@@ -12,7 +12,11 @@ import {
   RESOURCE_SUFFIXES,
   RESOURCE_LABELS,
 } from "./curriculum.js";
-import { conceptIdsForLessonSlug, questionConceptIdForLessonSlug } from "./adaptive-plan.js";
+import {
+  conceptIdsForLessonSlug,
+  getAllQuestionConceptIdsForLessonSlug,
+  getAllQuestionsForLessonSlug,
+} from "./adaptive-plan.js";
 import {
   isLessonDone,
   lessonState,
@@ -135,6 +139,10 @@ let practiceCurrentIndex = 0;
 let practiceStepAnswers = [];
 let practiceResults = [];
 let practiceConceptId = null;
+let practiceConceptQueue = [];
+let practicePendingConcept = null;
+let practicePendingTimer = null;
+let practiceFlowGeneration = 0;
 
 /* Misconception intervention state */
 let practiceInterventionActive = false;
@@ -143,6 +151,7 @@ let practiceInterventionIndex = 0;
 // Keyed by "conceptId|description" to scope dedup per concept, not globally.
 let practiceInterventionShown = new Map();
 let practiceOriginalQuestionIndex = 0;
+let practiceInterventionTimer = null;
 
 /* Memory Journey state */
 let memoryJourneyActive = false;
@@ -780,9 +789,34 @@ function openPractice(conceptId) {
   showPracticeQuestion();
 }
 
+function resetPracticeIntervention() {
+  practiceInterventionActive = false;
+  practiceInterventionQuestions = [];
+  practiceInterventionIndex = 0;
+  practiceOriginalQuestionIndex = 0;
+
+  if (practiceInterventionTimer) {
+    clearTimeout(practiceInterventionTimer);
+    practiceInterventionTimer = null;
+  }
+}
+
+function resetPracticeQueue() {
+  practiceFlowGeneration += 1;
+  if (practicePendingTimer) {
+    clearTimeout(practicePendingTimer);
+    practicePendingTimer = null;
+  }
+  practiceConceptQueue = [];
+  practicePendingConcept = null;
+}
+
 function closePractice() {
   practiceOverlay.hidden = true;
   practiceActive = false;
+  resetPracticeIntervention();
+  practiceInterventionShown.clear();
+  resetPracticeQueue();
 }
 
 /* ------------------------------------------------------------ Memory Journey */
@@ -993,6 +1027,20 @@ function closeMemoryJourney() {
     revealsUsed: 0,
     completed: false,
   };
+
+  // Open any concept session that was deferred while Memory Journey was active.
+  if (practicePendingConcept) {
+    const pending = practicePendingConcept;
+    const generation = practiceFlowGeneration;
+    practicePendingConcept = null;
+    const timerId = setTimeout(() => {
+      if (generation !== practiceFlowGeneration) return;
+      if (practicePendingTimer !== timerId) return;
+      openPractice(pending);
+      practicePendingTimer = null;
+    }, 700);
+    practicePendingTimer = timerId;
+  }
 }
 
 
@@ -1059,6 +1107,15 @@ function submitPracticeAnswer() {
     return;
   }
 
+  // If we're in the middle of a misconception intervention, handle this
+  // as a corrective answer rather than a new practice attempt.
+  // Corrective questions do NOT call recordPracticeAttempt and do not
+  // affect the learner's practice accuracy or mastery assessment.
+  if (practiceInterventionActive) {
+    handleCorrectiveAnswer(studentAnswer);
+    return;
+  }
+
   const result = recordPracticeAttempt(question.id, studentAnswer);
   practiceResults.push({ questionId: question.id, ...result });
   emitPracticeAnswered(question.id, result.isCorrect, result.errorCategory, practiceConceptId);
@@ -1078,13 +1135,6 @@ function submitPracticeAnswer() {
 
   practiceAnswerInput.disabled = true;
   practiceSubmitBtn.hidden = true;
-
-  // If we're in the middle of a misconception intervention, handle this
-  // as a corrective answer rather than a new practice attempt.
-  if (practiceInterventionActive) {
-    handleCorrectiveAnswer(studentAnswer);
-    return;
-  }
 
   if (result.isCorrect) {
     practiceResultEl.textContent = "Correct! Well done.";
@@ -1223,6 +1273,7 @@ function showCorrectiveQuestion() {
   practiceStepInputs.innerHTML = "";
   practiceAnswerInput.value = "";
   practiceAnswerInput.hidden = false;
+  practiceAnswerInput.disabled = false;
   practiceStepInputs.hidden = true;
   practiceResultEl.textContent = "";
 
@@ -1266,7 +1317,8 @@ function handleCorrectiveAnswer(studentAnswer) {
     practiceInterventionIndex += 1;
     if (practiceInterventionIndex >= practiceInterventionQuestions.length) {
       // Small delay then return to original practice question
-      setTimeout(() => {
+      practiceInterventionTimer = setTimeout(() => {
+        practiceInterventionTimer = null;
         endMisconceptionIntervention();
       }, 1200);
     } else {
@@ -1288,6 +1340,10 @@ function handleCorrectiveAnswer(studentAnswer) {
  * End the misconception intervention and return to the original practice question.
  */
 function endMisconceptionIntervention() {
+  if (practiceInterventionTimer) {
+    clearTimeout(practiceInterventionTimer);
+    practiceInterventionTimer = null;
+  }
   practiceInterventionActive = false;
   emitMisconceptionInterventionCompleted(
     practiceConceptId,
@@ -1311,6 +1367,10 @@ function endMisconceptionIntervention() {
 }
 
 function nextPracticeQuestion() {
+  if (practiceInterventionActive) {
+    showCorrectiveQuestion();
+    return;
+  }
   practiceCurrentIndex += 1;
   showPracticeQuestion();
 }
@@ -1346,10 +1406,6 @@ function finishPractice() {
     );
     if (masteryResult.passed) {
       showToast("Concept mastered! Excellent work.");
-      // Mark matching plan task(s) complete once the concept is mastered.
-      for (const conceptId of conceptIdsForLessonSlug(practiceConceptId)) {
-        markPlanTaskComplete(conceptId, true);
-      }
     }
   }
 
@@ -1359,6 +1415,24 @@ function finishPractice() {
   // Offer the Memory Journey after practice completes.
   if (practiceConceptId && hasMemoryJourney(practiceConceptId)) {
     openMemoryJourney(practiceConceptId);
+  }
+
+  // Open the next queued concept session, if any. Defer if Memory Journey
+  // is active so the two overlays do not compete.
+  const nextConcept = practiceConceptQueue.shift();
+  if (nextConcept) {
+    practicePendingConcept = nextConcept;
+    if (!memoryJourneyActive) {
+      const generation = practiceFlowGeneration;
+      const timerId = setTimeout(() => {
+        if (generation !== practiceFlowGeneration) return;
+        if (practicePendingTimer !== timerId) return;
+        openPractice(practicePendingConcept);
+        practicePendingConcept = null;
+        practicePendingTimer = null;
+      }, 700);
+      practicePendingTimer = timerId;
+    }
   }
 }
 
@@ -1413,7 +1487,9 @@ completeButton.addEventListener("click", () => {
     if (isMastered(chapter.slug)) {
       showToast("You've mastered this concept!");
     } else if (needsMasteryConfirmation(chapter.slug)) {
-      openPractice(questionConceptIdForLessonSlug(chapter.slug));
+      resetPracticeQueue();
+      practiceConceptQueue = getAllQuestionConceptIdsForLessonSlug(chapter.slug);
+      openPractice(practiceConceptQueue.shift());
     } else {
       showToast("Lesson completed. Practice to build mastery.");
     }
@@ -1429,12 +1505,19 @@ completeButton.addEventListener("click", () => {
       markPlanTaskComplete(conceptId, true);
     }
     // Offer practice questions to build mastery
-    const practiceConcept = questionConceptIdForLessonSlug(chapter.slug);
-    const questions = getQuestionsForConcept(practiceConcept);
+    const practiceConcepts = getAllQuestionConceptIdsForLessonSlug(chapter.slug);
+    const questions = getAllQuestionsForLessonSlug(chapter.slug);
     if (questions && questions.length > 0) {
-      setTimeout(() => {
-        openPractice(practiceConcept);
+      resetPracticeQueue();
+      practiceConceptQueue = practiceConcepts;
+      const generation = practiceFlowGeneration;
+      const timerId = setTimeout(() => {
+        if (generation !== practiceFlowGeneration) return;
+        if (practicePendingTimer !== timerId) return;
+        openPractice(practiceConceptQueue.shift());
+        practicePendingTimer = null;
       }, 700);
+      practicePendingTimer = timerId;
     } else {
       setTimeout(() => {
         if (current === pages.length - 1) goToNextLesson();

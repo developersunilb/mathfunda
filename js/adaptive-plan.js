@@ -14,6 +14,7 @@ import {
   CONFIRMATION_RESULTS_KEY,
   readConfirmationResults,
 } from "./confirmation-assessment.js";
+import { getQuestionsForConcept } from "./content-model.js";
 
 const DIAGNOSTIC_RESULTS_KEY = "mathfunda-diagnostic-results";
 const ADAPTIVE_PLAN_KEY = "mathfunda-adaptive-plan-v1";
@@ -1275,8 +1276,40 @@ const LESSON_SLUG_TO_QUESTION_CONCEPT = {
   "perimeter": "perimeter",
 };
 
+/**
+ * Additional question concept IDs per lesson slug, layered on top of the
+ * primary mapping in LESSON_SLUG_TO_QUESTION_CONCEPT. Existing mappings are
+ * never replaced; entries here are additive so new question sets can be
+ * retrieved alongside existing ones.
+ */
+const LESSON_SLUG_TO_ADDITIONAL_QUESTION_CONCEPTS = {
+  "linear-equations": ["linear-equations-two-var"],
+};
+
 function questionConceptIdForLessonSlug(slug) {
   return LESSON_SLUG_TO_QUESTION_CONCEPT[slug] || null;
+}
+
+/**
+ * All question concept IDs for a lesson slug: the primary mapping plus any
+ * additive concepts. Returns an array so a lesson can surface questions from
+ * multiple concept sets without replacing its existing mapping.
+ */
+export function getAllQuestionConceptIdsForLessonSlug(slug) {
+  const primary = questionConceptIdForLessonSlug(slug);
+  const additional = LESSON_SLUG_TO_ADDITIONAL_QUESTION_CONCEPTS[slug] || [];
+  return primary ? [primary, ...additional] : additional;
+}
+
+/**
+ * All practice questions for a lesson slug, gathered across its primary and
+ * additive question concepts. Used by the reader so that new two-variable
+ * questions are offered alongside existing single-variable questions.
+ */
+export function getAllQuestionsForLessonSlug(slug) {
+  return getAllQuestionConceptIdsForLessonSlug(slug).flatMap((id) =>
+    getQuestionsForConcept(id)
+  );
 }
 
 /**
