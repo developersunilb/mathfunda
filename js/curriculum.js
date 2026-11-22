@@ -161,15 +161,12 @@ const CHAPTER_PLACEMENT = {
   "diagnostic-answer-key": { part: "getting-started" },
   "basic-equations": {
     part: "part1",
-    topic: "Chapters 1–2: Coordinates and Linear Polynomials",
+    topic: "Foundations: Basic Equations",
   },
-  "number-systems": { part: "part1", topic: "Chapters 3–4: Numbers and Identities" },
-  polynomials: { part: "part1", topic: "Chapters 3–4: Numbers and Identities" },
-  "geometry-basics": { part: "part1", topic: "Chapters 5–6: Geometry and Mensuration" },
-  "linear-equations": {
-    part: "part2",
-    topic: "Chapters 12–14: Quadrilaterals, Equations and Solids",
-  },
+  "number-systems": { part: "part1", topic: "Chapter 3: The World of Numbers" },
+  polynomials: { part: "part1", topic: "Chapters 2–4: Polynomials and Identities" },
+  "geometry-basics": { part: "part1", topic: "Chapter 6: Measuring Space: Perimeter and Area" },
+  "linear-equations": { part: "part2", topic: "Chapter 13: Two Variables, One Line" },
   "linear-inequalities": { part: "enrichment" },
   "beyond-class-9": { part: "enrichment" },
 };
