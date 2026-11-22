@@ -258,7 +258,9 @@ Points A(-3, 2) and B(3, -2) are opposite ends of a diameter of a circle. Find t
 Three points A(2, 3), B(4, 6), C(6, 9) lie on a straight line. Verify this using distances.
 
 ### Question 12
-A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
+A straight highway runs between two towns at P(-6, 2) and Q(6, 10). A petrol pump is built exactly at the midpoint of the highway.
+(a) Find the coordinates of the petrol pump.
+(b) Find the distance from town P to the petrol pump.
 
 ### Question 13
 A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger runs around the boundary twice. What distance does he cover?
@@ -338,11 +340,13 @@ A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then t
 </details>
 
 ### Question 23
-A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger runs around the boundary twice. What distance does he cover?
+A maintenance team needs to connect two rooftop communication points, A(-2, 3) and B(4, 11), with a straight cable. On the site plan, each coordinate unit represents one metre. What length of cable is required?
 
 <details>
 <summary>Click for solution</summary>
-Length = 4 - (-5) = 9 units. Width = 3 - (-2) = 5 units. Perimeter = 2(9+5) = 28 units. Two rounds = **56 units**.
+- Horizontal difference = 4 − (-2) = 6 m
+- Vertical difference = 11 − 3 = 8 m
+- Cable length = √(6² + 8²) = √100 = **10 metres**
 </details>
 
 ---
@@ -385,22 +389,32 @@ Complete the table:
 
 ---
 
-## 13. Memory Hook
+## 13. Memory Hook & Formula Reference
 
 > **Memory Hook:**  
 > **x comes before y, just like in the alphabet.**  
 > x = horizontal (left/right), y = vertical (up/down).
 
----
+> **Coordinate Geometry Memory Card**
+>
+> | Concept | Hook |
+> |---|---|
+> | Order of coordinates | **x before y** — alphabetical order |
+> | Quadrant order | **C** for counter-clockwise: I → II → III → IV |
+> | Distance formula | Pythagoras: Δx² + Δy² = d² |
+> | Midpoint | Average the x's, average the y's |
+> | Origin | (0, 0) — where axes cross |
+> | x-axis | y = 0 |
+> | y-axis | x = 0 |
 
-## 12. Formula Reference (Formula Vault)
+**Formula Vault:**
 
 | Formula | When to Use |
 |---|---|
 | Distance: √((x₂ - x₁)² + (y₂ - y₁)²) | Distance between any two points |
 | Midpoint: ((x₁+x₂)/2, (y₁+y₂)/2) | Midpoint of a segment |
-| Horizontal distance: |x₂ - x₁| | Points on same horizontal line |
-| Vertical distance: |y₂ - y₁| | Points on same vertical line |
+| Horizontal distance: \|x₂ - x₁\| | Points on same horizontal line |
+| Vertical distance: \|y₂ - y₁\| | Points on same vertical line |
 
 > **Formula Vault Link:** For a complete list of coordinate geometry formulas, see the [Formula Vault](../formulas.html).
 
@@ -417,14 +431,14 @@ Complete the table:
 **Independent Practice:**
 5. 5 units
 6. B(7, 3)
-7. Right triangle (AB ⟂ AC), Area = 6 sq units
+7. Scalene right-angled triangle (AB ⟂ AC), Area = 6 sq units
 8. AB = 10 units, BC = 6 units. Total = 16 units
 9. Perimeter = 20 units, Area = 25 sq units
 10. Centre = (0, 0), Radius = √13 units
 11. Collinear (AB + BC = AC)
-12. AB = 10 units, BC = 6 units. Total = 16 units
+12. Petrol pump at M(0, 6); PM = 2√13 ≈ 7.21 units
 13. Perimeter = 28 units, Two rounds = 56 units
-14. Perimeter = 2(9+5) = 28 units
+14. Perimeter = 2(6+4) = 20 units
 15. (0, 4)
 16. (3.5, 4.5)
 17. B(3, -1) and D(-1, 3)
@@ -437,28 +451,12 @@ Complete the table:
 
 **Real-Life Application:**
 22. Total ≈ 21.29 km
-23. Perimeter = 28 units, Two rounds = 52 units
+23. 10 metres
 
 **Retrieval Practice:**
 24. (-3, -5) (example)
 25. √((x₂-x₁)² + (y₂-y₁)²)
 26. (4, -3)→IV, (-2, 5)→II, (-4, -1)→III, (0, 7)→on y-axis
-
----
-
-## 14. Memory Hook Card
-
-> **Coordinate Geometry Memory Card**
->
-> | Concept | Hook |
-> |---|---|
-> | Order of coordinates | **x before y** — alphabetical order |
-> | Quadrant order | **C** for counter-clockwise: I → II → III → IV |
-> | Distance formula | Pythagoras: Δx² + Δy² = d² |
-> | Midpoint | Average the x's, average the y's |
-> | Origin | (0, 0) — where axes cross |
-> | x-axis | y = 0 |
-> | y-axis | x = 0 |
 
 ---
 
