@@ -6,11 +6,27 @@
 
 ---
 
-## 2. Why Do We Need Coordinates?
+## 1. Why Do We Need Coordinates?
 
 Before coordinates, people used landmarks: "the big tree near the well," "three houses past the temple." These descriptions worked locally but failed when the tree was cut down or the temple rebuilt.
 
 Coordinates give us a **standard way to describe location**. Whether you are navigating a city map, designing a circuit board, or programming a video game, coordinates let you describe position precisely.
+
+---
+
+## 2. Prior Knowledge Activation
+
+Before we begin, let's recall what you already know:
+
+| Concept | What You Should Know |
+|---|---|
+| **Number line** | Positive numbers to the right of zero, negative numbers to the left |
+| **Number line operations** | Moving right = adding, moving left = subtracting |
+| **Two perpendicular lines** | Perpendicular lines intersect at 90° |
+| **Ordered pairs** | A pair of numbers written as `(x, y)` where order matters |
+
+> **Quick Check:** On a number line, if you start at 2 and move 5 units left, where do you land?  
+> *Answer: -3. (You moved 5 units in the negative direction: 2 - 5 = -3)*
 
 ---
 
@@ -242,7 +258,7 @@ Points A(-3, 2) and B(3, -2) are opposite ends of a diameter of a circle. Find t
 Three points A(2, 3), B(4, 6), C(6, 9) lie on a straight line. Verify this using distances.
 
 ### Question 12
-A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled? (Each grid unit represents 1 kilometre.)
+A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
 
 ### Question 13
 A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger runs around the boundary twice. What distance does he cover?
@@ -369,14 +385,11 @@ Complete the table:
 
 ---
 
-## 13. Memory Hooks
+## 13. Memory Hook
 
-> **Memory Hooks:**  
-> **x comes before y**, just like in the alphabet.  
-> x = horizontal (left/right), y = vertical (up/down).  
-> **C** for counter-clockwise quadrants: I → II → III → IV.  
-> **Distance formula:** Pythagoras — Δx² + Δy² = d².  
-> **Midpoint:** Average the x's, average the y's.
+> **Memory Hook:**  
+> **x comes before y, just like in the alphabet.**  
+> x = horizontal (left/right), y = vertical (up/down).
 
 ---
 
@@ -409,6 +422,12 @@ Complete the table:
 9. Perimeter = 20 units, Area = 25 sq units
 10. Centre = (0, 0), Radius = √13 units
 11. Collinear (AB + BC = AC)
+12. AB = 10 units, BC = 6 units. Total = 16 units
+13. Perimeter = 28 units, Two rounds = 56 units
+14. Perimeter = 2(9+5) = 28 units
+15. (0, 4)
+16. (3.5, 4.5)
+17. B(3, -1) and D(-1, 3)
 
 **Reasoning & Error Detection:**
 18. No. Distance = 6 units.
@@ -418,7 +437,7 @@ Complete the table:
 
 **Real-Life Application:**
 22. Total ≈ 21.29 km
-23. Perimeter = 28 units, Two rounds = 56 units
+23. Perimeter = 28 units, Two rounds = 52 units
 
 **Retrieval Practice:**
 24. (-3, -5) (example)
@@ -427,11 +446,27 @@ Complete the table:
 
 ---
 
+## 14. Memory Hook Card
+
+> **Coordinate Geometry Memory Card**
+>
+> | Concept | Hook |
+> |---|---|
+> | Order of coordinates | **x before y** — alphabetical order |
+> | Quadrant order | **C** for counter-clockwise: I → II → III → IV |
+> | Distance formula | Pythagoras: Δx² + Δy² = d² |
+> | Midpoint | Average the x's, average the y's |
+> | Origin | (0, 0) — where axes cross |
+> | x-axis | y = 0 |
+> | y-axis | x = 0 |
+
+---
+
 ## 15. Spaced Retrieval Schedule
 
-**Tomorrow:** Without looking at this chapter, write the distance formula and the midpoint formula from memory.  
-**In a week:** Plot the points (2, 3), (-1, 4), (-3, -2), (4, -1) and name their quadrants.  
-**In a month:** Explain to a friend why the distance formula works (hint: Pythagoras).
+> **Tomorrow:** Without looking at this chapter, write the distance formula and the midpoint formula from memory.  
+> **In a week:** Plot the points (2, 3), (-1, 4), (-3, -2), (4, -1) and name their quadrants.  
+> **In a month:** Explain to a friend why the distance formula works (hint: Pythagoras).
 
 ---
 
