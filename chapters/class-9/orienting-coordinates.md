@@ -306,7 +306,7 @@ Compute distances:
 - AC = √((6-2)² + (9-3)²) = √(16+36) = √52 = 2√13
 
 Check: AB + BC = √13 + √13 = 2√13. And AC = √52 = 2√13.  
-Since AB + BC = AC, the points are **collinear**.
+Since AB + BC = AC, the points lie on a straight line — they are **collinear**.
 </details>
 
 ### Question 21
@@ -422,12 +422,18 @@ Complete the table:
 9. Perimeter = 20 units, Area = 25 sq units
 10. Centre = (0, 0), Radius = √13 units
 11. Collinear (AB + BC = AC)
+12. AB = 10 units, BC = 6 units. Total = 16 units
+13. Perimeter = 28 units, Two rounds = 56 units
+14. Perimeter = 2(8+6) = 28 units
+15. (0, 4)
+16. (3.5, 4.5)
+17. B(3, -1) and D(-1, 3) (either order)
 
 **Reasoning & Error Detection:**
 18. No. Distance = 6 units.
 19. No. Midpoint = (4, 7).
-20. Yes, collinear (AB + BC = AC).
-21. Yes, right-angled at A (AB² + AC² = BC²).
+20. Yes, right-angled at A (AB² + AC² = BC²).
+21. Yes, collinear (AB + BC = AC).
 
 **Real-Life Application:**
 22. Total ≈ 21.29 km
