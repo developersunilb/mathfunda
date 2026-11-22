@@ -2,7 +2,7 @@
 
 > **Why does this matter?**
 >
-> Imagine you are meeting a friend at a large shopping mall. You tell them, "I'm near the fountain." They still can't find you. But if you say, "I'm at the food court, 20 metres from the escalator, third floor," they find you instantly. That is the power of coordinates — a precise language for describing **where** things are.
+> Imagine you are meeting a friend at a large shopping mall. You tell them, "I'm near the fountain." They still can't find you. But if you say, "I'm at the food court, 20 metres from the escalator, third floor," they find you instantly. Coordinates give us a way to describe **where** something is located, using numbers instead of vague descriptions.
 
 ---
 
@@ -10,7 +10,7 @@
 
 Before coordinates, people used landmarks: "the big tree near the well," "three houses past the temple." These descriptions worked locally but failed when the tree was cut down or the temple rebuilt.
 
-Coordinates give us a **universal, permanent language for location**. Whether you are navigating a city map, designing a circuit board, or programming a video game, the Cartesian coordinate system is the language you will use.
+Coordinates give us a **standard way to describe location**. Whether you are reading a map, designing a circuit board, or programming a video game, coordinates let you describe position precisely.
 
 ---
 
@@ -43,10 +43,7 @@ Imagine two number lines crossing at right angles:
 
 Together, they form the **Cartesian plane** (or coordinate plane).
 
-<div class="visual-description">
-Imagine a grid. The origin O is at the centre. Moving right increases x. Moving up increases y.  
-Every point on the grid has a unique "address" — its coordinates.
-</div>
+> **Picture this:** Imagine a grid. The origin O is at the centre. Moving right increases x. Moving up increases y. Every point on the grid has a unique "address" — its coordinates.
 
 ### 3.2 Ordered Pairs
 
@@ -101,7 +98,7 @@ $$
 PQ = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}
 $$
 
-**Why does this work?** It comes from the Pythagorean theorem. The horizontal and vertical differences form the legs of a right triangle; the distance is the hypotenuse.
+**Why does this work?** It comes from the Pythagorean theorem. The horizontal difference and vertical difference form the two legs of a right triangle; the distance PQ is the hypotenuse.
 
 > **Example:** Distance between P(2, 3) and Q(5, 7)?  
 > Δx = 5 - 2 = 3, Δy = 7 - 3 = 4  
@@ -109,7 +106,7 @@ $$
 
 ---
 
-## 6. Midpoint of a Line Segment
+## 6. Understand: Midpoint of a Line Segment
 
 ### 6.1 The Idea
 
@@ -172,6 +169,34 @@ For example, for points (2, 3) and (6, 9):
 
 ---
 
+### Example 3: Right-Angle Verification
+
+**Problem:** A triangle has vertices A(1, 1), B(4, 1), C(1, 5). Is it a right-angled triangle? How do you know?
+
+**Solution:**
+- AB: distance from (1,1) to (4,1) = 4 - 1 = **3 units** (horizontal)
+- AC: distance from (1,1) to (1,5) = 5 - 1 = **4 units** (vertical)
+- BC: distance from (4,1) to (1,5) = √((4-1)² + (1-5)²) = √(9+16) = **5 units**
+
+Check: AB² + AC² = 3² + 4² = 9 + 16 = 25. BC² = 5² = 25.  
+Since AB² + AC² = BC², the converse of the Pythagorean theorem applies — **AB ⟂ AC**, so the triangle is right-angled at A.
+
+---
+
+### Example 4: Collinearity Check
+
+**Problem:** Three points A(2, 3), B(4, 6), C(6, 9) lie on a straight line. Verify this using distances.
+
+**Solution:**
+- AB = √((4-2)² + (6-3)²) = √(4+9) = √13
+- BC = √((6-4)² + (9-6)²) = √(4+9) = √13
+- AC = √((6-2)² + (9-3)²) = √(16+36) = √52 = 2√13
+
+Check: AB + BC = √13 + √13 = 2√13. And AC = √52 = 2√13.  
+Since AB + BC = AC, the points lie on a straight line — they are **collinear**.
+
+---
+
 ## 8. Guided Practice
 
 ### Question 1
@@ -211,32 +236,50 @@ Quadrant III
 
 ## 9. Independent Practice
 
-### Question 1
+### Question 5
 Find the distance between P(1, 2) and Q(4, 6).
 
-### Question 2
+### Question 6
 Point A is at (3, 5). Point B is 4 units to the right and 2 units down from A. What are the coordinates of B?
 
-### Question 3
+### Question 7
 A triangle has vertices A(1, 1), B(4, 1), C(1, 5). What type of triangle is it? Find its area.
 
-### Question 4
+### Question 8
 A drone takes off from point A(0, 0) and flies to B(6, 8). Then it flies to C(6, 2). What is the total distance travelled?
 
-### Question 5
+### Question 9
 A rectangle has vertices at (2, 1), (2, 6), (7, 6), (7, 1). Find its perimeter and area.
 
-### Question 6
+### Question 10
 Points A(-3, 2) and B(3, -2) are opposite ends of a diameter of a circle. Find the coordinates of the centre and the radius of the circle.
 
-### Question 7
+### Question 11
 Three points A(2, 3), B(4, 6), C(6, 9) lie on a straight line. Verify this using distances.
+
+### Question 12
+A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
+
+### Question 13
+A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger runs around the boundary twice. What distance does he cover?
+
+### Question 14
+A farmer wants to fence a rectangular plot with corners at (2, 3), (2, 7), (8, 7), (8, 3). Find the length of fencing needed.
+
+### Question 15
+Two friends live at A(-4, 2) and B(4, 6). They agree to meet at the midpoint of their houses. What are the coordinates of the meeting point?
+
+### Question 16
+A rectangular garden has corners at (1, 2), (1, 7), (6, 7), (6, 2). A sprinkler is placed at the centre of the garden. What are its coordinates?
+
+### Question 17
+A square has opposite vertices at A(-1, -1) and C(3, 3). Find the coordinates of the other two vertices B and D.
 
 ---
 
 ## 10. Reasoning & Error Detection
 
-### Question 9
+### Question 18
 Rohan plots P(3, 4) and Q(3, -2) and says the distance is 1 unit because both x-coordinates are 3. Is he correct? Explain.
 
 <details>
@@ -244,7 +287,7 @@ Rohan plots P(3, 4) and Q(3, -2) and says the distance is 1 unit because both x-
 **No.** The distance is |4 - (-2)| = 6 units. Rohan confused "same x" with "distance is 1". The vertical distance is |4 - (-2)| = 6 units.
 </details>
 
-### Question 10
+### Question 19
 Priya says the midpoint of A(2, 5) and B(6, 9) is (8, 14) because she added the coordinates. Is she correct? Explain the correct method.
 
 <details>
@@ -252,103 +295,61 @@ Priya says the midpoint of A(2, 5) and B(6, 9) is (8, 14) because she added the 
 **No.** Midpoint formula: ((x₁+x₂)/2, (y₁+y₂)/2) = ((2+6)/2, (5+9)/2) = (4, 7). Priya added instead of averaging.
 </details>
 
----
-
-## 11. Reasoning & Application
-
-### Question 10
-A farmer wants to fence a rectangular plot with corners at (2, 3), (2, 7), (8, 7), (8, 3). Find the length of fencing needed.
-
-<details>
-<summary>Click for solution</summary>
-Length = 7 - 3 = 4 units. Width = 8 - 2 = 6 units. Perimeter = 2(4 + 6) = 20 units. Fencing needed = 20 units.
-</details>
-
-### Question 11
-Two friends live at A(-4, 2) and B(4, 6). They agree to meet at the midpoint of their houses. What are the coordinates of the meeting point?
-
-<details>
-<summary>Click for solution</summary>
-Midpoint = ((-4+4)/2, (2+6)/2) = (0, 4).
-</details>
-
-### Question 12
-A rectangular garden has corners at (1, 2), (1, 7), (6, 7), (6, 2). A sprinkler is placed at the centre of the garden. What are its coordinates?
-
-<details>
-<summary>Click for solution</summary>
-Centre = ((1+6)/2, (2+7)/2) = (3.5, 4.5).
-</details>
-
----
-
-## 12. Reasoning Challenge
-
-### Question 13
-Points A(1, 2), B(4, 6), C(7, 2) form a triangle. What type of triangle is it? Find its area.
-
-<details>
-<summary>Click for solution</summary>
-- AB = √((4-1)² + (6-2)²) = √(9+16) = 5
-- BC = √((7-4)² + (2-6)²) = √(9+16) = 5
-- AC = 7 - 1 = 6
-- Two sides equal (AB = BC = 5) → **Isosceles triangle**
-- Area = ½ × base × height = ½ × 6 × 4 = 12 sq units (height from B to AC = 6 - 2 = 4)
-</details>
-
-### Question 14
-A square has opposite vertices at A(-1, -1) and C(3, 3). Find the coordinates of the other two vertices B and D.
-
-<details>
-<summary>Click for solution</summary>
-Diagonal AC goes from (-1,-1) to (3,3). Centre = (1, 1). Diagonal BD is perpendicular to AC.
-Slope of AC = 1, so slope of BD = -1. Half-diagonal length = √((3+1)²+(3+1)²)/2 = √32/2 = 2√2.
-Moving along slope -1 from centre by 2√2: B = (1+2, 1-2) = (3, -1). D = (1-2, 1+2) = (-1, 3).
-Vertices: B(3, -1), D(-1, 3).
-</details>
-
-### Question 15
-Given points A(1, 2), B(4, 6), and C(7, 2). Determine whether these points lie on a straight line (are collinear).
+### Question 20
+Given points A(2, 3), B(4, 6), C(6, 9). Determine whether these points lie on a straight line (are collinear).
 
 <details>
 <summary>Click for answer</summary>
 Compute distances:
-- AB = √((4-1)² + (6-2)²) = √(9+16) = √25 = 5
-- BC = √((7-4)² + (2-6)²) = √(9+16) = √25 = 5
-- AC = √((7-1)² + (2-2)²) = √36 = 6
+- AB = √((4-2)² + (6-3)²) = √(4+9) = √13
+- BC = √((6-4)² + (9-6)²) = √(4+9) = √13
+- AC = √((6-2)² + (9-3)²) = √(16+36) = √52 = 2√13
 
-Check: AB + BC = 5 + 5 = 10. AC = 6.
-Since AB + BC ≠ AC, the points are **not collinear**.
+Check: AB + BC = √13 + √13 = 2√13. And AC = √52 = 2√13.  
+Since AB + BC = AC, the points are **collinear**.
+</details>
+
+### Question 21
+A triangle has vertices A(1, 1), B(4, 1), C(1, 5). Verify whether this is a right-angled triangle.
+
+<details>
+<summary>Click for answer</summary>
+AB: distance from (1,1) to (4,1) = 3 (horizontal)  
+AC: distance from (1,1) to (1,5) = 4 (vertical)  
+BC: distance from (4,1) to (1,5) = √((4-1)² + (1-5)²) = √(9+16) = 5  
+
+Check: AB² + AC² = 3² + 4² = 9 + 16 = 25. BC² = 5² = 25.  
+Since AB² + AC² = BC², the converse of the Pythagorean theorem applies — **AB ⟂ AC**, so the triangle is right-angled at A.
 </details>
 
 ---
 
-## 12. Real-Life Application
+## 10. Real-Life Application
 
-### Question 16
-A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse. What is the total distance travelled?
+### Question 18
+A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
 
 <details>
 <summary>Click for solution</summary>
 - W to A: √(3² + 4²) = 5 km
 - A to B: √((7-3)² + (8-4)²) = √(16+16) = 4√2 ≈ 5.66 km
-- B to W: √(7²+8²) = √(49+64) = √113 ≈ 10.63 km
+- B to W: √(7² + 8²) = √(49+64) = √113 ≈ 10.63 km
 - Total ≈ 5 + 5.66 + 10.63 = **21.29 km**
 </details>
 
-### Question 17
+### Question 19
 A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger runs around the boundary twice. What distance does he cover?
 
 <details>
 <summary>Click for solution</summary>
-Length = 4 - (-5) = 9. Width = 3 - (-2) = 5. Perimeter = 2(8+5) = 26 units. Two rounds = **52 units**.
+Length = 4 - (-5) = 9 units. Width = 3 - (-2) = 5 units. Perimeter = 2(9+5) = 28 units. Two rounds = **52 units**.
 </details>
 
 ---
 
-## 13. Retrieval Practice
+## 11. Retrieval Practice
 
-### Question 17
+### Question 20
 Without looking back, write the coordinates of a point in Quadrant III.
 
 <details>
@@ -356,7 +357,7 @@ Without looking back, write the coordinates of a point in Quadrant III.
 (-3, -5) — both coordinates negative
 </details>
 
-### Question 18
+### Question 21
 Write the distance formula from memory.
 
 <details>
@@ -364,7 +365,7 @@ Write the distance formula from memory.
 √((x₂ - x₁)² + (y₂ - y₁)²)
 </details>
 
-### Question 19
+### Question 22
 Complete the table:
 
 | Point | Quadrant |
@@ -384,7 +385,7 @@ Complete the table:
 
 ---
 
-## 13. Memory Hook
+## 12. Memory Hook
 
 > **Memory Hook:**  
 > **x comes before y, just like in the alphabet.**  
@@ -392,7 +393,7 @@ Complete the table:
 
 ---
 
-## 14. Formula Reference (Formula Vault)
+## 13. Formula Reference (Formula Vault)
 
 | Formula | When to Use |
 |---|---|
@@ -405,15 +406,7 @@ Complete the table:
 
 ---
 
-## 15. Retrieval Practice
-
-> **Tomorrow:** Without looking at this chapter, write the distance formula and the midpoint formula from memory.  
-> **In a week:** Plot the points (2, 3), (-1, 4), (-3, -2), (4, -1) and name their quadrants.  
-> **In a month:** Explain to a friend why the distance formula works (hint: Pythagoras).
-
----
-
-## 12. Answer Key
+## 14. Answer Key
 
 **Guided Practice:**
 1. Quadrant II
@@ -422,22 +415,28 @@ Complete the table:
 4. Quadrant III
 
 **Independent Practice:**
-1. 5 units
-2. B(7, 3)
-3. Right triangle (AB ⟂ AC), Area = 12 sq units
-4. AB = 6, BC = 6, CA = 10 → Total = 22
-5. Perimeter = 20, Area = 25; Centre = (3.5, 3.5); Radius = 2.5
-5. (0, 4)
-5. (3.5, 4.5)
-12. Isosceles triangle, Area = 12 sq units
-13. B(3, -1), D(-1, 3)
-14. Total ≈ 21.29 km
-15. 52 units
+5. 5 units
+6. B(7, 3)
+7. Right triangle (AB ⟂ AC), Area = 12 sq units
+8. AB = 10, BC = 6 units. Total = 16 units
+9. Perimeter = 20 units, Area = 25 sq units
+10. Centre = (0, 0), Radius = √13 units
+11. Collinear (AB + BC = AC)
+
+**Reasoning & Error Detection:**
+18. No. Distance = 6 units.
+19. No. Midpoint = (4, 7).
+20. Yes, right-angled at A (AB² + AC² = BC²).
+21. Yes, collinear (AB + BC = AC).
+
+**Real-Life Application:**
+22. Total ≈ 21.29 km
+23. Perimeter = 28 units, Two rounds = 52 units
 
 **Retrieval Practice:**
-15. (-3, -5) (example)
-15. √((x₂-x₁)² + (y₂-y₁)²)
-16. (4, -3)→IV, (-2, 5)→II, (-4, -1)→III, (0, 7)→on y-axis
+23. (-3, -5) (example)
+24. √((x₂-x₁)² + (y₂-y₁)²)
+25. (4, -3)→IV, (-2, 5)→II, (-4, -1)→III, (0, 7)→on y-axis
 
 ---
 
