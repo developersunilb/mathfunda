@@ -2,7 +2,7 @@
 
 > **Why does this matter?**
 >
-> Imagine you are meeting a friend at a large shopping mall. You tell them, "I'm near the fountain." They still can't find you. But if you say, "I'm at the food court, 20 metres from the escalator, third floor," they find you instantly. Coordinates give us a way to describe **where** something is located, using numbers instead of vague descriptions.
+> Imagine you are meeting a friend at a large shopping mall. You tell them, "I'm near the fountain." They still can't find you. But if you say, "I'm at the food court, 20 metres from the escalator, third floor," they find you instantly. That is the power of coordinates — a precise language for describing **where** things are.
 
 ---
 
@@ -10,7 +10,7 @@
 
 Before coordinates, people used landmarks: "the big tree near the well," "three houses past the temple." These descriptions worked locally but failed when the tree was cut down or the temple rebuilt.
 
-Coordinates give us a **standard way to describe location**. Whether you are reading a map, designing a circuit board, or programming a video game, coordinates let you describe position precisely.
+Coordinates give us a **standard way to describe location**. Whether you are navigating a city map, designing a circuit board, or programming a video game, coordinates let you describe position precisely.
 
 ---
 
@@ -324,7 +324,7 @@ Since AB² + AC² = BC², the converse of the Pythagorean theorem applies — **
 
 ---
 
-## 10. Real-Life Application
+## 11. Real-Life Application
 
 ### Question 18
 A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
@@ -342,7 +342,7 @@ A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger r
 
 <details>
 <summary>Click for solution</summary>
-Length = 4 - (-5) = 9 units. Width = 3 - (-2) = 5 units. Perimeter = 2(9+5) = 28 units. Two rounds = **52 units**.
+Length = 4 - (-5) = 9 units. Width = 3 - (-2) = 5 units. Perimeter = 2(9+5) = 28 units. Two rounds = **56 units**.
 </details>
 
 ---
@@ -385,7 +385,7 @@ Complete the table:
 
 ---
 
-## 12. Memory Hook
+## 13. Memory Hook
 
 > **Memory Hook:**  
 > **x comes before y, just like in the alphabet.**  
@@ -393,7 +393,7 @@ Complete the table:
 
 ---
 
-## 13. Formula Reference (Formula Vault)
+## 12. Formula Reference (Formula Vault)
 
 | Formula | When to Use |
 |---|---|
@@ -417,8 +417,8 @@ Complete the table:
 **Independent Practice:**
 5. 5 units
 6. B(7, 3)
-7. Right triangle (AB ⟂ AC), Area = 12 sq units
-8. AB = 10, BC = 6 units. Total = 16 units
+7. Right triangle (AB ⟂ AC), Area = 6 sq units
+8. AB = 10, BC = 6. Total = 16 units
 9. Perimeter = 20 units, Area = 25 sq units
 10. Centre = (0, 0), Radius = √13 units
 11. Collinear (AB + BC = AC)
