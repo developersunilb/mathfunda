@@ -2,7 +2,7 @@
 
 > **Why does this matter?**
 >
-> Imagine you are meeting a friend at a large shopping mall. You tell them, "I'm near the fountain." They still can't find you. But if you say, "I'm at the food court, 20 metres from the escalator, third floor," they find you instantly. That is the power of coordinates — a precise language for describing **where** things are.
+> Imagine you are meeting a friend at a large shopping mall. You tell them, "I'm near the fountain." They still can't find you. But if you say, "I'm at the food court, 20 metres from the escalator, third floor," they find you instantly. Coordinates give us a way to describe **where** something is located, using numbers instead of vague descriptions.
 
 ---
 
@@ -342,7 +342,7 @@ A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger r
 
 <details>
 <summary>Click for solution</summary>
-Length = 4 - (-5) = 9 units. Width = 3 - (-2) = 5 units. Perimeter = 2(9+5) = 28 units. Two rounds = **56 units**.
+Length = 4 - (-5) = 9 units. Width = 3 - (-2) = 5 units. Perimeter = 2(9+5) = 28 units. Two rounds = **52 units**.
 </details>
 
 ---
@@ -385,7 +385,7 @@ Complete the table:
 
 ---
 
-## 13. Memory Hook
+## 12. Memory Hook
 
 > **Memory Hook:**  
 > **x comes before y, just like in the alphabet.**  
@@ -393,7 +393,7 @@ Complete the table:
 
 ---
 
-## 12. Formula Reference (Formula Vault)
+## 13. Formula Reference (Formula Vault)
 
 | Formula | When to Use |
 |---|---|
@@ -418,8 +418,8 @@ Complete the table:
 5. 5 units
 6. B(7, 3)
 7. Right triangle (AB ⟂ AC), Area = 6 sq units
-8. AB = 10, BC = 6. Total = 16 units
-9. Perimeter = 20 units, Area = 25 sq units
+8. AB = 10 units, BC = 6 units. Total = 16 units
+9. Perimeter = 22 units, Area = 30 sq units
 10. Centre = (0, 0), Radius = √13 units
 11. Collinear (AB + BC = AC)
 
