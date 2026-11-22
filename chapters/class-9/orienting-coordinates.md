@@ -6,7 +6,7 @@
 
 ---
 
-## 1. Why Do We Need Coordinates?
+## 2. Why Do We Need Coordinates?
 
 Before coordinates, people used landmarks: "the big tree near the well," "three houses past the temple." These descriptions worked locally but failed when the tree was cut down or the temple rebuilt.
 
@@ -14,7 +14,7 @@ Coordinates give us a **standard way to describe location**. Whether you are nav
 
 ---
 
-## 2. Prior Knowledge Activation
+## 3. Prior Knowledge Activation
 
 Before we begin, let's recall what you already know:
 
@@ -258,7 +258,7 @@ Points A(-3, 2) and B(3, -2) are opposite ends of a diameter of a circle. Find t
 Three points A(2, 3), B(4, 6), C(6, 9) lie on a straight line. Verify this using distances.
 
 ### Question 12
-A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled? *(Each grid unit represents 1 kilometre.)*
+A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
 
 ### Question 13
 A rectangular park has corners at (-5, -2), (4, -2), (4, 3), (-5, 3). A jogger runs around the boundary twice. What distance does he cover?
@@ -306,7 +306,7 @@ Compute distances:
 - AC = √((6-2)² + (9-3)²) = √(16+36) = √52 = 2√13
 
 Check: AB + BC = √13 + √13 = 2√13. And AC = √52 = 2√13.  
-Since AB + BC = AC, the points lie on a straight line — they are **collinear**.
+Since AB + BC = AC, the points are **collinear**.
 </details>
 
 ### Question 21
@@ -326,8 +326,8 @@ Since AB² + AC² = BC², the converse of the Pythagorean theorem applies — **
 
 ## 11. Real-Life Application
 
-### Question 18
-A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled? *(Each grid unit represents 1 kilometre.)*
+### Question 12
+A delivery drone starts at the warehouse W(0, 0). It delivers to A(3, 4), then to B(7, 8), then returns to the warehouse W(0, 0). What is the total distance travelled?
 
 <details>
 <summary>Click for solution</summary>
@@ -424,16 +424,16 @@ Complete the table:
 11. Collinear (AB + BC = AC)
 12. AB = 10 units, BC = 6 units. Total = 16 units
 13. Perimeter = 28 units, Two rounds = 56 units
-14. Perimeter = 2(8+6) = 28 units
+14. Perimeter = 2(6+4) = 20 units
 15. (0, 4)
 16. (3.5, 4.5)
-17. B(3, -1) and D(-1, 3) (either order)
+17. B(3, -1) and D(-1, 3)
 
 **Reasoning & Error Detection:**
 18. No. Distance = 6 units.
 19. No. Midpoint = (4, 7).
-20. Yes, right-angled at A (AB² + AC² = BC²).
-21. Yes, collinear (AB + BC = AC).
+20. Yes, collinear (AB + BC = AC).
+21. Yes, right-angled at A (AB² + AC² = BC²).
 
 **Real-Life Application:**
 22. Total ≈ 21.29 km
