@@ -863,6 +863,17 @@ const DECKS = [
       { front: "Fair coin P(head)?", back: "1/2." },
     ],
   },
+  {
+    id: "c9-algorithms",
+    title: "Algorithms",
+    subtitle: "Chapter 11",
+    stage: "part2",
+    chapter: "algorithms",
+    cards: [
+      { front: "Algorithm?", back: "Step-by-step procedure." },
+      { front: "Euclid's algorithm finds?", back: "GCD." },
+    ],
+  },
 ];
 
 export const decks = DECKS.map((deck) => ({

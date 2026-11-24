@@ -84,6 +84,7 @@ const SEQ = { slug: "sequences", label: "Sequences" };
 const LP = { slug: "linear-polynomials", label: "Linear polynomials" };
 const UD = { slug: "understanding-data", label: "Understanding data" };
 const PROB = { slug: "probability", label: "Probability" };
+const ALGO = { slug: "algorithms", label: "Algorithms" };
 
 export const VOCABULARY = [
   /* ------------------------------------------------------------ Numbers */
@@ -2112,6 +2113,17 @@ export const VOCABULARY = [
     example: "√2 is irrational.",
     links: [NUM],
     seeAlso: ["Rational number"],
+  },
+  {
+    term: "Algorithm",
+    category: "computation",
+    level: "enrichment",
+    aliases: ["procedure"],
+    simple: "Step-by-step method to solve a problem.",
+    formal: "Finite sequence of well-defined instructions.",
+    example: "Euclid's algorithm finds GCD.",
+    links: [ALGO],
+    seeAlso: ["GCD"],
   },
 ];
 

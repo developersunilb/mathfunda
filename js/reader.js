@@ -1610,6 +1610,7 @@ async function boot() {
      "linear-polynomials": "c9-linear-polynomials",
      "understanding-data": "c9-understanding-data",
      "probability": "c9-probability",
+     "algorithms": "c9-algorithms",
     "linear-inequalities": "c9-inequalities",
   }[chapter.slug];
   if (deckLink) tocFlashcards.href = `./flashcards.html?deck=${deckLink}`;

@@ -463,6 +463,14 @@ const QUESTION_BANK = {
   "q-ns-02": createSingleAnswerQuestion(
     "q-ns-02", "real-numbers", "Classify 0.333...?", "Classify", "Rational repeating", {}, 1, 3
   ),
+
+  // ---- Enrichment: Algorithms ----
+  "q-alg-01": createSingleAnswerQuestion(
+    "q-alg-01", "algorithms", "GCD of 48 and 18 by Euclid?", "Compute", "6", {}, 1, 3
+  ),
+  "q-alg-02": createSingleAnswerQuestion(
+    "q-alg-02", "algorithms", "What is an algorithm?", "Define", "Step-by-step procedure", {}, 1, 3
+  ),
 };
 /**
  * Get all questions for a concept.
