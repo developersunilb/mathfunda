@@ -301,7 +301,27 @@ const QUESTION_BANK = {
     "Pencil ₹2, eraser ₹4", {}, 3, 5
   ),
 
-  // ---- Coordinate Geometry: Midpoint ----
+  // ---- Mensuration: Surface Area and Volume ----
+  "q-sav-01": createSingleAnswerQuestion(
+    "q-sav-01", "surface-area-volume",
+    "TSA of cuboid 4×3×2 cm.", "Find surface area", "52 cm²", {}, 1, 3
+  ),
+  "q-sav-02": createSingleAnswerQuestion(
+    "q-sav-02", "surface-area-volume",
+    "Volume of cube of side 3 cm.", "Find volume", "27 cm³", {}, 1, 3
+  ),
+  "q-sav-03": createSingleAnswerQuestion(
+    "q-sav-03", "surface-area-volume",
+    "Volume of cylinder r=3,h=5.", "Find volume", "45π cm³", {}, 2, 4
+  ),
+  "q-sav-04": createSingleAnswerQuestion(
+    "q-sav-04", "surface-area-volume",
+    "CSA of cone r=3,h=4 (l=5).", "Find CSA", "15π cm²", {}, 2, 4
+  ),
+  "q-sav-05": createSingleAnswerQuestion(
+    "q-sav-05", "surface-area-volume",
+    "Volume of sphere r=3.", "Find volume", "36π cm³", {}, 2, 4
+  ),
   "q-mid-1": createSingleAnswerQuestion(
     "q-mid-1", "midpoint", "Join (2, 4) and (8, 10)", "Find the midpoint", "(5, 7)",
     {}, 2, 4

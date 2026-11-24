@@ -1599,7 +1599,8 @@ async function boot() {
     "number-systems": "c9-number-systems",
     polynomials: "c9-polynomials",
     "geometry-basics": "c9-geometry",
-    "linear-equations": "c9-linear-equations",
+     "linear-equations": "c9-linear-equations",
+     "surface-area-volume": "c9-surface-area-volume",
     "linear-inequalities": "c9-inequalities",
   }[chapter.slug];
   if (deckLink) tocFlashcards.href = `./flashcards.html?deck=${deckLink}`;

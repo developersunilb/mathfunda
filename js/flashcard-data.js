@@ -747,6 +747,20 @@ const DECKS = [
       },
     ],
   },
+  {
+    id: "c9-surface-area-volume",
+    title: "Surface Area and Volume",
+    subtitle: "Chapter 14",
+    stage: "part2",
+    chapter: "surface-area-volume",
+    cards: [
+      { front: "TSA of cuboid?", back: "2(lb+bh+hl)." },
+      { front: "Volume of cuboid?", back: "l×b×h." },
+      { front: "Volume of cylinder?", back: "πr²h." },
+      { front: "CSA of cone?", back: "πrl, l=√(r²+h²)." },
+      { front: "Volume of sphere?", back: "4/3 πr³." },
+    ],
+  },
 ];
 
 export const decks = DECKS.map((deck) => ({

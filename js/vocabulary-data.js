@@ -74,6 +74,7 @@ const POLY = { slug: "polynomials", label: "Polynomials" };
 const EQ = { slug: "basic-equations", label: "Basic equations" };
 const GEO = { slug: "geometry-basics", label: "Perimeter & area" };
 const LIN = { slug: "linear-equations", label: "Linear equations" };
+const SAV = { slug: "surface-area-volume", label: "Surface area and volume" };
 
 export const VOCABULARY = [
   /* ------------------------------------------------------------ Numbers */
@@ -1970,6 +1971,28 @@ export const VOCABULARY = [
     example: "$\\sum_{i=1}^{4} i=1+2+3+4=10$.",
     links: [],
     seeAlso: ["Mean"],
+  },
+  {
+    term: "Surface area",
+    category: "measurement",
+    level: "class9",
+    aliases: ["total surface area", "TSA"],
+    simple: "The total area of all faces of a solid.",
+    formal: "Sum of areas of all faces (including bases) of a solid.",
+    example: "TSA of cuboid = 2(lb+bh+hl).",
+    links: [SAV],
+    seeAlso: ["Volume", "Lateral surface area"],
+  },
+  {
+    term: "Volume",
+    category: "measurement",
+    level: "class9",
+    aliases: ["capacity"],
+    simple: "The space occupied by a solid.",
+    formal: "Measure of three-dimensional space occupied by an object.",
+    example: "Volume of cuboid = l×b×h.",
+    links: [SAV],
+    seeAlso: ["Surface area"],
   },
 ];
 

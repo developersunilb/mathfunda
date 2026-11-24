@@ -1237,6 +1237,7 @@ const LESSON_SLUG_BY_CONCEPT = {
   "mens-volume-cylinder": "geometry-basics",
   "mens-volume-cone": "geometry-basics",
   "mens-volume-sphere": "geometry-basics",
+  "mens-surface-area-volume": "surface-area-volume",
   // ---- Syllabus concepts: Statistics & Probability ----
   "stat-data-collection": "geometry-basics",
   "stat-presentation": "geometry-basics",
@@ -1269,6 +1270,7 @@ const LESSON_SLUG_TO_QUESTION_CONCEPT = {
   "foundation-5-basic-algebra": "expanding-brackets",
   "foundation-6-algebraic-operations": "expanding-brackets",
   "linear-equations": "linear-equations-one-var",
+  "surface-area-volume": "surface-area-volume",
   // ---- Coordinate Geometry ----
   "geometry-basics": "midpoint",
   // ---- Mensuration / Geometry ----
