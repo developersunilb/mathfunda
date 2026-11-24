@@ -18,6 +18,13 @@ Use identities to factorise expressions.
 
 Derive identities by expansion.
 
+## Formula reference
+
+| Identity | Meaning |
+|---|---|
+| (a+b)² = a²+2ab+b² | Square of sum |
+| a²-b² = (a-b)(a+b) | Difference of squares |
+
 ## Practice
 
 Attempt the practice questions on the [Practice Questions page](./algebraic-identities-sample-questions.md). Check against the [Parent Answer Key](./algebraic-identities-answer-key.md).

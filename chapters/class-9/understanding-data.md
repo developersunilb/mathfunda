@@ -12,6 +12,12 @@ Combine groups by total, not by simple average.
 
 Visualise parts of a whole.
 
+## Formula reference
+
+| Formula | Meaning |
+|---|---|
+| Weighted mean = sum(w*x)/sum(w) | Weighted average |
+
 ## Practice
 
 Attempt the practice questions on the [Practice Questions page](./understanding-data-sample-questions.md). Check against the [Parent Answer Key](./understanding-data-answer-key.md).

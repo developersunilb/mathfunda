@@ -22,6 +22,14 @@ For sides $a,b,c$ with $s=\frac{a+b+c}{2}$: $A=\sqrt{s(s-a)(s-b)(s-c)}$.
 
 $A = \pi r^2$; sector area $= \frac{\theta}{360}\pi r^2$.
 
+## Formula reference
+
+| Formula | Meaning |
+|---|---|
+| A rectangle = l×b | Area |
+| A triangle = 1/2 base×height | Area |
+| Heron: √[s(s-a)(s-b)(s-c)] | Area |
+
 ## Practice
 
 Attempt the practice questions on the [Practice Questions page](./perimeter-area-sample-questions.md). Check against the [Parent Answer Key](./perimeter-area-answer-key.md).

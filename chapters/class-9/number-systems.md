@@ -20,6 +20,12 @@ Rational numbers are p/q. Irrational like √2 cannot be expressed as p/q. √2 
 
 Terminating, repeating, irrational decimals.
 
+## Formula reference
+
+| Fact | Meaning |
+|---|---|
+| √2 is irrational | Cannot be p/q |
+
 ## Practice
 
 Attempt the practice questions on the [Practice Questions page](./number-systems-sample-questions.md). Check against the [Parent Answer Key](./number-systems-answer-key.md).

@@ -12,6 +12,12 @@ Repeatedly subtract smaller from larger to find GCD.
 
 Division algorithm for GCD.
 
+## Formula reference
+
+| Rule | Meaning |
+|---|---|
+| Euclid: subtract to find GCD | Algorithm |
+
 ## Practice
 
 Attempt the practice questions on the [Practice Questions page](./algorithms-sample-questions.md). Check against the [Parent Answer Key](./algorithms-answer-key.md).

@@ -12,6 +12,12 @@ Patterns with constant difference are linear.
 
 Linear relationships graph as straight lines; slope is rate of change.
 
+## Formula reference
+
+| Form | Meaning |
+|---|---|
+| ax+b, a≠0 | Linear polynomial |
+
 ## Practice
 
 Attempt the practice questions on the [Practice Questions page](./linear-polynomials-sample-questions.md). Check against the [Parent Answer Key](./linear-polynomials-answer-key.md).

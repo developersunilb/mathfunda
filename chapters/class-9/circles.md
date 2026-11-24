@@ -20,6 +20,13 @@ A quadrilateral inscribed in a circle has opposite angles summing to $180^\circ$
 
 A tangent to a circle is perpendicular to the radius at the point of contact.
 
+## Formula reference
+
+| Formula | Meaning |
+|---|---|
+| C = 2πr | Circumference |
+| A = πr² | Area |
+
 ## Practice
 
 Attempt the practice questions on the [Practice Questions page](./circles-sample-questions.md). Check against the [Parent Answer Key](./circles-answer-key.md).

@@ -16,6 +16,12 @@ Sample space is set of all outcomes.
 
 Use tree diagrams for sequential experiments.
 
+## Formula reference
+
+| Formula | Meaning |
+|---|---|
+| P(E) = favourable/total | Probability |
+
 ## Practice
 
 Attempt the practice questions on the [Practice Questions page](./probability-sample-questions.md). Check against the [Parent Answer Key](./probability-answer-key.md).

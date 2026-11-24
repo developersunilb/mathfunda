@@ -16,6 +16,14 @@ GP: each term multiplied by common ratio $r$. $n$-th term: $a_n = a r^{n-1}$.
 
 $1+2+\dots+n = \frac{n(n+1)}{2}$.
 
+## Formula reference
+
+| Formula | Meaning |
+|---|---|
+| a_n = a+(n-1)d | AP nth term |
+| S_n = n/2(2a+(n-1)d) | AP sum |
+| 1+...+n = n(n+1)/2 | Sum naturals |
+
 ## Practice
 
 Attempt the practice questions on the [Practice Questions page](./sequences-sample-questions.md). Check against the [Parent Answer Key](./sequences-answer-key.md).

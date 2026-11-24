@@ -36,6 +36,13 @@ The quadrilateral formed by joining the midpoints of the sides of any quadrilate
 
 Any quadrilateral can tile the plane by 180° rotation about the midpoint of a side.
 
+## Formula reference
+
+| Formula | Meaning |
+|---|---|
+| Sum interior angles = 360° | Quadrilateral |
+| Parallelogram: opposite sides equal | Property |
+
 ## Practice
 
 Attempt the practice questions on the [Practice Questions page](./quadrilaterals-sample-questions.md). Check against the [Parent Answer Key](./quadrilaterals-answer-key.md).

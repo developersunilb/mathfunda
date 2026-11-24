@@ -56,6 +56,15 @@ Break the solid into standard parts, compute each part, then add (for surface ar
 - $1\,\text{m}^3 = 1000\,\text{L}$; $1\,\text{L}=1000\,\text{cm}^3$.
 - Surface area units are squared; volume units are cubed.
 
+## Formula reference
+
+| Formula | Meaning |
+|---|---|
+| TSA cuboid = 2(lb+bh+hl) | Total surface area |
+| Volume cuboid = l×b×h | Volume |
+| Volume cylinder = πr²h | Volume |
+| CSA cone = πrl | Curved surface area |
+
 ## Practice
 
 Attempt the practice questions on the separate [Practice Questions page](./surface-area-volume-sample-questions.md). Check against the [Parent Answer Key](./surface-area-volume-answer-key.md).

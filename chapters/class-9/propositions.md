@@ -16,6 +16,12 @@ An implication is proven by logic; disproven by a single counterexample.
 
 Proof requires general reasoning; disproof requires one concrete counterexample.
 
+## Formula reference
+
+| Rule | Meaning |
+|---|---|
+| Converse of If P then Q is If Q then P | Logic |
+
 ## Practice
 
 Attempt the practice questions on the [Practice Questions page](./propositions-sample-questions.md). Check against the [Parent Answer Key](./propositions-answer-key.md).
