@@ -455,8 +455,15 @@ const QUESTION_BANK = {
   "q-prob-02": createSingleAnswerQuestion(
     "q-prob-02", "probability", "Probability of even number on die?", "Compute", "1/2", {}, 1, 3
   ),
-};
 
+  // ---- Number Systems: World of Numbers ----
+  "q-ns-01": createSingleAnswerQuestion(
+    "q-ns-01", "real-numbers", "Is √2 rational?", "Classify", "No, irrational", {}, 1, 3
+  ),
+  "q-ns-02": createSingleAnswerQuestion(
+    "q-ns-02", "real-numbers", "Classify 0.333...?", "Classify", "Rational repeating", {}, 1, 3
+  ),
+};
 /**
  * Get all questions for a concept.
  */

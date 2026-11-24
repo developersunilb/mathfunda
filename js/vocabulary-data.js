@@ -2102,6 +2102,17 @@ export const VOCABULARY = [
     links: [PROB],
     seeAlso: ["Sample space"],
   },
+  {
+    term: "Irrational number",
+    category: "numbers",
+    level: "class9",
+    aliases: ["irrational"],
+    simple: "Cannot be written as p/q.",
+    formal: "Real number not expressible as ratio of integers.",
+    example: "√2 is irrational.",
+    links: [NUM],
+    seeAlso: ["Rational number"],
+  },
 ];
 
 export const VOCAB_CATEGORY_BY_ID = Object.fromEntries(
