@@ -1227,6 +1227,7 @@ const LESSON_SLUG_BY_CONCEPT = {
   "geo-quadrilaterals-shapes": "quadrilaterals",
   "geo-areas-parallelograms": "geometry-basics",
   "geo-circles": "geometry-basics",
+  "geo-circles-shapes": "circles",
   "geo-constructions": "geometry-basics",
   "geo-herons-formula": "geometry-basics",
   // ---- Syllabus concepts: Mensuration ----
@@ -1273,6 +1274,7 @@ const LESSON_SLUG_TO_QUESTION_CONCEPT = {
   "linear-equations": "linear-equations-one-var",
   "surface-area-volume": "surface-area-volume",
   "quadrilaterals": "quadrilaterals",
+  "circles": "circles",
   // ---- Coordinate Geometry ----
   "geometry-basics": "midpoint",
   // ---- Mensuration / Geometry ----

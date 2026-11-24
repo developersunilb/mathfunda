@@ -382,8 +382,16 @@ const QUESTION_BANK = {
     "q-quad-02", "quadrilaterals", "Opposite sides of a parallelogram?", "State property", "Equal and parallel", {}, 1, 3
   ),
   "q-quad-03": createSingleAnswerQuestion(
-    "q-quad-03", "quadrilaterals", "Diagonals of a rectangle?", "State property", "Equal", {}, 1, 3
+    "q-quad-03", "quadrilaterals", "Diagonals of a rectangle?", "State property", "Equal",     {}, 1, 3
   ),
+  // ---- Geometry: Circles ----
+  "q-circ-01": createSingleAnswerQuestion(
+    "q-circ-01", "circles", "Circumference of circle r=7 (π=22/7)?", "Find circumference", "44", {}, 1, 3
+  ),
+  "q-circ-02": createSingleAnswerQuestion(
+    "q-circ-02", "circles", "Area of circle r=7 (π=22/7)?", "Find area", "154", {}, 1, 3
+  ),
+
 };
 
 /**

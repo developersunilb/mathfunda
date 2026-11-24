@@ -76,6 +76,7 @@ const GEO = { slug: "geometry-basics", label: "Perimeter & area" };
 const LIN = { slug: "linear-equations", label: "Linear equations" };
 const SAV = { slug: "surface-area-volume", label: "Surface area and volume" };
 const QUAD = { slug: "quadrilaterals", label: "Quadrilaterals" };
+const CIRC = { slug: "circles", label: "Circles" };
 
 export const VOCABULARY = [
   /* ------------------------------------------------------------ Numbers */
@@ -2005,6 +2006,17 @@ export const VOCABULARY = [
     example: "A rectangle is a parallelogram.",
     links: [QUAD],
     seeAlso: ["Rectangle", "Rhombus"],
+  },
+  {
+    term: "Circle",
+    category: "geometry",
+    level: "class9",
+    aliases: ["circle"],
+    simple: "All points at a fixed distance from a centre.",
+    formal: "Set of points equidistant from a fixed point (centre).",
+    example: "Circumference = 2πr.",
+    links: [CIRC],
+    seeAlso: ["Radius", "Diameter"],
   },
 ];
 

@@ -774,6 +774,18 @@ const DECKS = [
       { front: "Rhombus diagonals?", back: "Perpendicular." },
     ],
   },
+  {
+    id: "c9-circles",
+    title: "Circles",
+    subtitle: "Chapter 5",
+    stage: "part2",
+    chapter: "circles",
+    cards: [
+      { front: "Circumference of circle?", back: "2πr." },
+      { front: "Area of circle?", back: "πr²." },
+      { front: "Cyclic quadrilateral opposite angles?", back: "Sum to 180°." },
+    ],
+  },
 ];
 
 export const decks = DECKS.map((deck) => ({
