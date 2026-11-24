@@ -80,6 +80,7 @@ const CIRC = { slug: "circles", label: "Circles" };
 const PROP = { slug: "propositions", label: "Propositions" };
 const PA = { slug: "perimeter-area", label: "Perimeter and area" };
 const ALGID = { slug: "algebraic-identities", label: "Algebraic identities" };
+const SEQ = { slug: "sequences", label: "Sequences" };
 
 export const VOCABULARY = [
   /* ------------------------------------------------------------ Numbers */
@@ -2053,6 +2054,17 @@ export const VOCABULARY = [
     example: "(a+b)^2 = a²+2ab+b².",
     links: [ALGID],
     seeAlso: ["Factorisation"],
+  },
+  {
+    term: "Arithmetic progression",
+    category: "algebra",
+    level: "class9",
+    aliases: ["AP"],
+    simple: "Sequence with constant difference between terms.",
+    formal: "a_n = a + (n-1)d.",
+    example: "2,5,8,... has d=3.",
+    links: [SEQ],
+    seeAlso: ["Geometric progression"],
   },
 ];
 

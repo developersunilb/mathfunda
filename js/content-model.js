@@ -418,6 +418,16 @@ const QUESTION_BANK = {
     "q-id-02", "algebraic-identities", "Factor a²-b²?", "Factor", "(a-b)(a+b)", {}, 1, 3
   ),
 
+  // ---- Algebra: Sequences ----
+  "q-seq-01": createSingleAnswerQuestion(
+    "q-seq-01", "sequences", "5th term of AP 2,5,8,...?", "Find term", "14", {}, 1, 3
+  ),
+  "q-seq-02": createSingleAnswerQuestion(
+    "q-seq-02", "sequences", "Sum first 10 natural numbers?", "Find sum", "55", {}, 1, 3
+  ),
+  "q-seq-03": createSingleAnswerQuestion(
+    "q-seq-03", "sequences", "4th term of GP 2,6,18,...?", "Find term", "54", {}, 2, 4
+  ),
 };
 
 /**

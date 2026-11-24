@@ -1606,6 +1606,7 @@ async function boot() {
      "propositions": "c9-propositions",
      "perimeter-area": "c9-perimeter-area",
      "algebraic-identities": "c9-algebraic-identities",
+     "sequences": "c9-sequences",
     "linear-inequalities": "c9-inequalities",
   }[chapter.slug];
   if (deckLink) tocFlashcards.href = `./flashcards.html?deck=${deckLink}`;

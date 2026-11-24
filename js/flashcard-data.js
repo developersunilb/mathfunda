@@ -820,6 +820,17 @@ const DECKS = [
       { front: "a²-b²?", back: "(a-b)(a+b)." },
     ],
   },
+  {
+    id: "c9-sequences",
+    title: "Sequences",
+    subtitle: "Chapter 8",
+    stage: "part2",
+    chapter: "sequences",
+    cards: [
+      { front: "AP nth term?", back: "a+(n-1)d." },
+      { front: "Sum first n naturals?", back: "n(n+1)/2." },
+    ],
+  },
 ];
 
 export const decks = DECKS.map((deck) => ({

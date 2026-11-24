@@ -1211,6 +1211,7 @@ const LESSON_SLUG_BY_CONCEPT = {
   "alg-remainder-factor": "polynomials",
   "alg-factorisation": "polynomials",
   "alg-algebraic-identities": "polynomials",
+  "alg-sequences-new": "sequences",
   "alg-identities-new": "algebraic-identities",
   // ---- Syllabus concepts: Algebra / Linear Equations ----
   "alg-linear-eqns-2vars": "linear-equations",
@@ -1281,6 +1282,7 @@ const LESSON_SLUG_TO_QUESTION_CONCEPT = {
   "propositions": "propositions",
   "perimeter-area": "perimeter-area",
   "algebraic-identities": "algebraic-identities",
+  "sequences": "sequences",
   // ---- Coordinate Geometry ----
   "geometry-basics": "midpoint",
   // ---- Mensuration / Geometry ----
