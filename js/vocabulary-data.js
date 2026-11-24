@@ -1984,8 +1984,8 @@ export const VOCABULARY = [
   },
   {
     term: "Surface area",
-    category: "measurement",
-    level: "class9",
+    category: "geometry",
+    level: "core",
     aliases: ["total surface area", "TSA"],
     simple: "The total area of all faces of a solid.",
     formal: "Sum of areas of all faces (including bases) of a solid.",
@@ -1995,8 +1995,8 @@ export const VOCABULARY = [
   },
   {
     term: "Volume",
-    category: "measurement",
-    level: "class9",
+    category: "geometry",
+    level: "core",
     aliases: ["capacity"],
     simple: "The space occupied by a solid.",
     formal: "Measure of three-dimensional space occupied by an object.",
@@ -2007,7 +2007,7 @@ export const VOCABULARY = [
   {
     term: "Parallelogram",
     category: "geometry",
-    level: "class9",
+    level: "core",
     aliases: ["parallelogram"],
     simple: "A quadrilateral with both pairs of opposite sides parallel.",
     formal: "Quadrilateral with opposite sides parallel and equal.",
@@ -2018,7 +2018,7 @@ export const VOCABULARY = [
   {
     term: "Circle",
     category: "geometry",
-    level: "class9",
+    level: "core",
     aliases: ["circle"],
     simple: "All points at a fixed distance from a centre.",
     formal: "Set of points equidistant from a fixed point (centre).",
@@ -2028,8 +2028,8 @@ export const VOCABULARY = [
   },
   {
     term: "Proposition",
-    category: "logic",
-    level: "class9",
+    category: "algebra",
+    level: "core",
     aliases: ["statement"],
     simple: "A statement that is either true or false.",
     formal: "A declarative sentence with a definite truth value.",
@@ -2039,8 +2039,8 @@ export const VOCABULARY = [
   },
   {
     term: "Perimeter",
-    category: "measurement",
-    level: "class9",
+    category: "geometry",
+    level: "core",
     aliases: ["perimeter"],
     simple: "Distance around a shape.",
     formal: "Sum of side lengths of a polygon.",
@@ -2051,7 +2051,7 @@ export const VOCABULARY = [
   {
     term: "Identity",
     category: "algebra",
-    level: "class9",
+    level: "core",
     aliases: ["algebraic identity"],
     simple: "An equation true for all values of variables.",
     formal: "Equality of polynomials holding for all variable values.",
@@ -2062,7 +2062,7 @@ export const VOCABULARY = [
   {
     term: "Arithmetic progression",
     category: "algebra",
-    level: "class9",
+    level: "core",
     aliases: ["AP"],
     simple: "Sequence with constant difference between terms.",
     formal: "a_n = a + (n-1)d.",
@@ -2073,7 +2073,7 @@ export const VOCABULARY = [
   {
     term: "Linear polynomial",
     category: "algebra",
-    level: "class9",
+    level: "core",
     aliases: ["linear polynomial"],
     simple: "Polynomial of degree 1.",
     formal: "Expression ax+b with a≠0.",
@@ -2083,8 +2083,8 @@ export const VOCABULARY = [
   },
   {
     term: "Weighted mean",
-    category: "statistics",
-    level: "class9",
+    category: "data",
+    level: "core",
     aliases: ["weighted average"],
     simple: "Average where values have different weights.",
     formal: "sum(w_i x_i)/sum(w_i).",
@@ -2094,8 +2094,8 @@ export const VOCABULARY = [
   },
   {
     term: "Probability",
-    category: "statistics",
-    level: "class9",
+    category: "data",
+    level: "core",
     aliases: ["chance"],
     simple: "Likelihood of an event.",
     formal: "Number of favourable outcomes / total outcomes.",
@@ -2106,7 +2106,7 @@ export const VOCABULARY = [
   {
     term: "Irrational number",
     category: "numbers",
-    level: "class9",
+    level: "core",
     aliases: ["irrational"],
     simple: "Cannot be written as p/q.",
     formal: "Real number not expressible as ratio of integers.",
@@ -2116,7 +2116,7 @@ export const VOCABULARY = [
   },
   {
     term: "Algorithm",
-    category: "computation",
+    category: "algebra",
     level: "enrichment",
     aliases: ["procedure"],
     simple: "Step-by-step method to solve a problem.",
