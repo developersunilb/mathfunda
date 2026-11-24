@@ -1223,6 +1223,7 @@ const LESSON_SLUG_BY_CONCEPT = {
   "geo-lines-angles": "geometry-basics",
   "geo-triangles": "geometry-basics",
   "geo-congruence": "geometry-basics",
+  "geo-propositions-logic": "propositions",
   "geo-quadrilaterals": "geometry-basics",
   "geo-quadrilaterals-shapes": "quadrilaterals",
   "geo-areas-parallelograms": "geometry-basics",
@@ -1275,6 +1276,7 @@ const LESSON_SLUG_TO_QUESTION_CONCEPT = {
   "surface-area-volume": "surface-area-volume",
   "quadrilaterals": "quadrilaterals",
   "circles": "circles",
+  "propositions": "propositions",
   // ---- Coordinate Geometry ----
   "geometry-basics": "midpoint",
   // ---- Mensuration / Geometry ----

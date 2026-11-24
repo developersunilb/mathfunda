@@ -786,6 +786,17 @@ const DECKS = [
       { front: "Cyclic quadrilateral opposite angles?", back: "Sum to 180°." },
     ],
   },
+  {
+    id: "c9-propositions",
+    title: "Propositions",
+    subtitle: "Chapter 9",
+    stage: "part2",
+    chapter: "propositions",
+    cards: [
+      { front: "Proposition?", back: "Statement that is true or false." },
+      { front: "Converse of If P then Q?", back: "If Q then P." },
+    ],
+  },
 ];
 
 export const decks = DECKS.map((deck) => ({

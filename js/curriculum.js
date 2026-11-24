@@ -37,6 +37,7 @@ const CHAPTER_ORDER = {
   "surface-area-volume": 17,
   "quadrilaterals": 18,
   "circles": 19,
+  "propositions": 20,
   "linear-inequalities": 17,
   "beyond-class-9": 18,
 };
@@ -99,6 +100,7 @@ const TITLE_OVERRIDES = {
   "surface-area-volume": "Math of Space: Surface Area and Volume",
   "quadrilaterals": "Quadrilaterals",
   "circles": "Circles",
+  "propositions": "Propositions and their Converses",
   "linear-inequalities": "Linear Inequalities (Enrichment)",
   "beyond-class-9": "Beyond Class 9 (Enrichment)",
 };
@@ -176,6 +178,7 @@ const CHAPTER_PLACEMENT = {
   "surface-area-volume": { part: "part2", topic: "Chapter 14: Math of Space: Surface Area and Volume" },
   "quadrilaterals": { part: "part2", topic: "Chapter 12: Quadrilaterals" },
   "circles": { part: "part2", topic: "Chapter 5: Circles" },
+  "propositions": { part: "part2", topic: "Chapter 9: Propositions" },
   "linear-inequalities": { part: "enrichment" },
   "beyond-class-9": { part: "enrichment" },
 };
@@ -354,6 +357,7 @@ const LESSON_MINUTES = {
   "surface-area-volume": 30,
   "quadrilaterals": 28,
   "circles": 28,
+  "propositions": 18,
   "linear-inequalities": 18,
   "beyond-class-9": 15,
 };
@@ -407,6 +411,7 @@ const CHAPTER_UNIT = {
   "surface-area-volume": { unit: "mensuration", marks: 14 },
   "quadrilaterals": { unit: "geometry", marks: 25 },
   "circles": { unit: "geometry", marks: 25 },
+  "propositions": { unit: "geometry", marks: 25 },
   "linear-inequalities": { unit: "enrichment", marks: null },
   "beyond-class-9": { unit: "enrichment", marks: null },
 };

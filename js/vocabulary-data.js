@@ -77,6 +77,7 @@ const LIN = { slug: "linear-equations", label: "Linear equations" };
 const SAV = { slug: "surface-area-volume", label: "Surface area and volume" };
 const QUAD = { slug: "quadrilaterals", label: "Quadrilaterals" };
 const CIRC = { slug: "circles", label: "Circles" };
+const PROP = { slug: "propositions", label: "Propositions" };
 
 export const VOCABULARY = [
   /* ------------------------------------------------------------ Numbers */
@@ -2017,6 +2018,17 @@ export const VOCABULARY = [
     example: "Circumference = 2πr.",
     links: [CIRC],
     seeAlso: ["Radius", "Diameter"],
+  },
+  {
+    term: "Proposition",
+    category: "logic",
+    level: "class9",
+    aliases: ["statement"],
+    simple: "A statement that is either true or false.",
+    formal: "A declarative sentence with a definite truth value.",
+    example: "'7 is prime' is a proposition.",
+    links: [PROP],
+    seeAlso: ["Converse", "Implication"],
   },
 ];
 

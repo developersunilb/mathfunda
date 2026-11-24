@@ -392,6 +392,13 @@ const QUESTION_BANK = {
     "q-circ-02", "circles", "Area of circle r=7 (π=22/7)?", "Find area", "154", {}, 1, 3
   ),
 
+  // ---- Geometry: Propositions ----
+  "q-prop-01": createSingleAnswerQuestion(
+    "q-prop-01", "propositions", "What is a proposition?", "Define", "A statement that is either true or false", {}, 1, 3
+  ),
+  "q-prop-02": createSingleAnswerQuestion(
+    "q-prop-02", "propositions", "Converse of 'If P then Q'?", "State", "If Q then P", {}, 1, 3
+  ),
 };
 
 /**
