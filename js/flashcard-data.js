@@ -621,7 +621,7 @@ const DECKS = [
       },
       {
         front: "How many solutions does a linear equation in two variables have?",
-        back: "Infinitely many. The graph is a straight line, and every point on it is a solution.",
+        back: "Infinitely many real solutions; over whole numbers or integers the solution set may be finite, countably infinite or empty. The graph is a straight line, and every point on it is a solution.",
       },
       {
         front: "What does the graph of $y=k$ look like?",
