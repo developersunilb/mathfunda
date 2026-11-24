@@ -83,6 +83,7 @@ const ALGID = { slug: "algebraic-identities", label: "Algebraic identities" };
 const SEQ = { slug: "sequences", label: "Sequences" };
 const LP = { slug: "linear-polynomials", label: "Linear polynomials" };
 const UD = { slug: "understanding-data", label: "Understanding data" };
+const PROB = { slug: "probability", label: "Probability" };
 
 export const VOCABULARY = [
   /* ------------------------------------------------------------ Numbers */
@@ -2089,6 +2090,17 @@ export const VOCABULARY = [
     example: "Weighted mean of 10(w2),20(w3) = (2*10+3*20)/5 = 16.",
     links: [UD],
     seeAlso: ["Mean"],
+  },
+  {
+    term: "Probability",
+    category: "statistics",
+    level: "class9",
+    aliases: ["chance"],
+    simple: "Likelihood of an event.",
+    formal: "Number of favourable outcomes / total outcomes.",
+    example: "P(head) = 1/2.",
+    links: [PROB],
+    seeAlso: ["Sample space"],
   },
 ];
 

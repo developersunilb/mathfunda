@@ -852,6 +852,17 @@ const DECKS = [
       { front: "Weighted mean?", back: "sum(w*x)/sum(w)." },
     ],
   },
+  {
+    id: "c9-probability",
+    title: "Probability",
+    subtitle: "Chapter 7",
+    stage: "part2",
+    chapter: "probability",
+    cards: [
+      { front: "Probability range?", back: "0 to 1." },
+      { front: "Fair coin P(head)?", back: "1/2." },
+    ],
+  },
 ];
 
 export const decks = DECKS.map((deck) => ({

@@ -448,6 +448,13 @@ const QUESTION_BANK = {
     "q-ud-02", "understanding-data", "Two groups 10 avg5 and 20 avg8: overall avg?", "Compute", "(10*5+20*8)/30=7", {}, 2, 4
   ),
 
+  // ---- Statistics: Probability ----
+  "q-prob-01": createSingleAnswerQuestion(
+    "q-prob-01", "probability", "Probability of head in fair coin?", "Compute", "1/2", {}, 1, 3
+  ),
+  "q-prob-02": createSingleAnswerQuestion(
+    "q-prob-02", "probability", "Probability of even number on die?", "Compute", "1/2", {}, 1, 3
+  ),
 };
 
 /**

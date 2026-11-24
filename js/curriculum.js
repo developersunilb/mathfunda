@@ -43,6 +43,7 @@ const CHAPTER_ORDER = {
   "sequences": 23,
   "linear-polynomials": 24,
   "understanding-data": 25,
+  "probability": 26,
   "linear-inequalities": 17,
   "beyond-class-9": 18,
 };
@@ -111,6 +112,7 @@ const TITLE_OVERRIDES = {
   "sequences": "Predicting What Comes Next: Sequences",
   "linear-polynomials": "Introduction to Linear Polynomials",
   "understanding-data": "How Quantities Combine: Understanding Data",
+  "probability": "The Mathematics of Maybe: Probability",
   "linear-inequalities": "Linear Inequalities (Enrichment)",
   "beyond-class-9": "Beyond Class 9 (Enrichment)",
 };
@@ -194,6 +196,7 @@ const CHAPTER_PLACEMENT = {
   "sequences": { part: "part2", topic: "Chapter 8: Sequences" },
   "linear-polynomials": { part: "part2", topic: "Chapter 2: Linear Polynomials" },
   "understanding-data": { part: "part2", topic: "Chapter 10: Understanding Data" },
+  "probability": { part: "part2", topic: "Chapter 7: Probability" },
   "linear-inequalities": { part: "enrichment" },
   "beyond-class-9": { part: "enrichment" },
 };
@@ -378,6 +381,7 @@ const LESSON_MINUTES = {
   "sequences": 24,
   "linear-polynomials": 24,
   "understanding-data": 24,
+  "probability": 24,
   "linear-inequalities": 18,
   "beyond-class-9": 15,
 };
@@ -437,6 +441,7 @@ const CHAPTER_UNIT = {
   "sequences": { unit: "algebra", marks: 20 },
   "linear-polynomials": { unit: "algebra", marks: 20 },
   "understanding-data": { unit: "statistics", marks: 10 },
+  "probability": { unit: "statistics", marks: 10 },
   "linear-inequalities": { unit: "enrichment", marks: null },
   "beyond-class-9": { unit: "enrichment", marks: null },
 };
