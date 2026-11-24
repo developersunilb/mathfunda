@@ -79,6 +79,7 @@ const QUAD = { slug: "quadrilaterals", label: "Quadrilaterals" };
 const CIRC = { slug: "circles", label: "Circles" };
 const PROP = { slug: "propositions", label: "Propositions" };
 const PA = { slug: "perimeter-area", label: "Perimeter and area" };
+const ALGID = { slug: "algebraic-identities", label: "Algebraic identities" };
 
 export const VOCABULARY = [
   /* ------------------------------------------------------------ Numbers */
@@ -2041,6 +2042,17 @@ export const VOCABULARY = [
     example: "Perimeter of square side 4 = 16.",
     links: [PA],
     seeAlso: ["Area"],
+  },
+  {
+    term: "Identity",
+    category: "algebra",
+    level: "class9",
+    aliases: ["algebraic identity"],
+    simple: "An equation true for all values of variables.",
+    formal: "Equality of polynomials holding for all variable values.",
+    example: "(a+b)^2 = a²+2ab+b².",
+    links: [ALGID],
+    seeAlso: ["Factorisation"],
   },
 ];
 

@@ -410,7 +410,16 @@ const QUESTION_BANK = {
   "q-pa-03": createSingleAnswerQuestion(
     "q-pa-03", "perimeter-area", "Heron area sides 3,4,5?", "Find area", "6", {}, 2, 4
   ),
+  // ---- Algebra: Algebraic Identities ----
+  "q-id-01": createSingleAnswerQuestion(
+    "q-id-01", "algebraic-identities", "Expand (a+b)^2?", "Expand", "a²+2ab+b²", {}, 1, 3
+  ),
+  "q-id-02": createSingleAnswerQuestion(
+    "q-id-02", "algebraic-identities", "Factor a²-b²?", "Factor", "(a-b)(a+b)", {}, 1, 3
+  ),
+
 };
+
 /**
  * Get all questions for a concept.
  */

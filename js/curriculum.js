@@ -39,6 +39,7 @@ const CHAPTER_ORDER = {
   "circles": 19,
   "propositions": 20,
   "perimeter-area": 21,
+  "algebraic-identities": 22,
   "linear-inequalities": 17,
   "beyond-class-9": 18,
 };
@@ -103,6 +104,7 @@ const TITLE_OVERRIDES = {
   "circles": "Circles",
   "propositions": "Propositions and their Converses",
   "perimeter-area": "Measuring Space: Perimeter and Area",
+  "algebraic-identities": "Exploring Algebraic Identities",
   "linear-inequalities": "Linear Inequalities (Enrichment)",
   "beyond-class-9": "Beyond Class 9 (Enrichment)",
 };
@@ -182,6 +184,7 @@ const CHAPTER_PLACEMENT = {
   "circles": { part: "part2", topic: "Chapter 5: Circles" },
   "propositions": { part: "part2", topic: "Chapter 9: Propositions" },
   "perimeter-area": { part: "part2", topic: "Chapter 6: Perimeter and Area" },
+  "algebraic-identities": { part: "part2", topic: "Chapter 4: Exploring Algebraic Identities" },
   "linear-inequalities": { part: "enrichment" },
   "beyond-class-9": { part: "enrichment" },
 };
@@ -362,6 +365,7 @@ const LESSON_MINUTES = {
   "circles": 28,
   "propositions": 18,
   "perimeter-area": 24,
+  "algebraic-identities": 24,
   "linear-inequalities": 18,
   "beyond-class-9": 15,
 };
@@ -417,6 +421,7 @@ const CHAPTER_UNIT = {
   "circles": { unit: "geometry", marks: 25 },
   "propositions": { unit: "geometry", marks: 25 },
   "perimeter-area": { unit: "mensuration", marks: 14 },
+  "algebraic-identities": { unit: "algebra", marks: 20 },
   "linear-inequalities": { unit: "enrichment", marks: null },
   "beyond-class-9": { unit: "enrichment", marks: null },
 };

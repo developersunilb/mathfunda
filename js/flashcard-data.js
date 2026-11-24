@@ -809,6 +809,17 @@ const DECKS = [
       { front: "Heron's formula?", back: "√[s(s-a)(s-b)(s-c)]." },
     ],
   },
+  {
+    id: "c9-algebraic-identities",
+    title: "Algebraic Identities",
+    subtitle: "Chapter 4",
+    stage: "part2",
+    chapter: "algebraic-identities",
+    cards: [
+      { front: "(a+b)^2?", back: "a²+2ab+b²." },
+      { front: "a²-b²?", back: "(a-b)(a+b)." },
+    ],
+  },
 ];
 
 export const decks = DECKS.map((deck) => ({
