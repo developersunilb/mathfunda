@@ -451,13 +451,6 @@ function markTaskComplete(conceptId, completed) {
   completion[conceptId] = completed;
   markPlanTaskComplete(conceptId, completed);
 
-  // Also mark the underlying lesson as done so progress reflects it.
-  const slug = lessonSlugForConcept(conceptId);
-  if (slug) {
-    markLessonDone(slug, completed);
-    completeLesson(slug, completed);
-  }
-
   renderToday();
   renderRecommendations();
   renderOverview();

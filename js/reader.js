@@ -1500,10 +1500,6 @@ completeButton.addEventListener("click", () => {
   syncCompleteButton();
   if (!done) {
     showToast("Lesson complete — well done.");
-    // Mark matching plan task(s) complete as the lesson is finished.
-    for (const conceptId of conceptIdsForLessonSlug(chapter.slug)) {
-      markPlanTaskComplete(conceptId, true);
-    }
     // Offer practice questions to build mastery
     const practiceConcepts = getAllQuestionConceptIdsForLessonSlug(chapter.slug);
     const questions = getAllQuestionsForLessonSlug(chapter.slug);
