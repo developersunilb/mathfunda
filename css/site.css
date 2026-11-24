@@ -183,6 +183,11 @@ button {
   text-decoration: none;
 }
 
+.site-nav a[aria-current="page"] {
+  color: var(--green);
+  font-weight: 600;
+}
+
 .nav-cta {
   padding: 0.5rem 1rem;
   border-radius: 999px;
@@ -2996,6 +3001,14 @@ kbd {
   .vocab-formal,
   .vocab-see-also {
     color: #333;
+  }
+
+  .vocab-example > summary {
+    display: none;
+  }
+
+  .vocab-example > .vocab-example-body {
+    display: block !important;
   }
 
   .vault-group {

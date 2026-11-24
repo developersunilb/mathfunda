@@ -10,7 +10,7 @@
  * Navigation levels:
  *   Level 1 — Today          index.html            (the guided hub)
  *   Level 2 — My Plan        study-plan-personalized.html, learn.html
- *   Level 3 — Explore        flashcards.html, formulas.html, methods.html
+ *   Level 3 - Explore        flashcards.html, formulas.html, vocabulary.html, methods.html
  *
  * All data stays client-side in localStorage. Nothing is transmitted.
  */
@@ -60,6 +60,7 @@ const LEVEL_BY_PAGE = {
   "./reader.html": LEVEL_TODAY,
   "./flashcards.html": LEVEL_EXPLORE,
   "./formulas.html": LEVEL_EXPLORE,
+  "./vocabulary.html": LEVEL_EXPLORE,
   "./methods.html": LEVEL_EXPLORE,
 };
 

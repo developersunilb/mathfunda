@@ -44,8 +44,11 @@ const levelCounts = Object.fromEntries(
 /* ----------------------------------------------------------- Rendering */
 
 function renderMath(source) {
+  // Symbols are stored with markdown delimiters so they can also sit inside
+  // prose. KaTeX expects the bare expression, so strip the outer dollars.
+  const expression = source.trim().replace(/^\$+|\$+$/g, "");
   try {
-    return katex.renderToString(source, {
+    return katex.renderToString(expression, {
       throwOnError: false,
       strict: "ignore",
       trust: false,
@@ -329,6 +332,9 @@ function applyFilter() {
 
   const isFiltered = Boolean(needle) || state.category !== "all" || state.level !== "all";
   countEl.textContent = isFiltered ? `${visible} of ${entries.length} terms` : `${entries.length} terms`;
+  emptyEl.textContent = needle
+    ? "No terms match that search. Try a shorter word, or a symbol such as ∠ or ⊥."
+    : "No terms match these filters. Try All topics and All levels.";
   emptyEl.hidden = visible > 0;
 }
 
