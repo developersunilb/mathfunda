@@ -1224,6 +1224,7 @@ const LESSON_SLUG_BY_CONCEPT = {
   "geo-triangles": "geometry-basics",
   "geo-congruence": "geometry-basics",
   "geo-quadrilaterals": "geometry-basics",
+  "geo-quadrilaterals-shapes": "quadrilaterals",
   "geo-areas-parallelograms": "geometry-basics",
   "geo-circles": "geometry-basics",
   "geo-constructions": "geometry-basics",
@@ -1271,6 +1272,7 @@ const LESSON_SLUG_TO_QUESTION_CONCEPT = {
   "foundation-6-algebraic-operations": "expanding-brackets",
   "linear-equations": "linear-equations-one-var",
   "surface-area-volume": "surface-area-volume",
+  "quadrilaterals": "quadrilaterals",
   // ---- Coordinate Geometry ----
   "geometry-basics": "midpoint",
   // ---- Mensuration / Geometry ----

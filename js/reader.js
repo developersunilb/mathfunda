@@ -1601,6 +1601,7 @@ async function boot() {
     "geometry-basics": "c9-geometry",
      "linear-equations": "c9-linear-equations",
      "surface-area-volume": "c9-surface-area-volume",
+     "quadrilaterals": "c9-quadrilaterals",
     "linear-inequalities": "c9-inequalities",
   }[chapter.slug];
   if (deckLink) tocFlashcards.href = `./flashcards.html?deck=${deckLink}`;

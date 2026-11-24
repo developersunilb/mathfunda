@@ -374,6 +374,16 @@ const QUESTION_BANK = {
     "q-ratio-2", "ratio-proportion", "300 ml red paint ratio 3:1", "Blue paint needed", "100 ml",
     {}, 2, 4
   ),
+  // ---- Geometry: Quadrilaterals ----
+  "q-quad-01": createSingleAnswerQuestion(
+    "q-quad-01", "quadrilaterals", "Sum of interior angles of a quadrilateral?", "State the sum", "360°", {}, 1, 3
+  ),
+  "q-quad-02": createSingleAnswerQuestion(
+    "q-quad-02", "quadrilaterals", "Opposite sides of a parallelogram?", "State property", "Equal and parallel", {}, 1, 3
+  ),
+  "q-quad-03": createSingleAnswerQuestion(
+    "q-quad-03", "quadrilaterals", "Diagonals of a rectangle?", "State property", "Equal", {}, 1, 3
+  ),
 };
 
 /**

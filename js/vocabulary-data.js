@@ -75,6 +75,7 @@ const EQ = { slug: "basic-equations", label: "Basic equations" };
 const GEO = { slug: "geometry-basics", label: "Perimeter & area" };
 const LIN = { slug: "linear-equations", label: "Linear equations" };
 const SAV = { slug: "surface-area-volume", label: "Surface area and volume" };
+const QUAD = { slug: "quadrilaterals", label: "Quadrilaterals" };
 
 export const VOCABULARY = [
   /* ------------------------------------------------------------ Numbers */
@@ -1993,6 +1994,17 @@ export const VOCABULARY = [
     example: "Volume of cuboid = l×b×h.",
     links: [SAV],
     seeAlso: ["Surface area"],
+  },
+  {
+    term: "Parallelogram",
+    category: "geometry",
+    level: "class9",
+    aliases: ["parallelogram"],
+    simple: "A quadrilateral with both pairs of opposite sides parallel.",
+    formal: "Quadrilateral with opposite sides parallel and equal.",
+    example: "A rectangle is a parallelogram.",
+    links: [QUAD],
+    seeAlso: ["Rectangle", "Rhombus"],
   },
 ];
 

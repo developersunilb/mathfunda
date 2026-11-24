@@ -761,6 +761,19 @@ const DECKS = [
       { front: "Volume of sphere?", back: "4/3 πr³." },
     ],
   },
+  {
+    id: "c9-quadrilaterals",
+    title: "Quadrilaterals",
+    subtitle: "Chapter 12",
+    stage: "part2",
+    chapter: "quadrilaterals",
+    cards: [
+      { front: "Interior angle sum of quadrilateral?", back: "360°." },
+      { front: "Parallelogram opposite sides?", back: "Equal and parallel." },
+      { front: "Rectangle diagonals?", back: "Equal." },
+      { front: "Rhombus diagonals?", back: "Perpendicular." },
+    ],
+  },
 ];
 
 export const decks = DECKS.map((deck) => ({
