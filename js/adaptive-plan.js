@@ -1207,6 +1207,7 @@ const LESSON_SLUG_BY_CONCEPT = {
   "ns-laws-exponents": "number-systems",
   // ---- Syllabus concepts: Algebra / Polynomials ----
   "alg-polynomials": "polynomials",
+  "alg-linear-polynomials-new": "linear-polynomials",
   "alg-zeroes-polynomial": "polynomials",
   "alg-remainder-factor": "polynomials",
   "alg-factorisation": "polynomials",
@@ -1283,6 +1284,7 @@ const LESSON_SLUG_TO_QUESTION_CONCEPT = {
   "perimeter-area": "perimeter-area",
   "algebraic-identities": "algebraic-identities",
   "sequences": "sequences",
+  "linear-polynomials": "linear-polynomials",
   // ---- Coordinate Geometry ----
   "geometry-basics": "midpoint",
   // ---- Mensuration / Geometry ----

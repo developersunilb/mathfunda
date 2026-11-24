@@ -428,8 +428,18 @@ const QUESTION_BANK = {
   "q-seq-03": createSingleAnswerQuestion(
     "q-seq-03", "sequences", "4th term of GP 2,6,18,...?", "Find term", "54", {}, 2, 4
   ),
-};
 
+  // ---- Algebra: Linear Polynomials ----
+  "q-lp-01": createSingleAnswerQuestion(
+    "q-lp-01", "linear-polynomials", "Is 3x+2 a linear polynomial?", "Yes/No", "Yes", {}, 1, 3
+  ),
+  "q-lp-02": createSingleAnswerQuestion(
+    "q-lp-02", "linear-polynomials", "Degree of 5x-7?", "State degree", "1", {}, 1, 3
+  ),
+  "q-lp-03": createSingleAnswerQuestion(
+    "q-lp-03", "linear-polynomials", "Value of 2x+1 at x=3?", "Compute", "7", {}, 1, 3
+  ),
+};
 /**
  * Get all questions for a concept.
  */

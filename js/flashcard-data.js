@@ -831,6 +831,17 @@ const DECKS = [
       { front: "Sum first n naturals?", back: "n(n+1)/2." },
     ],
   },
+  {
+    id: "c9-linear-polynomials",
+    title: "Linear Polynomials",
+    subtitle: "Chapter 2",
+    stage: "part2",
+    chapter: "linear-polynomials",
+    cards: [
+      { front: "Linear polynomial form?", back: "ax+b, a≠0." },
+      { front: "Degree of linear polynomial?", back: "1." },
+    ],
+  },
 ];
 
 export const decks = DECKS.map((deck) => ({

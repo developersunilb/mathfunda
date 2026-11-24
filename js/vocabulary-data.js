@@ -81,6 +81,7 @@ const PROP = { slug: "propositions", label: "Propositions" };
 const PA = { slug: "perimeter-area", label: "Perimeter and area" };
 const ALGID = { slug: "algebraic-identities", label: "Algebraic identities" };
 const SEQ = { slug: "sequences", label: "Sequences" };
+const LP = { slug: "linear-polynomials", label: "Linear polynomials" };
 
 export const VOCABULARY = [
   /* ------------------------------------------------------------ Numbers */
@@ -2065,6 +2066,17 @@ export const VOCABULARY = [
     example: "2,5,8,... has d=3.",
     links: [SEQ],
     seeAlso: ["Geometric progression"],
+  },
+  {
+    term: "Linear polynomial",
+    category: "algebra",
+    level: "class9",
+    aliases: ["linear polynomial"],
+    simple: "Polynomial of degree 1.",
+    formal: "Expression ax+b with a≠0.",
+    example: "3x+2 is linear.",
+    links: [LP],
+    seeAlso: ["Polynomial"],
   },
 ];
 

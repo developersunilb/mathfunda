@@ -41,6 +41,7 @@ const CHAPTER_ORDER = {
   "perimeter-area": 21,
   "algebraic-identities": 22,
   "sequences": 23,
+  "linear-polynomials": 24,
   "linear-inequalities": 17,
   "beyond-class-9": 18,
 };
@@ -107,6 +108,7 @@ const TITLE_OVERRIDES = {
   "perimeter-area": "Measuring Space: Perimeter and Area",
   "algebraic-identities": "Exploring Algebraic Identities",
   "sequences": "Predicting What Comes Next: Sequences",
+  "linear-polynomials": "Introduction to Linear Polynomials",
   "linear-inequalities": "Linear Inequalities (Enrichment)",
   "beyond-class-9": "Beyond Class 9 (Enrichment)",
 };
@@ -188,6 +190,7 @@ const CHAPTER_PLACEMENT = {
   "perimeter-area": { part: "part2", topic: "Chapter 6: Perimeter and Area" },
   "algebraic-identities": { part: "part2", topic: "Chapter 4: Exploring Algebraic Identities" },
   "sequences": { part: "part2", topic: "Chapter 8: Sequences" },
+  "linear-polynomials": { part: "part2", topic: "Chapter 2: Linear Polynomials" },
   "linear-inequalities": { part: "enrichment" },
   "beyond-class-9": { part: "enrichment" },
 };
@@ -370,6 +373,7 @@ const LESSON_MINUTES = {
   "perimeter-area": 24,
   "algebraic-identities": 24,
   "sequences": 24,
+  "linear-polynomials": 24,
   "linear-inequalities": 18,
   "beyond-class-9": 15,
 };
@@ -427,6 +431,7 @@ const CHAPTER_UNIT = {
   "perimeter-area": { unit: "mensuration", marks: 14 },
   "algebraic-identities": { unit: "algebra", marks: 20 },
   "sequences": { unit: "algebra", marks: 20 },
+  "linear-polynomials": { unit: "algebra", marks: 20 },
   "linear-inequalities": { unit: "enrichment", marks: null },
   "beyond-class-9": { unit: "enrichment", marks: null },
 };
