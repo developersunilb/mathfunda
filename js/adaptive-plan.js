@@ -1252,6 +1252,7 @@ const LESSON_SLUG_BY_CONCEPT = {
   "stat-measures-central-tendency": "geometry-basics",
   "stat-probability": "geometry-basics",
   "stat-frequency-distribution": "geometry-basics",
+  "stat-understanding-data": "understanding-data",
   "stat-cumulative-frequency": "geometry-basics",
 };
 
@@ -1285,6 +1286,7 @@ const LESSON_SLUG_TO_QUESTION_CONCEPT = {
   "algebraic-identities": "algebraic-identities",
   "sequences": "sequences",
   "linear-polynomials": "linear-polynomials",
+  "understanding-data": "understanding-data",
   // ---- Coordinate Geometry ----
   "geometry-basics": "midpoint",
   // ---- Mensuration / Geometry ----

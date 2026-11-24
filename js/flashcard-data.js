@@ -842,6 +842,16 @@ const DECKS = [
       { front: "Degree of linear polynomial?", back: "1." },
     ],
   },
+  {
+    id: "c9-understanding-data",
+    title: "Understanding Data",
+    subtitle: "Chapter 10",
+    stage: "part2",
+    chapter: "understanding-data",
+    cards: [
+      { front: "Weighted mean?", back: "sum(w*x)/sum(w)." },
+    ],
+  },
 ];
 
 export const decks = DECKS.map((deck) => ({

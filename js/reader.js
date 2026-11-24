@@ -1608,6 +1608,7 @@ async function boot() {
      "algebraic-identities": "c9-algebraic-identities",
      "sequences": "c9-sequences",
      "linear-polynomials": "c9-linear-polynomials",
+     "understanding-data": "c9-understanding-data",
     "linear-inequalities": "c9-inequalities",
   }[chapter.slug];
   if (deckLink) tocFlashcards.href = `./flashcards.html?deck=${deckLink}`;

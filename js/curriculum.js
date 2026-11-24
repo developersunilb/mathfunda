@@ -42,6 +42,7 @@ const CHAPTER_ORDER = {
   "algebraic-identities": 22,
   "sequences": 23,
   "linear-polynomials": 24,
+  "understanding-data": 25,
   "linear-inequalities": 17,
   "beyond-class-9": 18,
 };
@@ -109,6 +110,7 @@ const TITLE_OVERRIDES = {
   "algebraic-identities": "Exploring Algebraic Identities",
   "sequences": "Predicting What Comes Next: Sequences",
   "linear-polynomials": "Introduction to Linear Polynomials",
+  "understanding-data": "How Quantities Combine: Understanding Data",
   "linear-inequalities": "Linear Inequalities (Enrichment)",
   "beyond-class-9": "Beyond Class 9 (Enrichment)",
 };
@@ -191,6 +193,7 @@ const CHAPTER_PLACEMENT = {
   "algebraic-identities": { part: "part2", topic: "Chapter 4: Exploring Algebraic Identities" },
   "sequences": { part: "part2", topic: "Chapter 8: Sequences" },
   "linear-polynomials": { part: "part2", topic: "Chapter 2: Linear Polynomials" },
+  "understanding-data": { part: "part2", topic: "Chapter 10: Understanding Data" },
   "linear-inequalities": { part: "enrichment" },
   "beyond-class-9": { part: "enrichment" },
 };
@@ -374,6 +377,7 @@ const LESSON_MINUTES = {
   "algebraic-identities": 24,
   "sequences": 24,
   "linear-polynomials": 24,
+  "understanding-data": 24,
   "linear-inequalities": 18,
   "beyond-class-9": 15,
 };
@@ -432,6 +436,7 @@ const CHAPTER_UNIT = {
   "algebraic-identities": { unit: "algebra", marks: 20 },
   "sequences": { unit: "algebra", marks: 20 },
   "linear-polynomials": { unit: "algebra", marks: 20 },
+  "understanding-data": { unit: "statistics", marks: 10 },
   "linear-inequalities": { unit: "enrichment", marks: null },
   "beyond-class-9": { unit: "enrichment", marks: null },
 };

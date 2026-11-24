@@ -82,6 +82,7 @@ const PA = { slug: "perimeter-area", label: "Perimeter and area" };
 const ALGID = { slug: "algebraic-identities", label: "Algebraic identities" };
 const SEQ = { slug: "sequences", label: "Sequences" };
 const LP = { slug: "linear-polynomials", label: "Linear polynomials" };
+const UD = { slug: "understanding-data", label: "Understanding data" };
 
 export const VOCABULARY = [
   /* ------------------------------------------------------------ Numbers */
@@ -2077,6 +2078,17 @@ export const VOCABULARY = [
     example: "3x+2 is linear.",
     links: [LP],
     seeAlso: ["Polynomial"],
+  },
+  {
+    term: "Weighted mean",
+    category: "statistics",
+    level: "class9",
+    aliases: ["weighted average"],
+    simple: "Average where values have different weights.",
+    formal: "sum(w_i x_i)/sum(w_i).",
+    example: "Weighted mean of 10(w2),20(w3) = (2*10+3*20)/5 = 16.",
+    links: [UD],
+    seeAlso: ["Mean"],
   },
 ];
 

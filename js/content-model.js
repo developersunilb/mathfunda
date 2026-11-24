@@ -439,7 +439,17 @@ const QUESTION_BANK = {
   "q-lp-03": createSingleAnswerQuestion(
     "q-lp-03", "linear-polynomials", "Value of 2x+1 at x=3?", "Compute", "7", {}, 1, 3
   ),
+
+  // ---- Statistics: Understanding Data ----
+  "q-ud-01": createSingleAnswerQuestion(
+    "q-ud-01", "understanding-data", "Weighted mean of 10(w2) and 20(w3)?", "Compute", "16", {}, 1, 3
+  ),
+  "q-ud-02": createSingleAnswerQuestion(
+    "q-ud-02", "understanding-data", "Two groups 10 avg5 and 20 avg8: overall avg?", "Compute", "(10*5+20*8)/30=7", {}, 2, 4
+  ),
+
 };
+
 /**
  * Get all questions for a concept.
  */
