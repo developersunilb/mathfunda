@@ -91,6 +91,7 @@ effectiveLessons.forEach((lesson, index) => {
       <p>${lesson.blurb}</p>
       <div class="lesson-row-meta">
         <span>${lesson.minutes} min</span>
+        ${lesson.unitMarks ? `<span>Unit weightage: ${lesson.unitMarks} marks</span>` : ""}
         <span>${done ? "Completed" : saved.page > 1 ? `Page ${saved.page}` : "Not started"}</span>
       </div>
     </div>
