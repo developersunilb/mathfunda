@@ -399,8 +399,18 @@ const QUESTION_BANK = {
   "q-prop-02": createSingleAnswerQuestion(
     "q-prop-02", "propositions", "Converse of 'If P then Q'?", "State", "If Q then P", {}, 1, 3
   ),
-};
 
+  // ---- Mensuration: Perimeter and Area ----
+  "q-pa-01": createSingleAnswerQuestion(
+    "q-pa-01", "perimeter-area", "Area of rectangle 5×3?", "Find area", "15", {}, 1, 3
+  ),
+  "q-pa-02": createSingleAnswerQuestion(
+    "q-pa-02", "perimeter-area", "Area of triangle base 6 height 4?", "Find area", "12", {}, 1, 3
+  ),
+  "q-pa-03": createSingleAnswerQuestion(
+    "q-pa-03", "perimeter-area", "Heron area sides 3,4,5?", "Find area", "6", {}, 2, 4
+  ),
+};
 /**
  * Get all questions for a concept.
  */

@@ -1604,6 +1604,7 @@ async function boot() {
      "quadrilaterals": "c9-quadrilaterals",
      "circles": "c9-circles",
      "propositions": "c9-propositions",
+     "perimeter-area": "c9-perimeter-area",
     "linear-inequalities": "c9-inequalities",
   }[chapter.slug];
   if (deckLink) tocFlashcards.href = `./flashcards.html?deck=${deckLink}`;

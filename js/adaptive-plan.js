@@ -1240,6 +1240,7 @@ const LESSON_SLUG_BY_CONCEPT = {
   "mens-volume-cylinder": "geometry-basics",
   "mens-volume-cone": "geometry-basics",
   "mens-volume-sphere": "geometry-basics",
+  "mens-perimeter-area": "perimeter-area",
   "mens-surface-area-volume": "surface-area-volume",
   // ---- Syllabus concepts: Statistics & Probability ----
   "stat-data-collection": "geometry-basics",
@@ -1277,6 +1278,7 @@ const LESSON_SLUG_TO_QUESTION_CONCEPT = {
   "quadrilaterals": "quadrilaterals",
   "circles": "circles",
   "propositions": "propositions",
+  "perimeter-area": "perimeter-area",
   // ---- Coordinate Geometry ----
   "geometry-basics": "midpoint",
   // ---- Mensuration / Geometry ----

@@ -78,6 +78,7 @@ const SAV = { slug: "surface-area-volume", label: "Surface area and volume" };
 const QUAD = { slug: "quadrilaterals", label: "Quadrilaterals" };
 const CIRC = { slug: "circles", label: "Circles" };
 const PROP = { slug: "propositions", label: "Propositions" };
+const PA = { slug: "perimeter-area", label: "Perimeter and area" };
 
 export const VOCABULARY = [
   /* ------------------------------------------------------------ Numbers */
@@ -2029,6 +2030,17 @@ export const VOCABULARY = [
     example: "'7 is prime' is a proposition.",
     links: [PROP],
     seeAlso: ["Converse", "Implication"],
+  },
+  {
+    term: "Perimeter",
+    category: "measurement",
+    level: "class9",
+    aliases: ["perimeter"],
+    simple: "Distance around a shape.",
+    formal: "Sum of side lengths of a polygon.",
+    example: "Perimeter of square side 4 = 16.",
+    links: [PA],
+    seeAlso: ["Area"],
   },
 ];
 

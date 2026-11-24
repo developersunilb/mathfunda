@@ -797,6 +797,18 @@ const DECKS = [
       { front: "Converse of If P then Q?", back: "If Q then P." },
     ],
   },
+  {
+    id: "c9-perimeter-area",
+    title: "Perimeter and Area",
+    subtitle: "Chapter 6",
+    stage: "part2",
+    chapter: "perimeter-area",
+    cards: [
+      { front: "Rectangle area?", back: "l×b." },
+      { front: "Triangle area?", back: "1/2 base×height." },
+      { front: "Heron's formula?", back: "√[s(s-a)(s-b)(s-c)]." },
+    ],
+  },
 ];
 
 export const decks = DECKS.map((deck) => ({
