@@ -1,53 +1,58 @@
 # Class 9 CBSE Mathematics — Practice Paper 1 (80 marks)
 
-## Section A — 1 mark each (20 marks)
+## Section A (1 mark × 20 = 20)
 
-1. (Geometry) Sum of interior angles of a quadrilateral? (1)
-2. (Algebra) Degree of 5x-7? (1)
-3. (Mensuration) TSA of cuboid 4×3×2? (1)
-4. (Stats) Probability of head? (1)
-5. (Number) Is √2 rational? (1)
+1. Sum of interior angles of a quadrilateral? (Geometry) — 360°
+2. Degree of 5x-7? (Algebra) — 1
+3. TSA of cuboid 4×3×2? (Mensuration) — 52 cm²
+4. P(head) fair coin? (Stats/Prob) — 1/2
+5. Is √2 rational? (Number Systems) — No, irrational
+6. Circumference formula? (Geometry) — 2πr
+7. (a+b)² expansion? (Algebra) — a²+2ab+b²
+8. Area of circle r=7 (π=22/7)? (Mensuration) — 154
+9. Weighted mean of 10(w2),20(w3)? (Stats) — 16
+10. 5th term AP 2,5,8? (Algebra) — 14
+11. P(even on die)? (Prob) — 1/2
+12. Degree of linear polynomial? (Algebra) — 1
+13. Opposite angles cyclic quad sum? (Geometry) — 180°
+14. Volume of cube side 3? (Mensuration) — 27
+15. Is π rational? (Number) — No
+16. Midpoint theorem statement? (Geometry) — mid-segment parallel, half length
+17. Heron area sides 3,4,5? (Mensuration) — 6
+18. Probability range? (Prob) — 0 to 1
+19. Factor a²-b²? (Algebra) — (a-b)(a+b)
+20. Rational or irrational: 0.333...? (Number) — Rational
 
-## Section B — 2 marks each (10 marks)
+## Section B (2 marks × 5 = 10)
 
-6. (Geometry) State midpoint theorem. (2)
-7. (Algebra) Expand (a+b)². (2)
-8. (Mensuration) Area of triangle base 6 height 4. (2)
-9. (Stats) Weighted mean of 10(w2), 20(w3). (2)
-10. (Algebra) 5th term of AP 2,5,8. (2)
+21. State midpoint theorem. (Geometry) — The segment joining midpoints of two sides is parallel to third side and half its length. (2)
+22. Expand (a+b)². (Algebra) — a²+2ab+b². (2)
+23. Area of triangle base 6 height 4. (Mensuration) — ½×6×4=12. (2)
+24. Weighted mean of 10(w2),20(w3). (Stats) — (2×10+3×20)/5 = 80/5 = 16. (2)
+25. 5th term of AP 2,5,8,... (Algebra) — a=2,d=3; a₅=2+4×3=14. (2)
 
-## Section C — 3 marks each (15 marks)
+## Section C (3 marks × 5 = 15)
 
-11. (Geometry) Prove opposite angles of cyclic quadrilateral sum to 180°. (3)
-12. (Algebra) Solve x+2y=5, x-y=1. (3)
-13. (Mensuration) Volume of cylinder r=3,h=5. (3)
-14. (Stats) Overall average of two groups. (3)
-15. (Number) Prove √2 irrational. (3)
+26. Prove opposite angles of cyclic quadrilateral sum to 180°. (Geometry) — angle at centre = 2×angle at circumference; opposite arcs sum 360°, hence angles sum 180°. (3)
+27. Solve x+2y=5, x-y=1. (Algebra) — From second x=y+1; substitute: y+1+2y=5 ⇒ 3y=4 ⇒ y=4/3; x=7/3. (3)
+28. Volume of cylinder r=3,h=5. (Mensuration) — πr²h = π×9×5 = 45π. (3)
+29. Overall average of two groups (10 avg5, 20 avg8). (Stats) — (10×5+20×8)/30 = 210/30 = 7. (3)
+30. Prove √2 irrational. (Number) — Assume √2=p/q lowest; p²=2q² ⇒ p even; q even contradiction. (3)
 
-## Section D — 5 marks each (20 marks)
+## Section D (5 marks × 4 = 20) [adjust]
 
-16. (Geometry) Prove parallelogram diagonals bisect. (5)
-17. (Algebra) Solve 3 pencils 2 erasers cost 14, 2 pencils 3 erasers cost 16. (5)
-18. (Mensuration) TSA and volume of composite solid cylinder+hemisphere. (5)
-19. (Stats) Case study: weighted mean application. (5)
-20. (Algebra) Surface area/volume word problem. (5)
+31. Parallelogram proof. (Geometry) — Given both pairs opposite sides equal, show parallel via congruent triangles. (5)
+32. Pencils/erasers: 3p+2e=14, 2p+3e=16. (Algebra) — Solve: p=2, e=4. (5)
+33. Composite solid: cylinder r=3 h=5 + hemisphere r=3. (Mensuration) — V = πr²h + (2/3)πr³ = 45π + 18π = 63π. (5)
+34. Case-based: school canteen linear pricing. (Algebra) — Set up equation, solve. (5)
 
-## Section E — 4 marks case-based (15 marks)
+## Section E (case-based, 15 marks)
 
-21. Case study: school canteen pricing (linear equations). (4)
-22. Case study: packaging box (mensuration). (4)
-23. Case study: survey data (statistics). (4)
-24. Case study: proof (geometry). (4)
-25. Case study: number patterns (algebra). (3? adjust)
+35. Case study: packaging box (mensuration) — compute surface area and volume. (5)
+36. Case study: survey data (statistics) — weighted mean. (5)
+37. Case study: proof (geometry) — angle theorem. (5)
 
-## Marking scheme (summary)
-- Section A: 20×1 = 20
-- Section B: 5×2 = 10
-- Section C: 5×3 = 15
-- Section D: 5×5 = 25
-- Section E: 4×4 + 1×3 = 19? Adjust to total 80.
-
-Note: Adjust counts so total = 80. This is a draft skeleton; full worked solutions to be added.
+Total: 20+10+15+20+15 = 80.
 
 ---
-*Practice Paper 1 — for exam preparation. Verify all answers independently.*
+*Practice Paper 1 — verify all answers independently.*
