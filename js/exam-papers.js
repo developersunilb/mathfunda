@@ -19,12 +19,20 @@ let showSolutions = false;
 
 function rawFor(slug) {
   const key = Object.keys(files).find((k) => k.includes(slug + ".md"));
-  return key ? String(files[key]).trim() : "";
+  return key ? String(files[key]) : "";
+}
+
+function extractSection(md, name) {
+  const regex = new RegExp("## " + name + "([\\s\\S]*?)(?=\\n## |$)", "i");
+  const m = md.match(regex);
+  return m ? m[1].trim() : "_Section not found._";
 }
 
 function render() {
   const md = rawFor(current);
-  contentEl.innerHTML = renderMarkdown(md);
+  const section = showSolutions ? "Solutions and Marking Scheme" : "Question Paper";
+  const body = extractSection(md, section);
+  contentEl.innerHTML = renderMarkdown("# " + PAPERS[current] + "\n\n## " + section + "\n\n" + body);
   qBtn.classList.toggle("is-active", !showSolutions);
   sBtn.classList.toggle("is-active", showSolutions);
 }
