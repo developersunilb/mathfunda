@@ -4448,3 +4448,5 @@ kbd {
   font-size: 0.88rem;
 }
 
+
+@media print { .exam-tabs, .exam-toggle { display: none !important; } .exam-content { font-size: 11pt; } }
