@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Examination Papers · MathsFunda</title>
+  <link rel="stylesheet" href="./css/site.css" />
+</head>
+<body>
+  <main class="page">
+    <h1>Examination Papers</h1>
+    <p class="lede">Class 9 CBSE Mathematics — practice papers and internal assessment.</p>
+    <nav class="exam-tabs">
+      <button data-paper="practice-paper-1" class="is-active">Paper 1 (80)</button>
+      <button data-paper="practice-paper-2">Paper 2 (80)</button>
+      <button data-paper="internal-assessment">Internal Assessment (20)</button>
+    </nav>
+    <div class="exam-toggle">
+      <button id="show-questions" class="is-active">Question Paper</button>
+      <button id="show-solutions">Solutions &amp; Marking</button>
+    </div>
+    <article id="exam-content" class="exam-content"></article>
+  </main>
+  <script type="module" src="./js/exam-papers.js"></script>
+</body>
+</html>

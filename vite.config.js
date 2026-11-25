@@ -18,6 +18,7 @@ export default defineConfig({
         flashcards: page("flashcards"),
         formulas: page("formulas"),
         vocabulary: page("vocabulary"),
+        examPapers: page("exam-papers"),
         methods: page("methods"),
         admin: page("admin"),
         pilottest: page("pilottest"),
